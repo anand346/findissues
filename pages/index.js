@@ -9,9 +9,9 @@ import MainLayout from '@/components/MainLayout';
 export default function Home() {
   return (
     <>
-      <div className = "main_container w-screen h-screen flex flex-grow flex-col justify-center items-center ">
-        <Navbar />
-        <MainLayout />
+      <div className = "main_container w-screen h-screen flex flex-col justify-center items-center ">
+          <Navbar />
+          <MainLayout />
       </div>
       {/* <p className = "font-bold text-main_primary">Hello world</p> */}
     </>

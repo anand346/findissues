@@ -1,0 +1,4 @@
+.layout_container{
+    min-height : calc(100vh - 90px);
+    /* 90px for navbar */
+}

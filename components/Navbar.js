@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function Navbar(){
     return (
         <>
-            <div className = "navbar border-main_secondary border-b-2 w-full flex items-center sm:p-8 p-7 justify-between bg-main_secondary_high shadow-md ">
+            <div className = "navbar h-[90px] border-main_secondary border-b-2 w-full flex flex-grow items-center sm:p-8 p-7 justify-between bg-main_secondary_high shadow-md ">
                 <div className = "navbar_left logo">
                         <Image unoptimized={true} src = "/images/logo.png" alt="Muzical Logo" height={100} width={100} className = "w-[5rem] sm:w-[8rem] " />
                 </div>

@@ -5,7 +5,7 @@ export default function LeftSidebar(){
 
     return (
         <>
-            <div className = "left_sidebar overflow-scroll h-max-screen sm:p-8 p-7 w-[23%] border-r-2 border-main_secondary p-8 h-full ">
+            <div className = {`${styles.left_sidebar} overflow-auto  left_sidebar  h-max-screen sm:p-8 p-7 w-[23%] border-r-2 border-main_secondary p-8 h-full `}>
                 <div className = "left_sidebar_content flex flex-col justify-start items-start">
                     <div className = "basic_search w-full flex flex-col items-start justify-start mb-5">
                         <p className = "basic_search_title w-full mb-4 text-main_primary font-semibold italic text-[18px]">Basic Search</p>
