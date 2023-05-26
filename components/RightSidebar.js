@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "@/styles/RightSidebar.module.css";
 
 export default function RightSidebar(){
 
     return (
         <>
-            <div className = "right_sidebar sm:p-8 p-7 w-[23%] border-l-2 border-main_secondary p-8 h-full ">
+            <div className = {` ${styles.right_sidebar} overflow-auto right_sidebar sm:p-8 p-7 w-[23%] border-l-2 border-main_secondary p-8 h-full`}>
                 <div className = "right_sidebar_content flex flex-col justify-start items-start">
                     <p className = "right_sidebar_title text-main_primary font-semibold italic text-[18px] mb-4">How it works ?</p>
                     {/* <p className = "right_sidebar_title text-main_primary font-semibold italic text-[14px] mb-4">To find the most recent issues created on GitHub of your favourite programming lang. and which is not assigned to anyone till now. 

@@ -1,15 +1,16 @@
 import React from "react";
 import LeftSidebar from "./LeftSidebar";
-import Home from "./Home";
+import LandingMain from "./LandingMain";
 import RightSidebar from "./RightSidebar";
+import styles from "@/styles/MainLayout.module.css";
 
 export default function MainLayout(){
 
     return (
         <>
-            <div className = "layout_container w-full flex flex-grow items-start justify-between bg-main_secondary_high">
+            <div className = {`${styles.layout_container} overflow-auto layout_container w-full flex items-start justify-between bg-main_secondary_high h-full`}>
                 <LeftSidebar />
-                <Home />
+                <LandingMain />
                 <RightSidebar />
             </div>
         </>

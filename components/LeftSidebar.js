@@ -5,7 +5,7 @@ export default function LeftSidebar(){
 
     return (
         <>
-            <div className = "left_sidebar overflow-scroll h-max-screen sm:p-8 p-7 w-[23%] border-r-2 border-main_secondary p-8 h-full ">
+            <div className = {`${styles.left_sidebar} overflow-auto  left_sidebar  h-max-screen sm:p-8 p-7 w-[23%] border-r-2 border-main_secondary p-8 h-full `}>
                 <div className = "left_sidebar_content flex flex-col justify-start items-start">
                     <div className = "basic_search w-full flex flex-col items-start justify-start mb-5">
                         <p className = "basic_search_title w-full mb-4 text-main_primary font-semibold italic text-[18px]">Basic Search</p>
@@ -35,7 +35,7 @@ export default function LeftSidebar(){
                         <p className = "advance_search_title text-main_primary font-semibold italic text-[18px] mr-3">Advance Search</p>
                         <label className="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" value="" className="sr-only peer" />
-                            <div className="w-9 h-5 bg-transparent border border-main_primary border border-[2px] rounded-full peer peer-focus:ring-0 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-main_primary"></div>
+                            <div className="w-9 h-5 bg-transparent border border-main_primary border border-[2px] rounded-full peer peer-focus:ring-0 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-main_secondary after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-main_primary"></div>
                         </label>
                         </div>
                         
