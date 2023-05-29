@@ -1,7 +1,14 @@
 import React from "react";
 import styles from "@/styles/LeftSidebar.module.css";
+import { langs } from "@/helper/Languages";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState , useEffect } from "react";
+
 
 export default function LeftSidebar(){
+
+    const router = useRouter();
 
     return (
         <>
@@ -10,24 +17,14 @@ export default function LeftSidebar(){
                     <div className = "basic_search w-full flex flex-col items-start justify-start mb-5">
                         <p className = "basic_search_title w-full mb-4 text-main_primary font-semibold italic text-[18px]">Basic Search</p>
                         <div className = {` basic_search_content w-full flex items-start justify-start flex-wrap space-y-3`}>
-                            <div  className = {` cursor-pointer first:mt-3 mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>PHP</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Go</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Javascript</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Typescript</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>HTML</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>CSS</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Python</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Java</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>C++</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>C#</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Rust</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>C</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Scala</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Ruby</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Dart</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Kotlin</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Lua</div>
-                            <div  className = {` cursor-pointer lang_name mr-2 px-3 py-1  text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>Swift</div>
+                            {
+                                langs.map(lang => {
+                                    return (
+                                        <Link key={lang.query} className = {`first:mt-3`} href = {`search?lang=${lang.query}`}><div className = {`${lang.query == router.query.lang ? 'bg-main_secondary' : ''} cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>{lang.lang_name}</div></Link>
+                                    )
+                                })
+                            }
+
                         </div>
                     </div>
                     <div className = "advance_search w-full flex flex-col items-start justify-start">
