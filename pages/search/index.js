@@ -4,26 +4,38 @@ import Link from "next/link";
 import styles from "@/styles/LandingMain.module.css";
 import IssuesCard from "@/components/IssuesCard";
 import moment from "moment/moment";
+import { repo } from "@/helper/repo";
+import { SkeletonCard } from "@/components/SkeletonCard";
 
 export default function Search(){
 
     
     const [issues,setIssues] = useState([]);
-    const [render,setRender] = useState(true);
+    const [loading, setLoading] = useState(true);
     const router = useRouter();
-    const language = router.query.lang;
+    let skeletonCards = Array(7).fill(0);
 
-    // async function fetchRepo(url){
-    //     const res = await fetch(`https://api.github.com/repos/`);
-    //     const repo = await res.json();
-    //     return repo;
-    // }
+    async function loadRepo(issueItems){
 
-    async function loadRepo(url){
-        const headers = { 'Authorization': 'Bearer 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' };
-        const res = await fetch(url,{headers});
-        const repo_res = await res.json();
-        return repo_res;
+        var repoObj = {};
+        for(const issue of issueItems){
+            const repores = await fetch(issue.repository_url,{
+                headers: {
+                    'Authorization' : "token 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",
+                    'Accept' : 'application/vnd.github.v3+json'
+                }
+            });
+            const repojson = await repores.json();
+
+            repoObj[issue.id] = {
+                full_name : repojson.full_name,
+                stargazers_count : repojson.stargazers_count,
+                forks_count : repojson.forks_count,
+            }
+        }
+
+        
+        return repoObj;
     }
 
     function getTimeFromNow(created_at){
@@ -31,77 +43,90 @@ export default function Search(){
         var date = timestamp[0];
         var time = timestamp[1].split('Z')[0];
         var finalTime = date+" "+time;
-        var finalTimeFromNow = moment(finalTime, 'YYYY-MM-DD HH:mm:ss').fromNow();
+
+        var finalTimeFromNow = moment.utc(finalTime, 'YYYY-MM-DD HH:mm:ss').fromNow();
         return finalTimeFromNow;
 
     }
 
     async function loadIssues(){
-        const headers = { 'Authorization': 'Bearer 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' };
-        const res = await fetch(`https://api.github.com/search/issues?q=language:${language}+is:issue+is:open+no:assignee+created:>=2023-05-20+sort:created`,{headers});
-        const res_issues = await res.json();
-        const issueItems = res_issues.items;
+
+        setLoading(true);
+        const issues_res = await fetch(`https://api.github.com/search/issues?q=language:${router.query.lang != undefined ? router.query.lang : "java"}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`,{
+            headers: {
+                'Authorization' : "token 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",
+                'Accept' : 'application/vnd.github.v3+json'
+            }
+          });
+
+        const issues_json = await issues_res.json();
+        const issueItems = issues_json.items;
+
         var allIssues = [];
-        issueItems.forEach(async issue => {
+
+        var repo_res = await loadRepo(issueItems);
+
+        issueItems.forEach(issue => {
             
            
             var finalTimeFromNow = getTimeFromNow(issue.created_at);
-            var repo_res = await loadRepo(issue.repository_url);
+            var lang = router.query.lang != undefined ? router.query.lang : "java";
 
             var issueObj = {
                 issueId : issue.id,
                 issueNumber : issue.number,
+                issueUrl : issue.html_url,
                 issueTitle : issue.title,
-                repoTitle : repo_res.full_name,
+                repoTitle : repo_res[issue.id].full_name,
                 timeFromNow : finalTimeFromNow,
-                repo_forks : repo_res.forks_count,
-                repo_stars : repo_res.stargazers_count,
-                language : language
+                repo_forks : repo_res[issue.id].forks_count,
+                repo_stars : repo_res[issue.id].stargazers_count,
+                language : lang
             }
 
             allIssues.push(issueObj);
+            
         });
 
         setIssues(allIssues);
-        console.log(issues);
         
-        // loadRepo('https://api.github.com/repos/SzymCode/ContactBook');
-
-        // var timestamp = obj.created_at.split('T');
-        // var date = timestamp[0];
-        // var time = timestamp[1].split('Z')[0];
-        // var finalTime = date+" "+time;
-        // var finalTimeFromNow = moment(finalTime, 'YYYY-MM-DD HH:mm:ss').fromNow();
         
-        // const repoTitleArray = obj.repository_url.split('/');
-        // const finalRepoTitle = repoTitleArray[4]+' / '+repoTitleArray[5];
-
-        // console.log("issue title",obj.title);
-        // console.log("repo title",finalRepoTitle);
-        // console.log("repo url",obj.repository_url);
-        // console.log("issue created",finalTimeFromNow);
-        // console.log("repo stars",repo.stargazers_count);
-        // console.log("repo forks",repo.forks_count);
-        // console.log("language","php");
     }
     
 
     useEffect(() => {
-        console.log("rendered");
-        loadIssues();
-    },[])
+        
+        loadIssues().then(() => setLoading(false))
+        
+        
+    },[router.query.lang])
 
     return (
         <>
             <div className = {`${styles.landing_main} p-8 issues_result overflow-auto w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
                 <p className = "w-[200px] mb-4 italic font-semibold text-[18px] text-main_primary">Issues Result</p>
-                {
+                {loading == true ? (
+
+                                
+                            <SkeletonCard />
+                                
+
+                                ) : (
+                    
+                            issues.map(issue => {
+                                return (
+                                    <IssuesCard key={issue.issueId} issue={issue} />
+                                ) 
+                            })
+                        )
+                }
+                {/* {
                     issues.map(issue => {
                        return (
                             <IssuesCard key={issue.issueId} issue={issue} />
                        ) 
                     })
-                }
+                } */}
             </div>
         </>
     )

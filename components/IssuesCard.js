@@ -1,11 +1,13 @@
+import Link from "next/link"
+
 export default function IssuesCard({issue}){
     return (
         <>
             <div className = "issue_card mb-3 border-2 border-main_primary w-[95%] rounded-md flex flex-col justify-start items-start p-3">
                     <div className = "title_sec w-[100%] flex justify-between items-center">
-                        <p className = "text-main_secondary_low text-[16px] w-[100%] font-semibold"><span className = "text-main_primary m-0">#{issue.issueNumber}</span> {issue.issueTitle}</p>
+                        <Link href = {issue.issueUrl} target="_blank" ><p className = "hover:text-main_primary text-main_secondary_low text-[16px] w-[100%] font-semibold"><span className = "text-main_primary m-0">#{issue.issueNumber}</span> {issue.issueTitle}</p></Link> 
                     </div>                    
-                    <p className = "text-main_secondary mb-3" ><i className="fa fa-github text-main_primary" aria-hidden="true"></i> {issue.repoTitle}</p>
+                    <Link href = {`https://github.com/${issue.repoTitle}`} target="_blank" ><p className = "hover:text-main_secondary_low text-main_secondary mb-3" ><i className="fa fa-github text-main_primary" aria-hidden="true"></i> {issue.repoTitle}</p></Link> 
                     <div className = "footer_sec flex justify-between items-center w-[100%]">
                         
                         <div className = "repo_details flex justify-between items-center">
