@@ -5,13 +5,15 @@ import styles from "@/styles/LandingMain.module.css";
 import IssuesCard from "@/components/IssuesCard";
 import moment from "moment/moment";
 import { repo } from "@/helper/repo";
+import { SkeletonCard } from "@/components/SkeletonCard";
 
 export default function Search(){
 
     
     const [issues,setIssues] = useState([]);
+    const [loading, setLoading] = useState(true);
     const router = useRouter();
-    console.log(router.query.lang);
+    let skeletonCards = Array(7).fill(0);
 
     async function loadRepo(issueItems){
 
@@ -19,7 +21,7 @@ export default function Search(){
         for(const issue of issueItems){
             const repores = await fetch(issue.repository_url,{
                 headers: {
-                    'Authorization' : "token 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",
+                    'Authorization' : "token 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",
                     'Accept' : 'application/vnd.github.v3+json'
                 }
             });
@@ -41,7 +43,7 @@ export default function Search(){
         var date = timestamp[0];
         var time = timestamp[1].split('Z')[0];
         var finalTime = date+" "+time;
-        console.log("final time is",finalTime)
+
         var finalTimeFromNow = moment.utc(finalTime, 'YYYY-MM-DD HH:mm:ss').fromNow();
         return finalTimeFromNow;
 
@@ -49,9 +51,10 @@ export default function Search(){
 
     async function loadIssues(){
 
+        setLoading(true);
         const issues_res = await fetch(`https://api.github.com/search/issues?q=language:${router.query.lang != undefined ? router.query.lang : "java"}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`,{
             headers: {
-                'Authorization' : "token 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",
+                'Authorization' : "token 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",
                 'Accept' : 'application/vnd.github.v3+json'
             }
           });
@@ -72,6 +75,7 @@ export default function Search(){
             var issueObj = {
                 issueId : issue.id,
                 issueNumber : issue.number,
+                issueUrl : issue.html_url,
                 issueTitle : issue.title,
                 repoTitle : repo_res[issue.id].full_name,
                 timeFromNow : finalTimeFromNow,
@@ -81,31 +85,48 @@ export default function Search(){
             }
 
             allIssues.push(issueObj);
+            
         });
 
-        console.log("all issues var after setting",allIssues)
         setIssues(allIssues);
-        console.log("after setting issues state",issues);
+        
         
     }
     
 
     useEffect(() => {
-
-        loadIssues();
+        
+        loadIssues().then(() => setLoading(false))
+        
+        
     },[router.query.lang])
 
     return (
         <>
             <div className = {`${styles.landing_main} p-8 issues_result overflow-auto w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
                 <p className = "w-[200px] mb-4 italic font-semibold text-[18px] text-main_primary">Issues Result</p>
-                {
+                {loading == true ? (
+
+                                
+                            <SkeletonCard />
+                                
+
+                                ) : (
+                    
+                            issues.map(issue => {
+                                return (
+                                    <IssuesCard key={issue.issueId} issue={issue} />
+                                ) 
+                            })
+                        )
+                }
+                {/* {
                     issues.map(issue => {
                        return (
                             <IssuesCard key={issue.issueId} issue={issue} />
                        ) 
                     })
-                }
+                } */}
             </div>
         </>
     )
