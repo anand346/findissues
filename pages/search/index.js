@@ -21,7 +21,7 @@ export default function Search(){
         for(const issue of issueItems){
             const repores = await fetch(issue.repository_url,{
                 headers: {
-                    'Authorization' : "token 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",
+                    'Authorization' : "token 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",
                     'Accept' : 'application/vnd.github.v3+json'
                 }
             });
@@ -54,7 +54,7 @@ export default function Search(){
         setLoading(true);
         const issues_res = await fetch(`https://api.github.com/search/issues?q=language:${router.query.lang != undefined ? router.query.lang : "java"}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`,{
             headers: {
-                'Authorization' : "token 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",
+                'Authorization' : "token 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",
                 'Accept' : 'application/vnd.github.v3+json'
             }
           });
