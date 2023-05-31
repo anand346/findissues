@@ -20,7 +20,7 @@ export default function Search(){
     // }
 
     async function loadRepo(url){
-        const headers = { 'Authorization': 'Bearer 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' };
+        const headers = { 'Authorization': 'Bearer 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' };
         const res = await fetch(url,{headers});
         const repo_res = await res.json();
         return repo_res;
@@ -37,7 +37,7 @@ export default function Search(){
     }
 
     async function loadIssues(){
-        const headers = { 'Authorization': 'Bearer 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' };
+        const headers = { 'Authorization': 'Bearer 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' };
         const res = await fetch(`https://api.github.com/search/issues?q=language:${language}+is:issue+is:open+no:assignee+created:>=2023-05-20+sort:created`,{headers});
         const res_issues = await res.json();
         const issueItems = res_issues.items;
