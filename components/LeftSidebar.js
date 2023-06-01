@@ -10,6 +10,10 @@ export default function LeftSidebar(){
 
     const router = useRouter();
 
+    function replaceRoute(lang_query){
+        router.replace(`/search/${lang_query}`).then(() => router.reload())
+    }
+
     return (
         <>
             <div className = {`${styles.left_sidebar} overflow-auto  left_sidebar  h-max-screen sm:p-8 p-7 w-[23%] border-r-2 border-main_secondary p-8 h-full `}>
@@ -20,7 +24,7 @@ export default function LeftSidebar(){
                             {
                                 langs.map(lang => {
                                     return (
-                                        <Link key={lang.query} className = {`first:mt-3`} href = {`search?lang=${lang.query}`}><div className = {`${lang.query == router.query.lang ? 'bg-main_secondary' : ''} cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>{lang.lang_name}</div></Link>
+                                        <div key={lang.query} className = {`first:mt-3 cursor-pointer`} onClick = {() => replaceRoute(lang.query)}><div className = {`${lang.query == router.query.lang ? 'bg-main_secondary' : ''} cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[14px]`}>{lang.lang_name}</div></div>
                                     )
                                 })
                             }
