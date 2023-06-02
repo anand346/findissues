@@ -1,7 +1,7 @@
-export const SkeletonCard = () => {
+export const SkeletonCard = ({showOrHide}) => {
     return (
       <>
-        <div className="issue_card mb-3 animate-pulse border-2 border-gray-300 w-[95%] rounded-md flex flex-col justify-start items-start p-3">
+        <div className={`issue_card ${showOrHide ? 'flex' : 'hidden'} mb-3 animate-pulse border-2 border-gray-300 w-[95%] rounded-md flex-col justify-start items-start p-3`}>
             <div className="w-7/12 h-4 rounded-md bg-gray-300 mb-2"></div>
             <div className = "w-4/12 h-4 rounded-md bg-gray-300 mb-6"></div>
 
@@ -12,7 +12,7 @@ export const SkeletonCard = () => {
                 <div className = "w-2/12 h-4 rounded-md bg-gray-300"></div>
             </div>
         </div>
-        <div className="issue_card mb-3 animate-pulse border-2 border-gray-300 w-[95%] rounded-md flex flex-col justify-start items-start p-3">
+        <div className={`issue_card ${showOrHide ? 'flex' : 'hidden'} mb-3 animate-pulse border-2 border-gray-300 w-[95%] rounded-md flex-col justify-start items-start p-3`}>
             <div className="w-7/12 h-4 rounded-md bg-gray-300 mb-2"></div>
             <div className = "w-4/12 h-4 rounded-md bg-gray-300 mb-6"></div>
 
@@ -23,7 +23,7 @@ export const SkeletonCard = () => {
                 <div className = "w-2/12 h-4 rounded-md bg-gray-300"></div>
             </div>
         </div>
-        <div className="issue_card mb-3 animate-pulse border-2 border-gray-300 w-[95%] rounded-md flex flex-col justify-start items-start p-3">
+        <div className={`issue_card ${showOrHide ? 'flex' : 'hidden'} mb-3 animate-pulse border-2 border-gray-300 w-[95%] rounded-md flex-col justify-start items-start p-3`}>
             <div className="w-7/12 h-4 rounded-md bg-gray-300 mb-2"></div>
             <div className = "w-4/12 h-4 rounded-md bg-gray-300 mb-6"></div>
 
@@ -34,7 +34,7 @@ export const SkeletonCard = () => {
                 <div className = "w-2/12 h-4 rounded-md bg-gray-300"></div>
             </div>
         </div>
-        <div className="issue_card mb-3 animate-pulse border-2 border-gray-300 w-[95%] rounded-md flex flex-col justify-start items-start p-3">
+        <div className={`issue_card ${showOrHide ? 'flex' : 'hidden'} mb-3 animate-pulse border-2 border-gray-300 w-[95%] rounded-md flex-col justify-start items-start p-3`}>
             <div className="w-7/12 h-4 rounded-md bg-gray-300 mb-2"></div>
             <div className = "w-4/12 h-4 rounded-md bg-gray-300 mb-6"></div>
 
