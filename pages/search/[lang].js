@@ -4,9 +4,8 @@ import Link from "next/link";
 import styles from "@/styles/LandingMain.module.css";
 import IssuesCard from "@/components/IssuesCard";
 import moment from "moment/moment";
-import { repo } from "@/helper/repo";
 import { SkeletonCard } from "@/components/SkeletonCard";
-import { langs } from "@/helper/Languages";
+import { priority_langs } from "@/helper/priority_langs";
 
 export default function Search({allIssues}){
 
@@ -16,26 +15,34 @@ export default function Search({allIssues}){
     const [loading, setLoading] = useState(true);
     const [prevRoute,setprevRoute] = useState("");
     
+    if(router.isFallback){
+        return (
+            <div className = {`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
+                <p className = "w-[200px] mb-4 italic font-semibold text-[16px] lg:text-[18px] text-main_primary">Issues Result</p>
+                <SkeletonCard />
+            </div>
+        )
+    }
 
-    useEffect(() => {
-        console.log("rendering",router.query.lang)
-        // if(prevRoute != router.query.lang){
-        //     setprevRoute(router.query.lang);
-        //     window.location.reload();
+    // useEffect(() => {
+    //     // console.log("rendering",router.query.lang)
+    //     // if(prevRoute != router.query.lang){
+    //     //     setprevRoute(router.query.lang);
+    //     //     window.location.reload();
             
-        // }
+    //     // }
         
-        // loadIssues().then(() => setLoading(false))
-        // if(issues.length != 0){
-        setLoading(false);
-        // }
-    },[issues,router.query.lang])
+    //     // loadIssues().then(() => setLoading(false))
+    //     // if(issues.length != 0){
+    //     setLoading(false);
+    //     // }
+    // },[issues])
 
     return (
         <>
             <div className = {`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
                 <p className = "w-[200px] mb-4 italic font-semibold text-[16px] lg:text-[18px] text-main_primary">Issues Result</p>
-                {loading == true ? (
+                {/* {loading == true ? (
 
                                 
                             <SkeletonCard />
@@ -49,14 +56,14 @@ export default function Search({allIssues}){
                                 ) 
                             })
                         )
-                }
-                {/* {
+                } */}
+                {
                     issues.map(issue => {
                        return (
                             <IssuesCard key={issue.issueId} issue={issue} />
                        ) 
                     })
-                } */}
+                }
             </div>
         </>
     )
@@ -142,11 +149,11 @@ async function loadIssues(url,query_lang){
     
 }
 export async function getStaticPaths() {
-    const paths = langs.map((lang) => ({
+    const paths = priority_langs.map((lang) => ({
       params: { lang : lang.query }
     }))
   
-    return { paths, fallback: 'blocking' }
+    return { paths, fallback: true }
   }
 
 
