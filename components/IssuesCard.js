@@ -17,7 +17,7 @@ export default function IssuesCard({issue}){
                             <div className = "repo_forks mr-2">
                                 <p><i className="fa fa-code-fork text-main_primary" aria-hidden="true"></i> forks : {issue.repo_forks}</p>
                             </div>
-                            <div className = "repo_lang mr-2 sm:hidden ">
+                            <div className = "repo_lang mr-2 ">
                                 <p><i className="fa fa-laptop text-main_primary" aria-hidden="true"></i> lang : {issue.language}</p>
                             </div>
                         </div>
