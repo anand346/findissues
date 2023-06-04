@@ -109,3 +109,11 @@ a {
     color-scheme: dark;
   }
 }
+
+/* LeftSidebar Buttons Hover Effects */
+
+.basic_search_content .text-main_primary:hover{
+  background-color: #1B9C85;
+  color: #232334;
+  transition: 0.4s linear;
+}
