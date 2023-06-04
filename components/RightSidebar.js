@@ -28,6 +28,7 @@ export default function RightSidebar(){
                         To show 100 most recent created github issues with pagination functionality .
                         </li>
                     </ol>
+                    <p className = "right_sidebar_title text-[#a6a6c1] font-semibold italic text-[14px] ">Note : You may see little fluctuation in timing of issue creation </p>
 
                 </div>
             </div>
