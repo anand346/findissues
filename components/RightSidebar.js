@@ -13,7 +13,7 @@ export default function RightSidebar(){
                     <p className = "right_sidebar_title text-main_primary font-semibold italic text-[14px] mb-4">To find most recent created issues on Github follow these steps  :</p>
                     <ol className = "list-decimal ml-[13px]">
                         <li className = "right_sidebar_title text-main_primary font-semibold italic text-[14px] mb-3">
-                        Choose your fav programming lang from basic search tab on the left side bar .
+                        Choose your favourite programming langauge from basic search tab on the left side bar .
                         </li>
                         <li className = "right_sidebar_title text-main_primary font-semibold italic text-[14px] mb-3">
                         This will show you all the recent created issues on GitHub of that lang. that are not assigned to anyone .
