@@ -24,7 +24,7 @@ export default function LeftSidebar(){
                             {
                                 langs.map(lang => {
                                     return (
-                                        <a href="javascript:void(0);" key={lang.query} className = {`first:mt-3 cursor-pointer`} onClick = {() => replaceRoute(lang.query)}><div className = {`${lang.query == router.query.lang ? 'bg-main_secondary' : ''} cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px]`}>{lang.lang_name}</div></a>
+                                        <a href="javascript:void(0);" key={lang.query} className = {`first:mt-3 cursor-pointer`} onClick = {() => replaceRoute(lang.query)}><div className = {`${lang.query == router.query.lang ? 'bg-main_secondary' : ''} cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold hover:bg-white transition duration-500 ease-out-in text-main_primary text-[12px] lg:text-[14px]`}>{lang.lang_name}</div></a>
                                     )
                                 })
                             }
