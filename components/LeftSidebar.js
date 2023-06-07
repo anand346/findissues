@@ -38,7 +38,7 @@ export default function LeftSidebar() {
                         lang.query == router.query.lang
                           ? "bg-main_secondary"
                           : ""
-                      } cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform hover:scale-105`}
+                      } cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
                     >
                       {lang.lang_name}
                     </div>
