@@ -1,6 +1,5 @@
 import {useRouter} from "next/router";
 import { useState , useEffect } from "react";
-import Link from "next/link";
 import styles from "@/styles/LandingMain.module.css";
 import IssuesCard from "@/components/IssuesCard";
 import moment from "moment/moment";
@@ -11,9 +10,6 @@ export default function Search({allIssues}){
 
     
     const router = useRouter();
-    const [issues,setIssues] = useState(allIssues);
-    const [loading, setLoading] = useState(true);
-    const [prevRoute,setprevRoute] = useState("");
     
     if(router.isFallback){
         return (
@@ -24,41 +20,12 @@ export default function Search({allIssues}){
         )
     }
 
-    // useEffect(() => {
-    //     // console.log("rendering",router.query.lang)
-    //     // if(prevRoute != router.query.lang){
-    //     //     setprevRoute(router.query.lang);
-    //     //     window.location.reload();
-            
-    //     // }
-        
-    //     // loadIssues().then(() => setLoading(false))
-    //     // if(issues.length != 0){
-    //     setLoading(false);
-    //     // }
-    // },[issues])
-
     return (
         <>
             <div className = {`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
                 <p className = "w-[200px] mb-4 italic font-semibold text-[16px] lg:text-[18px] text-main_primary">Issues Result</p>
-                {/* {loading == true ? (
-
-                                
-                            <SkeletonCard />
-                                
-
-                                ) : (
-                    
-                            issues.map(issue => {
-                                return (
-                                    <IssuesCard key={issue.issueId} issue={issue} />
-                                ) 
-                            })
-                        )
-                } */}
                 {
-                    issues.map(issue => {
+                    allIssues?.map(issue => {
                        return (
                             <IssuesCard key={issue.issueId} issue={issue} />
                        ) 
@@ -69,7 +36,6 @@ export default function Search({allIssues}){
     )
 }
 
-// pages/products/[id].js
 async function loadRepo(issueItems){
 
     var repoObj = {};

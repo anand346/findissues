@@ -3,14 +3,9 @@ import styles from "@/styles/LeftSidebar.module.css";
 import { langs } from "@/helper/Languages";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 
 export default function LeftSidebar() {
   const router = useRouter();
-
-  function replaceRoute(lang_query) {
-    router.replace(`/search/${lang_query}`).then(() => router.reload());
-  }
 
   return (
     <>
@@ -28,10 +23,9 @@ export default function LeftSidebar() {
               {langs.map((lang) => {
                 return (
                   <a
-                    href="javascript:void(0);"
+                    href={`/search/${lang.query}`}
                     key={lang.query}
                     className={`first:mt-3 cursor-pointer`}
-                    onClick={() => replaceRoute(lang.query)}
                   >
                     <div
                       className={`${
