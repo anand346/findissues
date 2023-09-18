@@ -16,10 +16,6 @@ Visit our [**live demo**](https://findissues.vercel.app) to experience Muzical i
 ## Tech Stack ⚙️
 ![Javascript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript "Javascript") ![Nex.js](https://img.shields.io/badge/Next.js-React_Framework-000?style=for-the-badge&logo=next.js "Nex.js") ![Tailwindcss](https://img.shields.io/badge/Tailwind_CSS-CSS_Framework-38B2AC?style=for-the-badge&logo=tailwind-css "Tailwindcss")
 
-## How to Use
-
-
-
 ## Contributing 🚀
 
 We welcome contributions from the community to make Muzical even better. If you`re interested in contributing, please follow our [Contributing Guidelines](CONTRIBUTING.md) to get started.
