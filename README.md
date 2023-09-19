@@ -1,6 +1,6 @@
-# Welcome to FindIssues ✨👋
-
 ![FindIssues_banner](https://github.com/anand346/findissues/assets/64061582/031a4dba-885e-4ff2-8940-38caee18103a)
+
+# Welcome to FindIssues ✨👋
 
 **FindIssues** is a dynamic web application that lets you find the most recently created and unassigned issues across GitHub repositories. This project is powered by Next.js and the GitHub REST API, with a user-friendly interface designed using Adobe XD.
 
