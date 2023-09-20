@@ -14,7 +14,7 @@ export default function Search({allIssues}){
     if(router.isFallback){
         return (
             <div className = {`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
-                <p className = "w-[200px] mb-4 italic font-semibold text-[16px] lg:text-[18px] text-main_primary">Issues Result</p>
+                <p className = "w-[200px] mb-4 italic font-semibold text-[16px] lg:text-[18px] text-main_primary">All Unassigned Issues 👇</p>
                 <SkeletonCard />
             </div>
         )
@@ -23,7 +23,7 @@ export default function Search({allIssues}){
     return (
         <>
             <div className = {`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
-                <p className = "w-[200px] mb-4 italic font-semibold text-[16px] lg:text-[18px] text-main_primary">Issues Result</p>
+                <p className = "w-[200px] mb-4 italic font-semibold text-[16px] lg:text-[18px] text-main_primary">All Unassigned Issues 👇</p>
                 {
                     allIssues?.map(issue => {
                        return (
