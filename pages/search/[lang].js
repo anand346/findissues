@@ -132,7 +132,7 @@ export async function getStaticProps({params}){
         props:{
             allIssues: lang_issues,
         },
-        revalidate: 60
+        revalidate: 600
     }
 
 }
