@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }) {
             });
         `}
       </Script>
-      <Script src = " https://unpkg.com/flowbite@1.5.1/dist/flowbite.js" /> 
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js" />
     </>
   )
 }
