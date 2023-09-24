@@ -57,7 +57,7 @@ export default function IssuesCard({ issue }) {
                   className="fa fa-laptop text-main_primary"
                   aria-hidden="true"
                 ></i>{" "}
-                lang : {issue.language}
+                {"tag" in issue ? `#tag: ${issue.tag}` : `lang: ${issue.language}`}
               </p>
             </div>
           </div>

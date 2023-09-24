@@ -42,7 +42,7 @@ export default function LeftSidebar() {
               })}
             </div>
           </div>
-          <div className="advance_search w-full hidden flex flex-col items-start justify-start">
+          <div className="advance_search w-full  flex flex-col items-start justify-start">
             <div className="advance_search_title mb-4 flex w-full justify-start items-center">
               <p className="advance_search_title text-main_primary font-semibold italic text-[18px] mr-3">
                 Tags

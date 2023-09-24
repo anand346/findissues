@@ -53,7 +53,7 @@ export default function Navbar(){
                                     );
                                 })}
                             </div>
-                            <div className="advance_search_title hidden w-full flex flex-col items-start justify-start md:mb-5">
+                            <div className="advance_search_title  w-full flex flex-col items-start justify-start md:mb-5">
                                 <div className="advance_search_title mb-2 md:mb-4 flex w-full justify-start items-center">
                                     <p className="advance_search_title text-main_primary font-semibold italic text-[16px] lg:text-[18px] mr-3">
                                         Tags

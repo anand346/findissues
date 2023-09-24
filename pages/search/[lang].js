@@ -5,6 +5,8 @@ import IssuesCard from "@/components/IssuesCard";
 import moment from "moment/moment";
 import { SkeletonCard } from "@/components/SkeletonCard";
 import { priority_langs } from "@/helper/priority_langs";
+import { tags } from "@/helper/tags";
+import { langs } from "@/helper/Languages";
 
 export default function Search({allIssues}){
 
@@ -86,7 +88,12 @@ async function loadIssues(url,query_lang){
     var allIssues = [];
 
     var repo_res = await loadRepo(issueItems);
-
+    var mask = "";
+    if(url.includes("label")){
+        mask = "tag";
+    }else{
+        mask = "language";
+    }
     issueItems.forEach(issue => {
         
        
@@ -102,7 +109,7 @@ async function loadIssues(url,query_lang){
             timeFromNow : finalTimeFromNow,
             repo_forks : repo_res[issue.id].forks_count,
             repo_stars : repo_res[issue.id].stargazers_count,
-            language : query_lang
+            [mask] : query_lang
         }
 
         allIssues.push(issueObj);
@@ -124,7 +131,23 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({params}){
-    let url = `https://api.github.com/search/issues?q=language:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
+
+    let url = "";
+    tags.forEach(tag => {
+        if(tag.query.includes(params.lang)){
+            url = `https://api.github.com/search/issues?q=label:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
+            return ;
+        }
+    })
+    
+    if(url.length == 0){
+        langs.forEach(lang => {
+            if(lang.query.includes(params.lang)){
+                url = `https://api.github.com/search/issues?q=language:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
+                return ;
+            }
+        })
+    }
 
     let lang_issues = await loadIssues(url,params.lang);
 
