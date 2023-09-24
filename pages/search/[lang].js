@@ -1,11 +1,14 @@
 import {useRouter} from "next/router";
-import { useState , useEffect } from "react";
 import styles from "@/styles/LandingMain.module.css";
 import IssuesCard from "@/components/IssuesCard";
 import moment from "moment/moment";
 import { SkeletonCard } from "@/components/SkeletonCard";
 import { priority_langs } from "@/helper/priority_langs";
 import { langs } from "@/helper/Languages";
+import Image from "next/image";
+import error_404 from "../../public/404.svg"
+import { BsArrowRight } from "react-icons/bs"
+import Link from "next/link";
 
 export default function Search({allIssues}){
 
@@ -34,9 +37,11 @@ export default function Search({allIssues}){
                        ) 
                     })
                 }
-                    </> : <>
-                    <p className = "w-full mb-4 font-semibold text-[16px] lg:text-2xl text-main_primary text-center">Invalid search query :(</p>
-                    </>
+                    </> : <div className="w-fit mx-auto">
+                    <p className = "w-full mb-4 font-semibold text-[16px] lg:text-4xl text-main_primary text-center">Page Not Found</p>
+                    <Image src={error_404} alt="error 404" className="w-3/5 mx-auto mt-8" />
+                    <Link href={'/'} className="w-fit bg-transparent hover:bg-white rounded-full italic text-main_primary px-4 py-1 font-semibold flex items-center gap-2 text-sm mx-auto mt-8 border-y-4 ">Back to Home <BsArrowRight /></Link>
+                    </div>
                 }
             </div>
         </>
