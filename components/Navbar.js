@@ -77,7 +77,7 @@ export default function Navbar(){
                             </div>
                             <div className="w-full flex flex-col items-start justify-start md:mb-5">
                                 <p className="basic_search_title w-full mb-2 md:mb-4 text-main_primary font-semibold italic text-[16px] lg:text-[18px]">
-                                    Socials
+                                    Github
                                 </p>
                                 <div className = " flex space-x-5 block md:hidden ">
                                     <Link target="_blank" href="https://github.com/anand346/findissues" className="inline-flex border-2 p-2 rounded-[20px] border-main_primary" ><Image src = "/dark-github.svg" alt = "dark theme logo" height = {20} width = {20} className = "sm:w-[20px] cursor-pointer " /></Link>
