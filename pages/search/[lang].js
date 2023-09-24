@@ -4,11 +4,12 @@ import IssuesCard from "@/components/IssuesCard";
 import moment from "moment/moment";
 import { SkeletonCard } from "@/components/SkeletonCard";
 import { priority_langs } from "@/helper/priority_langs";
-import { langs } from "@/helper/Languages";
 import Image from "next/image";
 import error_404 from "../../public/404.svg";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
+import { tags } from "@/helper/tags";
+import { langs } from "@/helper/Languages";
 
 export default function Search({ allIssues }) {
   const router = useRouter();
@@ -112,23 +113,32 @@ async function loadIssues(url, query_lang) {
 
     var repo_res = await loadRepo(issueItems);
 
-    issueItems.forEach((issue) => {
-      var finalTimeFromNow = getTimeFromNow(issue.created_at);
-      var lang = query_lang;
+    var mask = "";
+    if(url.includes("label")){
+        mask = "tag";
+    }else{
+        mask = "language";
+    }
+    issueItems.forEach(issue => {
+        
+       
+        var finalTimeFromNow = getTimeFromNow(issue.created_at);
+        var lang = query_lang;
 
-      var issueObj = {
-        issueId: issue.id,
-        issueNumber: issue.number,
-        issueUrl: issue.html_url,
-        issueTitle: issue.title,
-        repoTitle: repo_res[issue.id].full_name,
-        timeFromNow: finalTimeFromNow,
-        repo_forks: repo_res[issue.id].forks_count,
-        repo_stars: repo_res[issue.id].stargazers_count,
-        language: query_lang,
-      };
+        var issueObj = {
+            issueId : issue.id,
+            issueNumber : issue.number,
+            issueUrl : issue.html_url,
+            issueTitle : issue.title,
+            repoTitle : repo_res[issue.id].full_name,
+            timeFromNow : finalTimeFromNow,
+            repo_forks : repo_res[issue.id].forks_count,
+            repo_stars : repo_res[issue.id].stargazers_count,
+            [mask] : query_lang
+        }
 
-      allIssues.push(issueObj);
+        allIssues.push(issueObj);
+
     });
   }
 
@@ -140,13 +150,34 @@ export async function getStaticPaths() {
     params: { lang: lang.query },
   }));
 
-  return { paths, fallback: true };
-}
+export async function getStaticProps({params}){
+
+    let url = "";
+    tags.forEach(tag => {
+        if(tag.query.includes(params.lang)){
+            url = `https://api.github.com/search/issues?q=label:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
+            return ;
+        }
+    })
+    
+    if(url.length == 0){
+        langs.forEach(lang => {
+            if(lang.query.includes(params.lang)){
+                url = `https://api.github.com/search/issues?q=language:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
+                return ;
+            }
+        })
+    }
 
 export async function getStaticProps({ params }) {
   let url = `https://api.github.com/search/issues?q=language:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
 
-  let lang_issues = await loadIssues(url, params.lang);
+    return {
+        props:{
+            allIssues: lang_issues,
+        },
+        revalidate: 600
+    }
 
   return {
     props: {
