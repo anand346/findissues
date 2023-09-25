@@ -1,78 +1,102 @@
-import {useRouter} from "next/router";
-import { useState , useEffect } from "react";
+import { useRouter } from "next/router";
 import styles from "@/styles/LandingMain.module.css";
 import IssuesCard from "@/components/IssuesCard";
 import moment from "moment/moment";
 import { SkeletonCard } from "@/components/SkeletonCard";
 import { priority_langs } from "@/helper/priority_langs";
+import Image from "next/image";
+import error_404 from "../../public/404.svg";
+import { BsArrowRight } from "react-icons/bs";
+import Link from "next/link";
 import { tags } from "@/helper/tags";
 import { langs } from "@/helper/Languages";
 
-export default function Search({allIssues}){
+export default function Search({ allIssues }) {
+  const router = useRouter();
 
-    
-    const router = useRouter();
-    
-    if(router.isFallback){
-        return (
-            <div className = {`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
-                <p className = "w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary"><span className="inline-block italic">All Unassigned Issues</span> 👇</p>
-                <SkeletonCard />
-            </div>
-        )
-    }
-
+  if (router.isFallback) {
     return (
-        <>
-            <div className = {`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}>
-                <p className = "w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary"><span className="inline-block italic">All Unassigned Issues</span> 👇</p>
-                {
-                    allIssues?.map(issue => {
-                       return (
-                            <IssuesCard key={issue.issueId} issue={issue} />
-                       ) 
-                    })
-                }
-            </div>
-        </>
-    )
+      <div
+        className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
+      >
+        <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
+          <span className="inline-block italic">All Unassigned Issues</span> 👇
+        </p>
+        <SkeletonCard />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div
+        className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
+      >
+        {allIssues.length ? (
+          <>
+            <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
+              <span className="inline-block italic">All Unassigned Issues</span>{" "}
+              👇
+            </p>
+            {allIssues?.map((issue) => {
+              return <IssuesCard key={issue.issueId} issue={issue} />;
+            })}
+          </>
+        ) : (
+          <div className="w-fit mx-auto">
+            <p className="w-full mb-4 font-semibold text-[16px] lg:text-4xl text-main_primary text-center">
+              Page Not Found
+            </p>
+            <Image
+              src={error_404}
+              alt="error 404"
+              className="w-3/5 mx-auto mt-8"
+            />
+            <Link
+              href={"/"}
+              className="w-fit bg-transparent hover:bg-white rounded-full italic text-main_primary px-4 py-1 font-semibold flex items-center gap-2 text-sm mx-auto mt-8 border-y-4 "
+            >
+              Back to Home <BsArrowRight />
+            </Link>
+          </div>
+        )}
+      </div>
+    </>
+  );
 }
 
-async function loadRepo(issueItems){
+async function loadRepo(issueItems) {
+  var repoObj = {};
+  for (const issue of issueItems) {
+    const repores = await fetch(issue.repository_url, {
+      headers: {
+        Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_SECOND,
+        Accept: "application/vnd.github.v3+json",
+      },
+    });
+    const repojson = await repores.json();
 
-    var repoObj = {};
-    for(const issue of issueItems){
-        const repores = await fetch(issue.repository_url,{
-            headers: {
-                'Authorization' : "token "+process.env.NEXT_PUBLIC_TOKEN_SECOND,
-                'Accept' : 'application/vnd.github.v3+json'
-            }
-        });
-        const repojson = await repores.json();
+    repoObj[issue.id] = {
+      full_name: repojson.full_name,
+      stargazers_count: repojson.stargazers_count,
+      forks_count: repojson.forks_count,
+    };
+  }
 
-        repoObj[issue.id] = {
-            full_name : repojson.full_name,
-            stargazers_count : repojson.stargazers_count,
-            forks_count : repojson.forks_count,
-        }
-    }
-
-    
-    return repoObj;
+  return repoObj;
 }
 
-function getTimeFromNow(created_at){
-    var timestamp = created_at.split('T');
-    var date = timestamp[0];
-    var time = timestamp[1].split('Z')[0];
-    var finalTime = date+" "+time;
+function getTimeFromNow(created_at) {
+  var timestamp = created_at.split("T");
+  var date = timestamp[0];
+  var time = timestamp[1].split("Z")[0];
+  var finalTime = date + " " + time;
 
-    var finalTimeFromNow = moment.utc(finalTime, 'YYYY-MM-DD HH:mm:ss').fromNow();
-    return finalTimeFromNow;
-
+  var finalTimeFromNow = moment.utc(finalTime, "YYYY-MM-DD HH:mm:ss").fromNow();
+  return finalTimeFromNow;
 }
 
-async function loadIssues(url,query_lang){
+async function loadIssues(url, query_lang) {
 
     
     const issues_res = await fetch(url,{
@@ -119,7 +143,6 @@ async function loadIssues(url,query_lang){
     // setIssues(allIssues);
     return allIssues;
     
-    
 }
 export async function getStaticPaths() {
     const paths = priority_langs.map((lang) => ({
@@ -127,8 +150,7 @@ export async function getStaticPaths() {
     }))
   
     return { paths, fallback: true }
-  }
-
+}
 
 export async function getStaticProps({params}){
 
@@ -149,7 +171,11 @@ export async function getStaticProps({params}){
         })
     }
 
-    let lang_issues = await loadIssues(url,params.lang);
+    let lang_issues = "";
+  
+    if(url.length > 0){
+        lang_issues = await loadIssues(url,params.lang);
+    }
 
     return {
         props:{
@@ -157,6 +183,4 @@ export async function getStaticProps({params}){
         },
         revalidate: 600
     }
-
 }
-  
