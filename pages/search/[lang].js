@@ -173,9 +173,7 @@ export async function getStaticProps({params}){
 
     let lang_issues = "";
   
-    if(url.length == 0){
-        lang_issues = "";
-    }else{
+    if(url.length > 0){
         lang_issues = await loadIssues(url,params.lang);
     }
 
