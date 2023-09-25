@@ -70,7 +70,7 @@ async function loadRepo(issueItems) {
   for (const issue of issueItems) {
     const repores = await fetch(issue.repository_url, {
       headers: {
-        Authorization: "token " + process.env.NEXT_PUBLIC_ACCESS_TOKEN,
+        Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_SECOND,
         Accept: "application/vnd.github.v3+json",
       },
     });
