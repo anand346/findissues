@@ -97,22 +97,21 @@ function getTimeFromNow(created_at) {
 }
 
 async function loadIssues(url, query_lang) {
-  var allIssues = [];
-  const matching_langs = langs.filter((lang) => lang.query === query_lang);
 
-  if (matching_langs.length > 0) {
-    const issues_res = await fetch(url, {
-      headers: {
-        Authorization: "token " + process.env.NEXT_PUBLIC_ACCESS_TOKEN,
-        Accept: "application/vnd.github.v3+json",
-      },
-    });
+    
+    const issues_res = await fetch(url,{
+        headers: {
+            'Authorization' : "token "+process.env.NEXT_PUBLIC_TOKEN_FIRST,
+            'Accept' : 'application/vnd.github.v3+json'
+        }
+      });
 
     const issues_json = await issues_res.json();
     const issueItems = issues_json.items;
 
-    var repo_res = await loadRepo(issueItems);
+    var allIssues = [];
 
+    var repo_res = await loadRepo(issueItems);
     var mask = "";
     if(url.includes("label")){
         mask = "tag";
@@ -138,17 +137,20 @@ async function loadIssues(url, query_lang) {
         }
 
         allIssues.push(issueObj);
-
+        
     });
-  }
 
-  // setIssues(allIssues);
-  return allIssues;
+    // setIssues(allIssues);
+    return allIssues;
+    
 }
 export async function getStaticPaths() {
-  const paths = priority_langs.map((lang) => ({
-    params: { lang: lang.query },
-  }));
+    const paths = priority_langs.map((lang) => ({
+      params: { lang : lang.query }
+    }))
+  
+    return { paths, fallback: true }
+}
 
 export async function getStaticProps({params}){
 
@@ -169,8 +171,13 @@ export async function getStaticProps({params}){
         })
     }
 
-export async function getStaticProps({ params }) {
-  let url = `https://api.github.com/search/issues?q=language:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
+    let lang_issues = "";
+  
+    if(url.length == 0){
+        lang_issues = "";
+    }else{
+        lang_issues = await loadIssues(url,params.lang);
+    }
 
     return {
         props:{
@@ -178,11 +185,4 @@ export async function getStaticProps({ params }) {
         },
         revalidate: 600
     }
-
-  return {
-    props: {
-      allIssues: lang_issues,
-    },
-    revalidate: 60,
-  };
 }
