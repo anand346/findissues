@@ -3,8 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { langs } from "@/helper/Languages";
 import { tags } from '@/helper/tags';
+import { useRouter } from 'next/router';
 
-export default function Navbar(){
+export default function Navbar() {
+    const router = useRouter();
 
     const [showSidebar,setShowSidebar] = useState(false);
 
@@ -41,15 +43,19 @@ export default function Navbar(){
                             <div className={` basic_search_content mb-4 w-full flex items-start justify-start flex-wrap space-y-3`} >
                                 {langs.map((lang) => {
                                     return (
-                                    <a
+                                    <Link
                                         href={`/search/${lang.query}`}
                                         key={lang.query}
                                         className={`first:mt-3 cursor-pointer`}
                                     >
-                                        <div className={` cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}>
+                                        <div className={`${
+                                            lang.query === router.query.lang
+                                            ? "bg-main_secondary"
+                                            : ""
+                                        } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}>
                                         {lang.lang_name}
                                         </div>
-                                    </a>
+                                    </Link>
                                     );
                                 })}
                             </div>
@@ -62,15 +68,19 @@ export default function Navbar(){
                                 <div className={` advance_search_content mb-4 w-full flex items-start justify-start flex-wrap space-y-3`} >
                                     {tags.map((tag) => {
                                         return (
-                                        <a
+                                        <Link
                                             href={`/search/${tag.query}`}
                                             key={tag.query}
                                             className={`first:mt-3 cursor-pointer`}
                                         >
-                                            <div className={` cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}>
+                                            <div className={`${
+                                                tag.query === router?.query?.lang
+                                                ? "bg-main_secondary"
+                                                : ""
+                                            } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}>
                                             {tag.tag_name}
                                             </div>
-                                        </a>
+                                        </Link>
                                         );
                                     })}
                                 </div>
