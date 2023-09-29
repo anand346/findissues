@@ -23,21 +23,21 @@ export default function LeftSidebar() {
             >
               {langs.map((lang) => {
                 return (
-                  <a
+                  <Link
                     href={`/search/${lang.query}`}
                     key={lang.query}
                     className={`first:mt-3 cursor-pointer`}
                   >
                     <div
                       className={`${
-                        lang.query == router.query.lang
+                        lang.query === router.query.lang
                           ? "bg-main_secondary"
                           : ""
                       } cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
                     >
                       {lang.lang_name}
                     </div>
-                  </a>
+                  </Link>
                 );
               })}
             </div>
@@ -57,7 +57,11 @@ export default function LeftSidebar() {
                         key={tag.query}
                         className={`first:mt-3 cursor-pointer`}
                     >
-                        <div className={` cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}>
+                        <div className={` ${
+                        tag.query === router?.query?.lang
+                          ? "bg-main_secondary"
+                          : ""
+                      } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}>
                         {tag.tag_name}
                         </div>
                     </a>
