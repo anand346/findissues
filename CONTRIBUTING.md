@@ -65,11 +65,12 @@ To start contributing, follow these steps:
 
 4. **Set Up GitHub API Token:**
 
-    - Visit GitHub Developer Settings to generate a personal access token.
+    - Visit GitHub Developer Settings to generate **two** personal access tokens.
     - Create a `.env.local` file in the project root and add your token as follows:
 
     ```sh
-    NEXT_PUBLIC_ACCESS_TOKEN=your-personal-access-token
+    NEXT_PUBLIC_TOKEN_FIRST=first-personal-access-token
+    NEXT_PUBLIC_TOKEN_SECOND=second-personal-access-token
     ```
 
 5. **Start the Application:**
