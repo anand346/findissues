@@ -1,7 +1,7 @@
 
 export const tags = [
     {
-        tag_name : "#hacktober",
+        tag_name : "#hacktoberfest",
         query : "hacktoberfest"
     },
     {

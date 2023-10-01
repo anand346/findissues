@@ -45,6 +45,7 @@ export default function Navbar() {
                                     return (
                                     <Link
                                         href={`/search/${lang.query}`}
+                                        onClick={() => setShowSidebar(false)}
                                         key={lang.query}
                                         className={`first:mt-3 cursor-pointer`}
                                     >
@@ -71,6 +72,7 @@ export default function Navbar() {
                                         <Link
                                             href={`/search/${tag.query}`}
                                             key={tag.query}
+                                            onClick={() => setShowSidebar(false)}
                                             className={`first:mt-3 cursor-pointer`}
                                         >
                                             <div className={`${
