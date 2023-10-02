@@ -4,6 +4,21 @@
 
 **FindIssues** is a dynamic web application that lets you find the most recently created and unassigned issues across GitHub repositories. This project is powered by Next.js and the GitHub REST API, with a user-friendly interface designed using Adobe XD.
 
+## Table of Content 
+-  [Get Started](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=Table%20of%20Content-,Get%20Started,-To%20get%20started)
+-  [Features 🎯](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=Get%20Started-,Features%20%F0%9F%8E%AF,-Live%20Demo%20%F0%9F%98%80)
+-  [Live Demo 😀](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=with%20Adobe%20XD.-,Live%20Demo%20%F0%9F%98%80,-Visit%20our%20live)
+-  [Tech Stack ⚙️](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=issues%20more%20easier.-,Tech%20Stack%20%E2%9A%99%EF%B8%8F,-Contributing%20%F0%9F%9A%80)
+-  [Contributing 🚀](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=Tech%20Stack%20%E2%9A%99%EF%B8%8F-,Contributing%20%F0%9F%9A%80,-We%20welcome%20contributions)
+-  [Acknowledgments 👀](https://github.com/w-augustin/findissues/edit/main/README.md#acknowledgments-)
+-  [License 🪪](https://github.com/w-augustin/findissues/edit/main/README.md#license-)
+-  [Contact 📧](https://github.com/w-augustin/findissues/edit/main/README.md#contact-)
+
+## Get Started 
+To begin go to the web application: [FindIssues](https://www.findissues.me/)
+
+In the web broswer you will select your ideal programming langauage and through that it will showcase the 30 most recently created GitHub issues in that language, which are currently unassigned to any individual.
+
 ## Features 🎯
 
 - **Advanced Search**: Utilize the advanced search techniques to filter and discover unassigned GitHub issues.
@@ -24,6 +39,15 @@ We welcome contributions from the community to make FindIssues even better. If y
 
 - Thanks to the GitHub API for providing real-time data.
 - Adobe XD for assisting in the design of the user interface.
+
+ 
+## License 🪪
+Copyright Anand Raj, 2023.
+
+This project is licensed under the [MIT License](https://github.com/anand346/findissues/blob/main/LICENSE).
+
+
+The MIT License is a permissive open-source license that allows you to use, modify, and distribute this software for any purpose.
 
 ## Contact 📧
 Got questions or feedback? Reach out to us through [**mail**](mailto:rajanand9039@gmail.com). We'd love to hear from you!
