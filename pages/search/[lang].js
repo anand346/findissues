@@ -75,7 +75,7 @@ async function loadRepo(issueItems) {
       },
     });
     const repojson = await repores.json();
-
+    
     repoObj[issue.id] = {
       full_name: repojson.full_name,
       stargazers_count: repojson.stargazers_count,
@@ -97,8 +97,6 @@ function getTimeFromNow(created_at) {
 }
 
 async function loadIssues(url, query_lang) {
-
-    
     const issues_res = await fetch(url,{
         headers: {
             'Authorization' : "token "+process.env.NEXT_PUBLIC_TOKEN_FIRST,
@@ -123,20 +121,21 @@ async function loadIssues(url, query_lang) {
        
         var finalTimeFromNow = getTimeFromNow(issue.created_at);
         var lang = query_lang;
-
-        var issueObj = {
-            issueId : issue.id,
-            issueNumber : issue.number,
-            issueUrl : issue.html_url,
-            issueTitle : issue.title,
-            repoTitle : repo_res[issue.id].full_name,
-            timeFromNow : finalTimeFromNow,
-            repo_forks : repo_res[issue.id].forks_count,
-            repo_stars : repo_res[issue.id].stargazers_count,
-            [mask] : query_lang
+        if(repo_res[issue.id].forks_count>=100 || repo_res[issue.id].stargazers_count>=100){
+          var issueObj = {
+              issueId : issue.id,
+              issueNumber : issue.number,
+              issueUrl : issue.html_url,
+              issueTitle : issue.title,
+              repoTitle : repo_res[issue.id].full_name,
+              timeFromNow : finalTimeFromNow,
+              repo_forks : repo_res[issue.id].forks_count,
+              repo_stars : repo_res[issue.id].stargazers_count,
+              [mask] : query_lang
+          }
+  
+          allIssues.push(issueObj);
         }
-
-        allIssues.push(issueObj);
         
     });
 
