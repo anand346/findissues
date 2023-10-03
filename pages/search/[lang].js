@@ -10,8 +10,9 @@ import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import { tags } from "@/helper/tags";
 import { langs } from "@/helper/Languages";
+import SeoTags from "@/components/SeoTags";
 
-export default function Search({ allIssues }) {
+export default function Search({ allIssues, lang }) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -32,6 +33,11 @@ export default function Search({ allIssues }) {
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >
+        <SeoTags
+          seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
+          seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} development language`}
+          seoUrl={`https://www.findissues.me/${lang}`}
+        />
         {allIssues.length ? (
           <>
             <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
@@ -97,90 +103,84 @@ function getTimeFromNow(created_at) {
 }
 
 async function loadIssues(url, query_lang) {
+  const issues_res = await fetch(url, {
+    headers: {
+      Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_FIRST,
+      Accept: "application/vnd.github.v3+json",
+    },
+  });
 
-    
-    const issues_res = await fetch(url,{
-        headers: {
-            'Authorization' : "token "+process.env.NEXT_PUBLIC_TOKEN_FIRST,
-            'Accept' : 'application/vnd.github.v3+json'
-        }
-      });
+  const issues_json = await issues_res.json();
+  const issueItems = issues_json.items;
 
-    const issues_json = await issues_res.json();
-    const issueItems = issues_json.items;
+  var allIssues = [];
 
-    var allIssues = [];
+  var repo_res = await loadRepo(issueItems);
+  var mask = "";
+  if (url.includes("label")) {
+    mask = "tag";
+  } else {
+    mask = "language";
+  }
+  issueItems.forEach((issue) => {
+    var finalTimeFromNow = getTimeFromNow(issue.created_at);
+    var lang = query_lang;
 
-    var repo_res = await loadRepo(issueItems);
-    var mask = "";
-    if(url.includes("label")){
-        mask = "tag";
-    }else{
-        mask = "language";
-    }
-    issueItems.forEach(issue => {
-        
-       
-        var finalTimeFromNow = getTimeFromNow(issue.created_at);
-        var lang = query_lang;
+    var issueObj = {
+      issueId: issue.id,
+      issueNumber: issue.number,
+      issueUrl: issue.html_url,
+      issueTitle: issue.title,
+      repoTitle: repo_res[issue.id].full_name,
+      timeFromNow: finalTimeFromNow,
+      repo_forks: repo_res[issue.id].forks_count,
+      repo_stars: repo_res[issue.id].stargazers_count,
+      [mask]: query_lang,
+    };
 
-        var issueObj = {
-            issueId : issue.id,
-            issueNumber : issue.number,
-            issueUrl : issue.html_url,
-            issueTitle : issue.title,
-            repoTitle : repo_res[issue.id].full_name,
-            timeFromNow : finalTimeFromNow,
-            repo_forks : repo_res[issue.id].forks_count,
-            repo_stars : repo_res[issue.id].stargazers_count,
-            [mask] : query_lang
-        }
+    allIssues.push(issueObj);
+  });
 
-        allIssues.push(issueObj);
-        
-    });
-
-    // setIssues(allIssues);
-    return allIssues;
-    
+  // setIssues(allIssues);
+  return allIssues;
 }
 export async function getStaticPaths() {
-    const paths = priority_langs.map((lang) => ({
-      params: { lang : lang.query }
-    }))
-  
-    return { paths, fallback: true }
+  const paths = priority_langs.map((lang) => ({
+    params: { lang: lang.query },
+  }));
+
+  return { paths, fallback: true };
 }
 
-export async function getStaticProps({params}){
-
-    let url = "";
-    tags.forEach(tag => {
-        if(tag.query.includes(params.lang)){
-            url = `https://api.github.com/search/issues?q=label:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
-            return ;
-        }
-    })
-    
-    if(url.length == 0){
-        langs.forEach(lang => {
-            if(lang.query.includes(params.lang)){
-                url = `https://api.github.com/search/issues?q=language:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
-                return ;
-            }
-        })
+export async function getStaticProps({ params }) {
+  let url = "";
+  tags.forEach((tag) => {
+    if (tag.query.includes(params.lang)) {
+      url = `https://api.github.com/search/issues?q=label:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
+      return;
     }
+  });
 
-    let lang_issues = "";
-  
-    if(url.length > 0){
-        lang_issues = await loadIssues(url,params.lang);
-    }
+  if (url.length == 0) {
+    langs.forEach((lang) => {
+      if (lang.query.includes(params.lang)) {
+        url = `https://api.github.com/search/issues?q=language:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
+        return;
+      }
+    });
+  }
 
-    return {
-        props:{
-            allIssues: lang_issues,
-        },
-        revalidate: 600
-    }
+  let lang_issues = "";
+
+  if (url.length > 0) {
+    lang_issues = await loadIssues(url, params.lang);
+  }
+
+  return {
+    props: {
+      allIssues: lang_issues,
+      lang: params.lang,
+    },
+    revalidate: 600,
+  };
 }
