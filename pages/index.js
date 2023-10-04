@@ -3,11 +3,18 @@ import Image from "next/image";
 // import { Inter } from 'next/font/google'
 import Link from "next/link";
 import styles from "@/styles/LandingMain.module.css";
+import SeoTags from "@/components/SeoTags";
 // const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <>
+      <SeoTags
+        seoTitle="FindIssues | Find Most Recent and Unassigned Issues Here!"
+        seoDescription="FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to your development language"
+        seoUrl="https://www.findissues.me"
+      />
+
       <div
         className={`${styles.landing_main} overflow-auto w-[100%] pt-[40px] md:pt-0 md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >
