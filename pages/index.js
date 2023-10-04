@@ -14,6 +14,7 @@ export default function Home() {
         seoDescription="FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to your development language"
         seoUrl="https://www.findissues.me"
       />
+
       <div
         className={`${styles.landing_main} overflow-auto w-[100%] pt-[40px] md:pt-0 md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >

@@ -30,17 +30,18 @@ export default function Search({ allIssues, lang }) {
 
   return (
     <>
-      <SeoTags
-          seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
-          seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
-          seoUrl={`https://www.findissues.me/search/${lang}`}
-      />
+
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >
         
         {allIssues.length ? (
           <>
+            <SeoTags
+                seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
+                seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
+                seoUrl={`https://www.findissues.me/search/${lang}`}
+            />
             <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
               <span className="inline-block italic">All Unassigned Issues</span>{" "}
               👇
@@ -50,6 +51,11 @@ export default function Search({ allIssues, lang }) {
             })}
           </>
         ) : (
+          <SeoTags
+                seoTitle={`FindIssues - Page Not Found`}
+                seoDescription={`Page Not Found`}
+                seoUrl={`https://www.findissues.me`}
+          />
           <div className="w-fit mx-auto">
             <p className="w-full mb-4 font-semibold text-[16px] lg:text-4xl text-main_primary text-center">
               Page Not Found
@@ -180,7 +186,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       allIssues: lang_issues,
-      lang: params.lang,
+      lang: params.lang
     },
     revalidate: 600,
   };

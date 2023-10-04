@@ -6,7 +6,6 @@ Thank you for taking the time to contribute to our project. Please take a moment
 >
 > **Pull Requests having no issue associated with them will not be accepted. Firstly get an issue assigned, whether it's already opened or raised by you, and then create a Pull Request.**
 
-
 ## Prerequisites
 
 - Open Source Etiquette: If you've never contributed to an open source project before, have a read of [Basic etiquette](https://developer.mozilla.org/en-US/docs/MDN/Community/Open_source_etiquette) for open source projects.
@@ -43,14 +42,13 @@ We believe in the power of collaboration, and your contributions can help make F
 
 #### Getting Started
 
-
 To start contributing, follow these steps:
 
-1. **Fork the Repository:** 
+1. **Fork the Repository:**
 
-    - Fork the FindIssues repository to your GitHub account.
+   - Fork the FindIssues repository to your GitHub account.
 
-2. **Clone the Repository**: 
+2. **Clone the Repository**:
 
    ```sh
    git clone https://github.com/<your-username>/findissues.git
@@ -58,50 +56,50 @@ To start contributing, follow these steps:
 
 3. **Install Dependencies:**:
 
-    ```sh
-    cd findissues
-    npm install      
-    ```
+   ```sh
+   cd findissues
+   npm install
+   ```
 
 4. **Set Up GitHub API Token:**
 
-    - Visit GitHub Developer Settings to generate **two** personal access tokens.
-    - Create a `.env.local` file in the project root and add your token as follows:
+   - Visit GitHub Developer Settings to generate **two** personal access tokens.
+   - Create a `.env.local` file in the project root and add your token as follows:
 
-    ```sh
-    NEXT_PUBLIC_TOKEN_FIRST=first-personal-access-token
-    NEXT_PUBLIC_TOKEN_SECOND=second-personal-access-token
-    ```
+   ```sh
+   NEXT_PUBLIC_TOKEN_FIRST=first-personal-access-token
+   NEXT_PUBLIC_TOKEN_SECOND=second-personal-access-token
+   ```
 
 5. **Start the Application:**
 
-    ```sh
-    npm run dev
-    ```
+   ```sh
+   npm run dev
+   ```
 
 6. **Open in Browser:**
 
-    - Visit http://localhost:3000 in your web browser to start exploring GitHub issues.
+   - Visit http://localhost:3000 in your web browser to start exploring GitHub issues.
 
 7. **Create Branch:**
 
-    - Create a new branch for your contribution
+   - Create a new branch for your contribution
 
-    ```sh
-    git checkout -b <your-branch-name>
-    ```
+   ```sh
+   git checkout -b <your-branch-name>
+   ```
 
-8. **Make Changes:** 
+8. **Make Changes:**
 
-    - Make your changes, whether it`s code, documentation, or testing.
+   - Make your changes, whether it`s code, documentation, or testing.
 
-9. **Stage Changes:** 
+9. **Stage Changes:**
 
-    - Stage your changes
+   - Stage your changes
 
-    ```sh
-     git add <changed-file-name>
-    ```
+   ```sh
+    git add <changed-file-name>
+   ```
 
 10. **Commit your changes:**
 
@@ -109,7 +107,7 @@ To start contributing, follow these steps:
     git commit -m "Add your meaningful commit message here"
     ```
 
-11. **Push Changes:** 
+11. **Push Changes:**
 
     - Push your changes to your fork on GitHub
 
