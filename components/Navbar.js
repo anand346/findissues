@@ -4,15 +4,18 @@ import Link from "next/link";
 import { langs } from "@/helper/Languages";
 import { tags } from "@/helper/tags";
 import { useRouter } from "next/router";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export default function Navbar() {
   const router = useRouter();
 
   const [showSidebar, setShowSidebar] = useState(false);
 
+  const navbarRef = useClickOutside(() => setShowSidebar(false))
+  
   return (
     <>
-      <div className={`w-full ${showSidebar ? "sidebar-open" : ""}`}>
+      <div  className={`w-full ${showSidebar ? "sidebar-open" : ""}`} ref={navbarRef}>
         <div className="navbar sm:h-[90px] h-[75px] border-main_secondary border-b-2 w-full flex flex-grow items-center sm:p-8 py-2 px-3 justify-between bg-main_secondary_high shadow-md ">
           <div className="navbar_left logo">
             <Link href="/">
@@ -60,6 +63,7 @@ export default function Navbar() {
             )}
 
             <div
+              ref={navbarRef}
               className={`top-0 right-0 w-[230px] sm:w-[300px] bg-main_secondary_high border-main_secondary border-[2px] p-3 pt-3 text-main_secondary fixed h-full overflow-y-scroll  z-40 md:hidden ease-in-out duration-300 ${
                 showSidebar ? "translate-x-0 " : "translate-x-full"
               }`}
