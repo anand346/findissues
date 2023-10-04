@@ -30,14 +30,15 @@ export default function Search({ allIssues, lang }) {
 
   return (
     <>
+      <SeoTags
+          seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
+          seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
+          seoUrl={`https://www.findissues.me/search/${lang}`}
+      />
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >
-        <SeoTags
-          seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
-          seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} development language`}
-          seoUrl={`https://www.findissues.me/${lang}`}
-        />
+        
         {allIssues.length ? (
           <>
             <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
