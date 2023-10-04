@@ -51,6 +51,7 @@ export default function Search({ allIssues, lang }) {
             })}
           </>
         ) : (
+          <>
           <SeoTags
                 seoTitle={`FindIssues - Page Not Found`}
                 seoDescription={`Page Not Found`}
@@ -72,6 +73,7 @@ export default function Search({ allIssues, lang }) {
               Back to Home <BsArrowRight />
             </Link>
           </div>
+          </>
         )}
       </div>
     </>
