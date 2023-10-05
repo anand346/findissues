@@ -10,7 +10,6 @@ export default function IssuesCard({ issue }) {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      console.log("setting time");
       setTimeFromNow(getTimeFromNow(issue.createdAt));
     }, 30000);
 
