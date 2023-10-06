@@ -1,15 +1,16 @@
-import IssuesCard from "@/components/IssuesCard";
-import SeoTags from "@/components/SeoTags";
-import { SkeletonCard } from "@/components/SkeletonCard";
-import { langs } from "@/helper/Languages";
-import { priority_langs } from "@/helper/priority_langs";
-import { tags } from "@/helper/tags";
-import styles from "@/styles/LandingMain.module.css";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { BsArrowRight } from "react-icons/bs";
+import styles from "@/styles/LandingMain.module.css";
+import IssuesCard from "@/components/IssuesCard";
+import moment from "moment/moment";
+import { SkeletonCard } from "@/components/SkeletonCard";
+import { priority_langs } from "@/helper/priority_langs";
+import Image from "next/image";
 import error_404 from "../../public/404.svg";
+import { BsArrowRight } from "react-icons/bs";
+import Link from "next/link";
+import { tags } from "@/helper/tags";
+import { langs } from "@/helper/Languages";
+import SeoTags from "@/components/SeoTags";
 
 export default function Search({ allIssues, lang }) {
   const router = useRouter();
@@ -29,15 +30,17 @@ export default function Search({ allIssues, lang }) {
 
   return (
     <>
+
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >
+        
         {allIssues.length ? (
           <>
             <SeoTags
-              seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
-              seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
-              seoUrl={`https://www.findissues.me/search/${lang}`}
+                seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
+                seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
+                seoUrl={`https://www.findissues.me/search/${lang}`}
             />
             <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
               <span className="inline-block italic">All Unassigned Issues</span>{" "}
@@ -49,27 +52,27 @@ export default function Search({ allIssues, lang }) {
           </>
         ) : (
           <>
-            <SeoTags
-              seoTitle={`FindIssues - Page Not Found`}
-              seoDescription={`Page Not Found`}
-              seoUrl={`https://www.findissues.me`}
+          <SeoTags
+                seoTitle={`FindIssues - Page Not Found`}
+                seoDescription={`Page Not Found`}
+                seoUrl={`https://www.findissues.me`}
+          />
+          <div className="w-fit mx-auto">
+            <p className="w-full mb-4 font-semibold text-[16px] lg:text-4xl text-main_primary text-center">
+              Page Not Found
+            </p>
+            <Image
+              src={error_404}
+              alt="error 404"
+              className="w-3/5 mx-auto mt-8"
             />
-            <div className="w-fit mx-auto">
-              <p className="w-full mb-4 font-semibold text-[16px] lg:text-4xl text-main_primary text-center">
-                Page Not Found
-              </p>
-              <Image
-                src={error_404}
-                alt="error 404"
-                className="w-3/5 mx-auto mt-8"
-              />
-              <Link
-                href={"/"}
-                className="w-fit bg-transparent hover:bg-white rounded-full italic text-main_primary px-4 py-1 font-semibold flex items-center gap-2 text-sm mx-auto mt-8 border-y-4 "
-              >
-                Back to Home <BsArrowRight />
-              </Link>
-            </div>
+            <Link
+              href={"/"}
+              className="w-fit bg-transparent hover:bg-white rounded-full italic text-main_primary px-4 py-1 font-semibold flex items-center gap-2 text-sm mx-auto mt-8 border-y-4 "
+            >
+              Back to Home <BsArrowRight />
+            </Link>
+          </div>
           </>
         )}
       </div>
@@ -98,6 +101,16 @@ async function loadRepo(issueItems) {
   return repoObj;
 }
 
+function getTimeFromNow(created_at) {
+  var timestamp = created_at.split("T");
+  var date = timestamp[0];
+  var time = timestamp[1].split("Z")[0];
+  var finalTime = date + " " + time;
+
+  var finalTimeFromNow = moment.utc(finalTime, "YYYY-MM-DD HH:mm:ss").fromNow();
+  return finalTimeFromNow;
+}
+
 async function loadIssues(url, query_lang) {
   const issues_res = await fetch(url, {
     headers: {
@@ -119,6 +132,7 @@ async function loadIssues(url, query_lang) {
     mask = "language";
   }
   issueItems.forEach((issue) => {
+    var finalTimeFromNow = getTimeFromNow(issue.created_at);
     var lang = query_lang;
 
     var issueObj = {
@@ -127,7 +141,7 @@ async function loadIssues(url, query_lang) {
       issueUrl: issue.html_url,
       issueTitle: issue.title,
       repoTitle: repo_res[issue.id].full_name,
-      createdAt: issue.created_at,
+      timeFromNow: finalTimeFromNow,
       repo_forks: repo_res[issue.id].forks_count,
       repo_stars: repo_res[issue.id].stargazers_count,
       [mask]: query_lang,
@@ -174,7 +188,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       allIssues: lang_issues,
-      lang: params.lang,
+      lang: params.lang
     },
     revalidate: 600,
   };
