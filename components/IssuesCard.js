@@ -3,7 +3,11 @@ import Link from "next/link";
 export default function IssuesCard({ issue }) {
   return (
     <>
-      <div className="issue_card mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start p-3 transition-all transform md:hover:scale-105">
+      <Link
+        href={issue.issueUrl}
+        target="_blank"
+        className="issue_card mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start p-3 transition-all transform md:hover:scale-105"
+      >
         <div className="title_sec w-[100%] flex justify-between items-center">
           <Link
             href={issue.issueUrl}
@@ -68,7 +72,7 @@ export default function IssuesCard({ issue }) {
             {issue.timeFromNow}
           </p>
         </div>
-      </div>
+      </Link>
     </>
   );
 }
