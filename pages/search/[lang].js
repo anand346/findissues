@@ -30,17 +30,15 @@ export default function Search({ allIssues, lang }) {
 
   return (
     <>
-
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >
-        
         {allIssues.length ? (
           <>
             <SeoTags
-                seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
-                seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
-                seoUrl={`https://www.findissues.me/search/${lang}`}
+              seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
+              seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
+              seoUrl={`https://www.findissues.me/search/${lang}`}
             />
             <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
               <span className="inline-block italic">All Unassigned Issues</span>{" "}
@@ -52,27 +50,27 @@ export default function Search({ allIssues, lang }) {
           </>
         ) : (
           <>
-          <SeoTags
-                seoTitle={`FindIssues - Page Not Found`}
-                seoDescription={`Page Not Found`}
-                seoUrl={`https://www.findissues.me`}
-          />
-          <div className="w-fit mx-auto">
-            <p className="w-full mb-4 font-semibold text-[16px] lg:text-4xl text-main_primary text-center">
-              Page Not Found
-            </p>
-            <Image
-              src={error_404}
-              alt="error 404"
-              className="w-3/5 mx-auto mt-8"
+            <SeoTags
+              seoTitle={`FindIssues - Page Not Found`}
+              seoDescription={`Page Not Found`}
+              seoUrl={`https://www.findissues.me`}
             />
-            <Link
-              href={"/"}
-              className="w-fit bg-transparent hover:bg-white rounded-full italic text-main_primary px-4 py-1 font-semibold flex items-center gap-2 text-sm mx-auto mt-8 border-y-4 "
-            >
-              Back to Home <BsArrowRight />
-            </Link>
-          </div>
+            <div className="w-fit mx-auto">
+              <p className="w-full mb-4 font-semibold text-[16px] lg:text-4xl text-main_primary text-center">
+                Page Not Found
+              </p>
+              <Image
+                src={error_404}
+                alt="error 404"
+                className="w-3/5 mx-auto mt-8"
+              />
+              <Link
+                href={"/"}
+                className="w-fit bg-transparent hover:bg-white rounded-full italic text-main_primary px-4 py-1 font-semibold flex items-center gap-2 text-sm mx-auto mt-8 border-y-4 "
+              >
+                Back to Home <BsArrowRight />
+              </Link>
+            </div>
           </>
         )}
       </div>
@@ -111,6 +109,19 @@ function getTimeFromNow(created_at) {
   return finalTimeFromNow;
 }
 
+function getFormatedTime(created_at) {
+  var timestamp = created_at.split("T");
+  var date = timestamp[0];
+  var time = timestamp[1].split("Z")[0];
+  var finalTime = date + " " + time;
+
+  const finalTimeString = moment
+    .utc(finalTime, "YYYY-MM-DD HH:mm:ss")
+    .format("YY-MM-DD HH:mm");
+
+  return finalTimeString;
+}
+
 async function loadIssues(url, query_lang) {
   const issues_res = await fetch(url, {
     headers: {
@@ -133,6 +144,7 @@ async function loadIssues(url, query_lang) {
   }
   issueItems.forEach((issue) => {
     var finalTimeFromNow = getTimeFromNow(issue.created_at);
+    const finalFormatedTime = getFormatedTime(issue.created_at);
     var lang = query_lang;
 
     var issueObj = {
@@ -144,6 +156,7 @@ async function loadIssues(url, query_lang) {
       timeFromNow: finalTimeFromNow,
       repo_forks: repo_res[issue.id].forks_count,
       repo_stars: repo_res[issue.id].stargazers_count,
+      created_at: finalFormatedTime,
       [mask]: query_lang,
     };
 
@@ -188,7 +201,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       allIssues: lang_issues,
-      lang: params.lang
+      lang: params.lang,
     },
     revalidate: 600,
   };

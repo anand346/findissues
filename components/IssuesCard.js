@@ -1,6 +1,8 @@
 import Link from "next/link";
-
+import { useState } from "react";
 export default function IssuesCard({ issue }) {
+  const [hover, setHover] = useState(false);
+  console.log(issue.created_at);
   return (
     <>
       <Link
@@ -67,9 +69,13 @@ export default function IssuesCard({ issue }) {
               </p>
             </div>
           </div>
-          <p className="issue_sec lg:text-[14px] sm:text-[12px] text-[12px] italic text-main_yellow">
+          <p
+            className="issue_sec lg:text-[14px] sm:text-[12px] text-[12px] italic text-main_yellow"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
             <i className="fa fa-clock-o" aria-hidden="true"></i>{" "}
-            {issue.timeFromNow}
+            {hover ? issue.created_at : issue.timeFromNow}
           </p>
         </div>
       </Link>
