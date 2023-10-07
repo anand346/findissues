@@ -1,16 +1,19 @@
-import { useRouter } from "next/router";
-import styles from "@/styles/LandingMain.module.css";
 import IssuesCard from "@/components/IssuesCard";
-import moment from "moment/moment";
+import SeoTags from "@/components/SeoTags";
 import { SkeletonCard } from "@/components/SkeletonCard";
+import { langs } from "@/helper/Languages";
 import { priority_langs } from "@/helper/priority_langs";
+import { tags } from "@/helper/tags";
+import styles from "@/styles/LandingMain.module.css";
 import Image from "next/image";
-import error_404 from "../../public/404.svg";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import { tags } from "@/helper/tags";
 import { langs } from "@/helper/Languages";
 import SeoTags from "@/components/SeoTags";
+import moment from "moment";
 
 export default function Search({ allIssues, lang }) {
   const router = useRouter();
@@ -99,16 +102,6 @@ async function loadRepo(issueItems) {
   return repoObj;
 }
 
-function getTimeFromNow(created_at) {
-  var timestamp = created_at.split("T");
-  var date = timestamp[0];
-  var time = timestamp[1].split("Z")[0];
-  var finalTime = date + " " + time;
-
-  var finalTimeFromNow = moment.utc(finalTime, "YYYY-MM-DD HH:mm:ss").fromNow();
-  return finalTimeFromNow;
-}
-
 function getFormatedTime(created_at) {
   var timestamp = created_at.split("T");
   var date = timestamp[0];
@@ -143,7 +136,6 @@ async function loadIssues(url, query_lang) {
     mask = "language";
   }
   issueItems.forEach((issue) => {
-    var finalTimeFromNow = getTimeFromNow(issue.created_at);
     const finalFormatedTime = getFormatedTime(issue.created_at);
     var lang = query_lang;
 
@@ -153,10 +145,10 @@ async function loadIssues(url, query_lang) {
       issueUrl: issue.html_url,
       issueTitle: issue.title,
       repoTitle: repo_res[issue.id].full_name,
-      timeFromNow: finalTimeFromNow,
+      createdAt: issue.created_at,
       repo_forks: repo_res[issue.id].forks_count,
       repo_stars: repo_res[issue.id].stargazers_count,
-      created_at: finalFormatedTime,
+      fortmatedTime: finalFormatedTime,
       [mask]: query_lang,
     };
 

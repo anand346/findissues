@@ -1,8 +1,26 @@
+import { useHydration } from "@/hooks/useHydration";
+import { getTimeFromNow } from "@/utils/getTimeFromNow";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 export default function IssuesCard({ issue }) {
+  const [timeFromNow, setTimeFromNow] = useState(
+    getTimeFromNow(issue.createdAt),
+  );
   const [hover, setHover] = useState(false);
-  console.log(issue.created_at);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTimeFromNow(getTimeFromNow(issue.createdAt));
+    }, 30000);
+
+    return () => clearInterval(intervalId);
+  });
+
+  // since we are updating a state based on time, we need to lookout for mismatches
+  // betwen server side and client side renders.
+  // this below hook will make the targeted component wait for rehydration before rendering
+  const hydrated = useHydration();
+
   return (
     <>
       <Link
@@ -69,14 +87,17 @@ export default function IssuesCard({ issue }) {
               </p>
             </div>
           </div>
-          <p
-            className="issue_sec lg:text-[14px] sm:text-[12px] text-[12px] italic text-main_yellow"
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            <i className="fa fa-clock-o" aria-hidden="true"></i>{" "}
-            {hover ? issue.created_at : issue.timeFromNow}
-          </p>
+          {/* wait for rehydration */}
+          {hydrated && (
+            <p
+              className="issue_sec lg:text-[14px] sm:text-[12px] text-[12px] italic text-main_yellow"
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
+              <i className="fa fa-clock-o" aria-hidden="true"></i>{" "}
+              {!hover ? timeFromNow : issue.created_at}
+            </p>
+          )}
         </div>
       </Link>
     </>
