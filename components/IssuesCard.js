@@ -24,7 +24,7 @@ export default function IssuesCard({ issue }) {
         </div>
         <Link
           href={`https://github.com/${issue.repoTitle}`}
-          className="w-full truncate"
+          className="truncate"
           target="_blank"
         >
           <p className="hover:text-main_secondary_low lg:text-[16px] sm:text-[14px] text-[14px] w-full truncate text-[#a6a6c1] mb-3">
