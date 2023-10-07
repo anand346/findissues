@@ -1,5 +1,6 @@
 import { useHydration } from "@/hooks/useHydration";
 import { getTimeFromNow } from "@/utils/getTimeFromNow";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -21,11 +22,20 @@ export default function IssuesCard({ issue }) {
   // this below hook will make the targeted component wait for rehydration before rendering
   const hydrated = useHydration();
 
+  //handle click on link because we cant use a link tag because you cant nest a link tag inside a link tag
+
+  const handleCardClick = (e) => {
+    if (typeof window === "undefined") {
+      return;
+    } else {
+      window.open(issue.issueUrl, "_blank");
+    }
+  };
+
   return (
     <>
-      <Link
-        href={issue.issueUrl}
-        target="_blank"
+      <div
+        onClick={(e) => handleCardClick(e)}
         className="issue_card mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start p-3 transition-all transform md:hover:scale-105"
       >
         <div className="title_sec w-[100%] flex justify-between items-center">
@@ -95,11 +105,11 @@ export default function IssuesCard({ issue }) {
               onMouseLeave={() => setHover(false)}
             >
               <i className="fa fa-clock-o" aria-hidden="true"></i>{" "}
-              {!hover ? timeFromNow : issue.created_at}
+              {!hover ? timeFromNow : issue.formatedTime}
             </p>
           )}
         </div>
-      </Link>
+      </div>
     </>
   );
 }
