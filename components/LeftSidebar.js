@@ -49,24 +49,28 @@ export default function LeftSidebar() {
               </p>
             </div>
 
-            <div className={` advance_search_content mb-4 w-full flex items-start justify-start flex-wrap space-y-3`} >
-                {tags.map((tag) => {
-                    return (
-                    <Link
-                        href={`/search/${tag.query}`}
-                        key={tag.query}
-                        className={`first:mt-3 cursor-pointer`}
-                    >
-                        <div className={` ${
+            <div
+              className={` advance_search_content mb-4 w-full flex items-start justify-start flex-wrap space-y-3`}
+            >
+              {tags.map((tag) => {
+                return (
+                  <Link
+                    href={`/search/${tag.query}`}
+                    key={tag.query}
+                    className={`first:mt-3 cursor-pointer`}
+                  >
+                    <div
+                      className={` ${
                         tag.query === router?.query?.lang
                           ? "bg-main_secondary"
                           : ""
-                      } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}>
-                        {tag.tag_name}
-                        </div>
-                    </Link>
-                    );
-                })}
+                      } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                    >
+                      {tag.tag_name}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

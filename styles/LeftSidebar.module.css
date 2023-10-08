@@ -1,8 +1,7 @@
-
-.left_sidebar::-webkit-scrollbar{
-    width : 0px;
+.left_sidebar::-webkit-scrollbar {
+  width: 0px;
 }
 
-.basic_search_content .lang_name:nth-child(2n+1){
-    margin-left : 0px;
+.basic_search_content .lang_name:nth-child(2n + 1) {
+  margin-left: 0px;
 }

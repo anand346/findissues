@@ -3,8 +3,7 @@ name: Other issue
 about: Are you facing any other issue?
 title: "[OTHER]"
 labels: other
-assignees: ''
-
+assignees: ""
 ---
 
 **Title**

@@ -1,6 +1,26 @@
+import { useHydration } from "@/hooks/useHydration";
+import { getTimeFromNow } from "@/utils/getTimeFromNow";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function IssuesCard({ issue }) {
+  const [timeFromNow, setTimeFromNow] = useState(
+    getTimeFromNow(issue.createdAt),
+  );
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTimeFromNow(getTimeFromNow(issue.createdAt));
+    }, 30000);
+
+    return () => clearInterval(intervalId);
+  });
+
+  // since we are updating a state based on time, we need to lookout for mismatches
+  // betwen server side and client side renders.
+  // this below hook will make the targeted component wait for rehydration before rendering
+  const hydrated = useHydration();
+
   return (
     <>
       <div className="issue_card mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start p-3 transition-all transform md:hover:scale-105">
@@ -57,14 +77,18 @@ export default function IssuesCard({ issue }) {
                   className="fa fa-laptop text-main_primary"
                   aria-hidden="true"
                 ></i>{" "}
-                {"tag" in issue ? `#tag: ${issue.tag}` : `lang: ${issue.language}`}
+                {"tag" in issue
+                  ? `#tag: ${issue.tag}`
+                  : `lang: ${issue.language}`}
               </p>
             </div>
           </div>
-          <p className="issue_sec lg:text-[14px] sm:text-[12px] text-[12px] italic text-main_yellow">
-            <i className="fa fa-clock-o" aria-hidden="true"></i>{" "}
-            {issue.timeFromNow}
-          </p>
+          {/* wait for rehydration */}
+          {hydrated && (
+            <p className="issue_sec lg:text-[14px] sm:text-[12px] text-[12px] italic text-main_yellow">
+              <i className="fa fa-clock-o" aria-hidden="true"></i> {timeFromNow}
+            </p>
+          )}
         </div>
       </div>
     </>

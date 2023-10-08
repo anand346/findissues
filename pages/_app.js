@@ -1,23 +1,27 @@
-import '@/styles/globals.css'
-import Script from 'next/script'
-import GeneralLayout from '@/components/GeneralLayout'
-import { ThemeProvider } from 'next-themes'
+import "@/styles/globals.css";
+import Script from "next/script";
+import GeneralLayout from "@/components/GeneralLayout";
+import { ThemeProvider } from "next-themes";
+import Head from "next/head";
 export default function App({ Component, pageProps }) {
   return (
     <>
+      <Head>
+        <title>FindIssues</title>
+      </Head>
       <ThemeProvider defaultTheme="dark">
         <GeneralLayout>
           <Component {...pageProps} />
         </GeneralLayout>
       </ThemeProvider>
-      
+
       <Script
         id="googleAnalytics"
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
 
-      <Script strategy="lazyOnload" id="google_analytics" > 
+      <Script strategy="lazyOnload" id="google_analytics">
         {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -29,5 +33,5 @@ export default function App({ Component, pageProps }) {
       </Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js" />
     </>
-  )
+  );
 }
