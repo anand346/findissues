@@ -110,7 +110,7 @@ function getFormatedTime(created_at) {
 
   const finalTimeString = moment
     .utc(finalTime, "YYYY-MM-DD HH:mm:ss")
-    .format("YY-MM-DD HH:mm");
+    .format("YYYY-MM-DD HH:mm");
 
   return finalTimeString;
 }
