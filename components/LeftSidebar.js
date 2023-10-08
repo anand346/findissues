@@ -14,8 +14,8 @@ export default function LeftSidebar() {
         className={`${styles.left_sidebar} overflow-auto hidden md:block  left_sidebar  h-max-screen md:p-8 p-3 w-[100%] md:w-[23%] md:border-r-2 border-main_secondary h-full `}
       >
         <div className="left_sidebar_content flex flex-col justify-start items-start">
-          <div className="basic_search w-full flex flex-col items-start justify-start md:mb-5">
-            <p className="basic_search_title w-full mb-2 md:mb-4 text-main_primary font-semibold italic text-[16px] lg:text-[18px]">
+          <div className="basic_search w-full flex flex-col items-start justify-start mb-4">
+            <p className="basic_search_title w-full mb-2 text-main_primary font-semibold italic text-[16px] lg:text-[18px]">
               Basic Search
             </p>
             <div
@@ -33,7 +33,7 @@ export default function LeftSidebar() {
                         lang.query === router.query.lang
                           ? "bg-main_secondary"
                           : ""
-                      } cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                      } cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
                     >
                       {lang.lang_name}
                     </div>
@@ -42,16 +42,11 @@ export default function LeftSidebar() {
               })}
             </div>
           </div>
-          <div className="advance_search w-full  flex flex-col items-start justify-start">
-            <div className="advance_search_title mb-4 flex w-full justify-start items-center">
-              <p className="advance_search_title text-main_primary font-semibold italic text-[18px] mr-3">
+          <div className="advance_search w-full flex flex-col items-start justify-start mb-4">
+            <p className="advance_search_title flex w-full justify-start items-center mb-2 text-main_primary font-semibold italic text-[18px]">
                 Tags
-              </p>
-            </div>
-
-            <div
-              className={` advance_search_content mb-4 w-full flex items-start justify-start flex-wrap space-y-3`}
-            >
+            </p>
+            <div className={` advance_search_content w-full flex items-start justify-start flex-wrap space-y-3`} >
               {tags.map((tag) => {
                 return (
                   <Link
@@ -64,13 +59,26 @@ export default function LeftSidebar() {
                         tag.query === router?.query?.lang
                           ? "bg-main_secondary"
                           : ""
-                      } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                      } cursor-pointer mr-2 lang_name w-[110px] truncate px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
                     >
                       {tag.tag_name}
                     </div>
                   </Link>
                 );
               })}
+            </div>
+          </div>
+          <div className={"w-full flex items-start justify-start flex-wrap mb-4"}>
+            <p className="flex w-full justify-start items-center mb-2 text-main_primary font-semibold italic text-[18px] mr-3">
+                Active Repo
+            </p>
+            <div className={" w-full flex items-start justify-start flex-wrap space-y-3"}>
+                <Link href={"https://github.com/anand346/findissues#live-demo-"} target="_blank"  className={"cursor-pointer mt-3 flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"}>
+                    Add Repo
+                </Link>        
+                <Link href={"/active-repos"} target="_blank"  className={"cursor-pointer flex items-center justify-center rounded-[5px] w-[110px] h-10 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"}>
+                    Active Repos
+                </Link> 
             </div>
           </div>
         </div>
