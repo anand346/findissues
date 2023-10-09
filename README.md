@@ -58,7 +58,7 @@ Got questions or feedback? Reach out to us through [**mail**](mailto:rajanand903
 
 Join the FindIssues community today and start making search of unassigned github issues more easier. 🧑‍💻✨👫
 
-## ✨ Thank You to the Contributors!
+## ✨ Thanks to our contributors!
 
 <div align="center">
   <a href="https://github.com/anand346/findissues/graphs/contributors">
