@@ -57,3 +57,18 @@ The MIT License is a permissive open-source license that allows you to use, modi
 Got questions or feedback? Reach out to us through [**mail**](mailto:rajanand9039@gmail.com). We'd love to hear from you!
 
 Join the FindIssues community today and start making search of unassigned github issues more easier. 🧑‍💻✨👫
+
+## ✨ Thank You to the Contributors!
+
+<div align="center">
+  <a href="https://github.com/anand346/findissues/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=anand346/findissues" alt="Contributors" />
+  </a>
+</div>
+
+
+🌟 We value the time and effort you put into contributing, and we look forward to reviewing and merging your contributions.
+
+---
+
+<p align="right">(<a href="#top">Back to top</a>)</p>
