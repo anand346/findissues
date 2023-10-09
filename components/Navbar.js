@@ -81,14 +81,14 @@ export default function Navbar() {
                         href={`/search/${lang.query}`}
                         onClick={() => setShowSidebar(false)}
                         key={lang.query}
-                        className={`first:mt-3 cursor-pointer`}
+                        className={`first:mt-3 cursor-pointer grow`}
                       >
                         <div
                           className={`${
                             lang.query === router.query.lang
                               ? "bg-main_secondary"
                               : ""
-                          } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                          } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300`}
                         >
                           {lang.lang_name}
                         </div>
@@ -111,14 +111,14 @@ export default function Navbar() {
                           href={`/search/${tag.query}`}
                           key={tag.query}
                           onClick={() => setShowSidebar(false)}
-                          className={`first:mt-3 cursor-pointer`}
+                          className={`first:mt-3 cursor-pointer grow`}
                         >
                           <div
                             className={`${
                               tag.query === router?.query?.lang
                                 ? "bg-main_secondary"
                                 : ""
-                            } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                            } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300`}
                           >
                             {tag.tag_name}
                           </div>
@@ -135,15 +135,9 @@ export default function Navbar() {
                     <Link
                       target="_blank"
                       href="https://github.com/anand346/findissues"
-                      className="inline-flex border-2 p-2 rounded-[20px] border-main_primary"
+                      className="inline-flex border-2 p-2 rounded-full border-main_primary"
                     >
-                      <Image
-                        src="/dark-github.svg"
-                        alt="dark theme logo"
-                        height={20}
-                        width={20}
-                        className="sm:w-[20px] cursor-pointer "
-                      />
+                      <i className="fa fa-github text-3xl text-main_primary md:hover:text-main_yellow duration-300" ></i>
                     </Link>
                   </div>
                 </div>
@@ -153,13 +147,7 @@ export default function Navbar() {
 
           <div className="navbar_right flex space-x-5 hidden md:block ">
             <Link target="_blank" href="https://github.com/anand346/findissues">
-              <Image
-                src="/dark-github.svg"
-                alt="dark theme logo"
-                height={100}
-                width={100}
-                className="sm:w-[1.5rem] w-[1.5rem] cursor-pointer"
-              />
+              <i className="fa fa-github text-3xl text-main_primary md:hover:text-main_yellow duration-300" ></i>
             </Link>
           </div>
         </div>

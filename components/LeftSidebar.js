@@ -15,25 +15,25 @@ export default function LeftSidebar() {
       >
         <div className="left_sidebar_content flex flex-col justify-start items-start">
           <div className="basic_search w-full flex flex-col items-start justify-start mb-4">
-            <p className="basic_search_title w-full mb-2 text-main_primary font-semibold italic text-[16px] lg:text-[18px]">
+            <p className="basic_search_title w-full text-main_yellow font-semibold italic text-[16px] lg:text-[18px]">
               Basic Search
             </p>
             <div
-              className={` basic_search_content w-full flex items-start justify-start flex-wrap space-y-3`}
+              className={` basic_search_content w-full flex items-start justify-start flex-wrap  space-y-3`}
             >
               {langs.map((lang) => {
                 return (
                   <Link
                     href={`/search/${lang.query}`}
                     key={lang.query}
-                    className={`first:mt-3 cursor-pointer`}
+                    className={`first:mt-3 cursor-pointer grow`}
                   >
                     <div
                       className={`${
                         lang.query === router.query.lang
                           ? "bg-main_secondary"
                           : ""
-                      } cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                      } cursor-pointer mr-2 lang_name px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300`}
                     >
                       {lang.lang_name}
                     </div>
@@ -43,7 +43,7 @@ export default function LeftSidebar() {
             </div>
           </div>
           <div className="advance_search w-full flex flex-col items-start justify-start mb-4">
-            <p className="advance_search_title flex w-full justify-start items-center mb-2 text-main_primary font-semibold italic text-[18px]">
+            <p className="advance_search_title flex w-full justify-start items-center  text-main_yellow font-semibold italic text-[18px]">
                 Tags
             </p>
             <div className={` advance_search_content w-full flex items-start justify-start flex-wrap space-y-3`} >
@@ -52,14 +52,14 @@ export default function LeftSidebar() {
                   <Link
                     href={`/search/${tag.query}`}
                     key={tag.query}
-                    className={`first:mt-3 cursor-pointer`}
+                    className={`first:mt-3 cursor-pointer grow`}
                   >
                     <div
                       className={` ${
                         tag.query === router?.query?.lang
                           ? "bg-main_secondary"
                           : ""
-                      } cursor-pointer mr-2 lang_name w-[110px] truncate px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                      } cursor-pointer mr-2 lang_name truncate px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300`}
                     >
                       {tag.tag_name}
                     </div>
@@ -68,15 +68,15 @@ export default function LeftSidebar() {
               })}
             </div>
           </div>
-          <div className={"w-full flex items-start justify-start flex-wrap mb-4"}>
-            <p className="flex w-full justify-start items-center mb-2 text-main_primary font-semibold italic text-[18px] mr-3">
+          <div className={"w-full flex items-start justify-start flex-wrap "}>
+            <p className="flex w-full justify-start items-center  text-main_yellow font-semibold italic text-[18px] mr-3">
                 Active Repo
             </p>
             <div className={" w-full flex items-start justify-start flex-wrap space-y-3"}>
-                <Link href={"https://github.com/anand346/findissues#live-demo-"} target="_blank"  className={"cursor-pointer mt-3 flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"}>
+                <Link href={"https://github.com/anand346/findissues#live-demo-"} target="_blank"  className={"cursor-pointer mt-3 flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"}>
                     Add Repo
                 </Link>        
-                <Link href={"/active-repos"} target="_blank"  className={"cursor-pointer flex items-center justify-center rounded-[5px] w-[110px] h-10 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"}>
+                <Link href={"/active-repos"} className={"cursor-pointer flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"}>
                     Active Repos
                 </Link> 
             </div>

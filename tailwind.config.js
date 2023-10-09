@@ -10,6 +10,7 @@ module.exports = {
       main_secondary: "#4c4c6d",
       main_secondary_low: "#e8f6ef",
       main_secondary_high: "#232334",
+      main_grey: "#a6a6c1",
       main_yellow: "#ffe194",
     },
     fontFamily: {

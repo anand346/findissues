@@ -33,22 +33,31 @@ export default function Home() {
           <p className="pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-main_yellow text-[18px] md:text-[22px] mb-[30px] text-justify ">
             Find Most Recent and Unassigned Issues Here!
           </p>
-          <p className="text-[14px] md:text-[18px] pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-main_primary italic leading-loose mb-[50px] text-justify">
-            Find issues lets you find <b>most recently created issues</b> on
-            GitHub that are <b>not assigned</b> to anyone according to your
+          <p className="text-[14px] md:text-[18px] pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-main_primary font-semibold leading-loose mb-[50px] text-justify">
+            Find issues lets you find <span className="text-main_yellow">most recently created issues</span> on
+            GitHub that are <span className="text-main_yellow">not assigned</span> to anyone according to your
             development language with its advance search technique.
           </p>
         </div>
 
         <p className="mt-auto p-3 md:p-0 md:ml-[90px] mb-[20px] text-main_primary italic font-semibold text-[12px] md:text-[18px]">
           <i className="fa fa-copyright" aria-hidden="true"></i> FindIssues{" "}
-          {new Date().getFullYear()} | Developed With{" "}
-          <i className="fa fa-heart" aria-hidden="true"></i> By{" "}
+          {new Date().getFullYear()}<br/> Developed With{" "}
+          <i className="fa fa-heart text-main_yellow" aria-hidden="true"></i> By{" "}
           <Link
             href="https://github.com/anand346"
+            target="_blank"
             className="underline-offset-2 underline"
           >
             Anand Raj
+          </Link>
+          {" "}and{" "}
+          <Link
+            href="https://github.com/anand346/findissues/graphs/contributors"
+            target="_blank"
+            className="underline-offset-2 underline"
+          >
+          Open Source Community
           </Link>
         </p>
       </div>
