@@ -8,7 +8,7 @@ export default function IssuesCard({ issue }) {
   const [timeFromNow, setTimeFromNow] = useState(
     getTimeFromNow(issue.createdAt),
   );
-  const [hover, setHover] = useState(false);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimeFromNow(getTimeFromNow(issue.createdAt));
@@ -40,8 +40,6 @@ export default function IssuesCard({ issue }) {
     <>
       <div
         onClick={(e) => handleCardClick(e)}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
         className="issue_card mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start cursor-pointer p-3 transition-all transform md:hover:scale-105"
       >
         <div className="title_sec w-[100%] flex justify-between items-center">
@@ -106,8 +104,7 @@ export default function IssuesCard({ issue }) {
           {/* wait for rehydration */}
           {hydrated && (
             <p className="issue_sec lg:text-[14px] sm:text-[12px] text-[12px] italic text-main_yellow">
-              <i className="fa fa-clock-o" aria-hidden="true"></i>{" "}
-              {!hover ? timeFromNow : issue.formatedTime}
+              <i className="fa fa-clock-o" aria-hidden="true"></i> {timeFromNow}
             </p>
           )}
         </div>

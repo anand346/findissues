@@ -102,19 +102,6 @@ async function loadRepo(issueItems) {
   return repoObj;
 }
 
-function getFormatedTime(created_at) {
-  var timestamp = created_at.split("T");
-  var date = timestamp[0];
-  var time = timestamp[1].split("Z")[0];
-  var finalTime = date + " " + time;
-
-  const finalTimeString = moment
-    .utc(finalTime, "YYYY-MM-DD HH:mm:ss")
-    .format("YYYY-MM-DD HH:mm");
-
-  return finalTimeString;
-}
-
 async function loadIssues(url, query_lang) {
   const issues_res = await fetch(url, {
     headers: {
@@ -136,7 +123,6 @@ async function loadIssues(url, query_lang) {
     mask = "language";
   }
   issueItems.forEach((issue) => {
-    const finalFormatedTime = getFormatedTime(issue.created_at);
     var lang = query_lang;
 
     var issueObj = {
@@ -148,7 +134,7 @@ async function loadIssues(url, query_lang) {
       createdAt: issue.created_at,
       repo_forks: repo_res[issue.id].forks_count,
       repo_stars: repo_res[issue.id].stargazers_count,
-      formatedTime: finalFormatedTime,
+
       [mask]: query_lang,
     };
 
