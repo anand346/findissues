@@ -28,7 +28,7 @@ export default function IssuesCard({ issue }) {
     if (typeof window === "undefined") {
       return;
     } else {
-      if (e.target.id === "repoURL" || e.target.id === "gitIcon") {
+      if (e.target.id === "repoName" || e.target.id === "gitIcon") {
         return;
       }
 
