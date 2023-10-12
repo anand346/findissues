@@ -16,7 +16,7 @@ export default function RepoCard({repo,activeIndex,index,setActiveIndex}){
             setActiveIndex(index);
             const response = await fetch(issue_url,{
                 headers: {
-                  Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_FIRST,
+                  Authorization: "token " + process.env.NEXT_PUBLIC_FETCH_REPO,
                   Accept: "application/vnd.github.v3+json",
                 },
                 next: {revalidate: 600}

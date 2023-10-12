@@ -45,7 +45,7 @@ export async function getStaticProps(){
 
         const response = await fetch(repo_endpoint,{
             headers: {
-              Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_FIRST,
+              Authorization: "token " + process.env.NEXT_PUBLIC_FETCH_REPO,
               Accept: "application/vnd.github.v3+json",
             },
         });

@@ -73,7 +73,7 @@ export default function LeftSidebar() {
                 Active Repo
             </p>
             <div className={" w-full flex items-start justify-start flex-wrap space-y-3"}>
-                <Link href={"https://github.com/anand346/findissues#live-demo-"} target="_blank"  className={"cursor-pointer mt-3 flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"}>
+                <Link href={"https://github.com/anand346/findissues#add-active-repo-"} target="_blank"  className={"cursor-pointer mt-3 flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"}>
                     Add Repo
                 </Link>        
                 <Link href={"/active-repos"} className={"cursor-pointer flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"}>
