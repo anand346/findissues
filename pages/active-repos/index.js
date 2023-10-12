@@ -1,9 +1,13 @@
 import SeoTags from "@/components/SeoTags"
 import styles from "@/styles/ActiveRepo.module.css"
 import RepoCard from "@/components/RepoCard"
-import { repo } from "@/helper/repo";
+import { repos } from "@/helper/repo";
+import { useState } from "react";
+import { repos_list } from '@/_data/repos';
 
-export default function ActiveRepo(){
+export default function ActiveRepo({repoDetails}){
+
+    const [activeIndex, setActiveIndex] = useState(-1);
 
     return (
         <>
@@ -18,9 +22,51 @@ export default function ActiveRepo(){
                     <span className="inline-block italic">Active Repos List</span>{" "}
                     👇
                 </p>
-                <RepoCard repo={repo} />
+                {
+                    repoDetails?.map((repo,index) => (
+                        <RepoCard setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo} key={index} index={index} />
+                    ))
+                }
+                
             </div>
 
         </>
     )
+}
+
+
+export async function getStaticProps(){
+
+    let repo_result = [];
+
+    repo_result = repos_list.map(async repo_url => {
+        const repo_name = repo_url.split("/")[3]+"/"+repo_url.split("/")[4];
+        const repo_endpoint = 'https://api.github.com/repos/'+repo_name;
+
+        const response = await fetch(repo_endpoint,{
+            headers: {
+              Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_FIRST,
+              Accept: "application/vnd.github.v3+json",
+            },
+        });
+        const result = await response.json();
+        const repo_details = {
+                full_name: result.full_name,
+                updated_at: result.updated_at,
+                stars: result.stargazers_count,
+                forks: result.forks_count,
+                language: result.language,
+                open_issues: result.open_issues_count,
+                issue_url: repo_endpoint+'/issues'
+        }
+
+        return repo_details;
+    })
+
+    return {
+        props: {
+            repoDetails: await Promise.all(repo_result)
+        },
+        revalidate: 600
+    }
 }

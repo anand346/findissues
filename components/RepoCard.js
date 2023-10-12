@@ -1,24 +1,41 @@
 import Link from "next/link";
 import { getTimeFromNow } from "@/utils/getTimeFromNow";
 import { useState } from "react";
-import { issue } from "@/helper/issue";
-export default function RepoCard({repo}){
+import { IssueSkeleton } from "./IssueSkeleton";
 
-    const [show,setShow] = useState(false);
-    const [hide,setHide] = useState(true);
+export default function RepoCard({repo,activeIndex,index,setActiveIndex}){
+    
+    const [issueData,setIssueData] = useState(null);
 
-    const handleExpand = (e) => {
-        e.preventDefault();
-        setShow(true);
-        setHide(false);
+    const handleOnClickEvent = async (e,index,issue_url) => {
+
+        if(index == activeIndex){
+            setActiveIndex(-1);
+            return ;
+        }else{
+            setActiveIndex(index);
+            const response = await fetch(issue_url,{
+                headers: {
+                  Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_FIRST,
+                  Accept: "application/vnd.github.v3+json",
+                },
+                next: {revalidate: 600}
+              });
+            const result = await response.json();
+            const filtered_issue = result.filter(issue => {
+                return issue.assignee == null && issue.state == "open" && issue.html_url.split("/")[5].includes("issues")
+            })
+
+            setIssueData(filtered_issue);
+        }
     }
-
+    
     return (
         <>
-           <div onClick={(e) => handleExpand(e)} className="repo_card cursor-pointer rounded-[5px] mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start p-3 transition-all transform md:hover:scale-105">
+           <div onClick={(e) => handleOnClickEvent(e,index,repo.issue_url)} className="repo_card cursor-pointer rounded-[5px] mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start p-3 transition-all transform md:hover:border-dashed md:hover:border-main_yellow duration-300">
                 <div className="card_header flex items-center justify-between w-full mb-2">
                     <p className="repo_title text-lg font-semibold text-main_secondary_low w-7/12 truncate" > {repo.full_name.split("/")[0]+" / "+repo.full_name.split("/")[1]} </p>
-                    <p className="open_issues cursor-pointer lang_name w-[110px] truncate px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"> {repo.open_issues_count} Open Issues </p>
+                    <p className="open_issues cursor-pointer lang_name w-[110px] truncate px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"> {repo.open_issues} Open Issues </p>
                 </div>
                 {/* <div className="card_bio flex items-start justify-start mb-2 max-h-[50px] ">
                     <p className="text-sm text-main_secondary_low " > {repo.description} </p>
@@ -35,7 +52,7 @@ export default function RepoCard({repo}){
                             className="fa fa-star text-main_primary"
                             aria-hidden="true"
                             ></i>{" "}
-                            stars: {repo.stargazers_count}
+                            stars: {repo.stars}
                         </p>
                     </div>
                     <div className="repo_forks mr-2">
@@ -44,7 +61,7 @@ export default function RepoCard({repo}){
                             className="fa fa-code-fork text-main_primary"
                             aria-hidden="true"
                             ></i>{" "}
-                            forks: {repo.forks_count}
+                            forks: {repo.forks}
                         </p>
                     </div>
                     <div className="repo_lang mr-2 ">
@@ -57,20 +74,25 @@ export default function RepoCard({repo}){
                         </p>
                     </div>
                 </div>
-                <div className="repo_issues cursor-pointer rounded-[5px] w-full rounded-sm flex flex-col justify-start items-start pt-2">
+                <div className={`repo_issues ${index != activeIndex ? 'hidden' : '' } cursor-pointer rounded-[5px] w-full rounded-sm flex flex-col justify-start items-start pt-2`}>
                     <div className="border-t-2 border-dashed mb-3 border-main_primary w-full"></div>
-                    <div className="repo_single_issue mb-2">
-                        <p className="text-main_yellow"><span className="issue_number text-main_primary">#{issue.number}</span> {issue.title}</p>
-                    </div>
-                    <div className="repo_single_issue mb-2">
-                        <p className="text-main_yellow"><span className="issue_number text-main_primary">#{issue.number}</span> {issue.title}</p>
-                    </div>
-                    <div className="repo_single_issue mb-2">
-                        <p className="text-main_yellow"><span className="issue_number text-main_primary">#{issue.number}</span> {issue.title}</p>
-                    </div>
-                    <div className="repo_single_issue mb-2">
-                        <p className="text-main_yellow"><span className="issue_number text-main_primary">#{issue.number}</span> {issue.title}</p>
-                    </div>
+                   
+                    {issueData?.map((issue,index) => (
+                        <>
+                            <Link
+                                href={issue.html_url}
+                                target="_blank"
+                                className="w-full truncate"
+                                key={index}
+                            >
+                                <div className="repo_single_issue mb-2 truncate md:hover:scale-105 transition-all duration-300">
+                                    <p className="text-main_yellow truncate"><span className="issue_number text-main_primary">#{issue.number}</span> {issue.title}</p>
+                                </div>
+                            </Link>
+                            
+                        </>
+                        )   
+                    )}
                 </div>
            </div>
 

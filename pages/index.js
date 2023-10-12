@@ -33,9 +33,9 @@ export default function Home() {
           <p className="pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-main_yellow text-[18px] md:text-[22px] mb-[30px] text-justify ">
             Find Most Recent and Unassigned Issues Here!
           </p>
-          <p className="text-[14px] md:text-[18px] pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-main_primary font-semibold leading-loose mb-[50px] text-justify">
-            Find issues lets you find <span className="text-main_yellow">most recently created issues</span> on
-            GitHub that are <span className="text-main_yellow">not assigned</span> to anyone according to your
+          <p className="text-[14px] md:text-[18px] pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-main_primary leading-loose mb-[50px] text-justify">
+            Find issues lets you find <span className="font-bold">most recently created issues</span> on
+            GitHub that are <span className="font-bold">not assigned</span> to anyone according to your
             development language with its advance search technique.
           </p>
         </div>
