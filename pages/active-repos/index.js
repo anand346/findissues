@@ -24,7 +24,7 @@ export default function ActiveRepo({repoDetails}){
                 </p>
                 {
                     repoDetails?.map((repo,index) => (
-                        <RepoCard setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo} key={index} index={index} />
+                        <RepoCard key={index} setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo}  index={index} />
                     ))
                 }
                 
