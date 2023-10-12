@@ -1,15 +1,19 @@
 import IssuesCard from "@/components/IssuesCard";
-import SeoTags from "@/components/SeoTags";
+
 import { SkeletonCard } from "@/components/SkeletonCard";
-import { langs } from "@/helper/Languages";
+
 import { priority_langs } from "@/helper/priority_langs";
 import { tags } from "@/helper/tags";
 import styles from "@/styles/LandingMain.module.css";
 import Image from "next/image";
-import Link from "next/link";
+
 import { useRouter } from "next/router";
 import { BsArrowRight } from "react-icons/bs";
-import error_404 from "../../public/404.svg";
+import Link from "next/link";
+
+import { langs } from "@/helper/Languages";
+import SeoTags from "@/components/SeoTags";
+import moment from "moment";
 
 export default function Search({ allIssues, lang }) {
   const router = useRouter();
@@ -130,6 +134,7 @@ async function loadIssues(url, query_lang) {
       createdAt: issue.created_at,
       repo_forks: repo_res[issue.id].forks_count,
       repo_stars: repo_res[issue.id].stargazers_count,
+
       [mask]: query_lang,
     };
 

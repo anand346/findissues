@@ -1,5 +1,6 @@
 import { useHydration } from "@/hooks/useHydration";
 import { getTimeFromNow } from "@/utils/getTimeFromNow";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -21,16 +22,29 @@ export default function IssuesCard({ issue }) {
   // this below hook will make the targeted component wait for rehydration before rendering
   const hydrated = useHydration();
 
+  //handle click on link because we cant use a link tag because you cant nest a link tag inside a link tag
+
+  const handleCardClick = (e) => {
+    if (typeof window === "undefined") {
+      return;
+    } else {
+      if (e.target.id === "repoName" || e.target.id === "gitIcon") {
+        return;
+      }
+
+      window.open(issue.issueUrl, "_blank");
+    }
+  };
+
   return (
     <>
-      <div className="issue_card mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start p-3 transition-all transform md:hover:scale-105">
+      <div
+        onClick={(e) => handleCardClick(e)}
+        className="issue_card mb-3 border-2 border-main_primary w-[100%] sm:w-[95%] rounded-sm flex flex-col justify-start items-start cursor-pointer p-3 transition-all transform md:hover:scale-105"
+      >
         <div className="title_sec w-[100%] flex justify-between items-center">
-          <Link
-            href={issue.issueUrl}
-            className="truncate w-full"
-            target="_blank"
-          >
-            <p className="hover:text-main_primary truncate w-full  text-main_secondary_low lg:text-[16px] sm:text-[14px] text-[14px] w-[100%] font-semibold">
+          <Link href={issue.issueUrl} className="truncate " target="_blank">
+            <p className="hover:text-main_primary truncate w-full  text-main_secondary_low lg:text-[16px] sm:text-[14px] text-[14px] font-semibold">
               <span className="text-main_primary m-0">
                 #{issue.issueNumber}
               </span>{" "}
@@ -40,13 +54,17 @@ export default function IssuesCard({ issue }) {
         </div>
         <Link
           href={`https://github.com/${issue.repoTitle}`}
-          className="w-full truncate"
+          className="truncate"
           target="_blank"
         >
-          <p className="hover:text-main_secondary_low lg:text-[16px] sm:text-[14px] text-[14px] w-full truncate text-[#a6a6c1] mb-3">
+          <p
+            className="hover:text-main_secondary_low lg:text-[16px] sm:text-[14px] text-[14px] w-full truncate text-[#a6a6c1] mb-3"
+            id="repoName"
+          >
             <i
               className="fa fa-github text-main_primary"
               aria-hidden="true"
+              id="gitIcon"
             ></i>{" "}
             {issue.repoTitle}
           </p>
