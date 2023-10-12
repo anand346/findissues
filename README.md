@@ -39,6 +39,11 @@ Visit our [**live demo**](https://findissues.vercel.app) to experience FindIssue
 
 We welcome contributions from the community to make FindIssues even better. If you're interested in contributing, please follow our [Contributing Guidelines](CONTRIBUTING.md) to get started.
 
+## Add Active Repo? 📂
+
+We welcome contributions from the community to make FindIssues even better. If you're interested in adding an active repo then go through [these instructions](list-active-repo.md).
+
+
 ## Acknowledgments 👀
 
 - Thanks to the GitHub API for providing real-time data.

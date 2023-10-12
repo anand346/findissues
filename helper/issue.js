@@ -1,4 +1,4 @@
-export const obj = {
+export const issue = {
   url: "https://api.github.com/repos/SzymCode/ContactBook/issues/22",
   repository_url: "https://api.github.com/repos/SzymCode/ContactBook",
   labels_url:

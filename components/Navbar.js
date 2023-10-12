@@ -31,6 +31,11 @@ export default function Navbar() {
           </div>
           <>
             {showSidebar == false ? (
+                <div className="navbar_right flex items-center space-x-2 md:hidden relative block ">
+                <Link target="_blank" className="flex items-center"  href="https://github.com/anand346/findissues">
+                    <i className="fa fa-github text-[26px] text-main_primary md:hover:text-main_yellow duration-300" ></i>
+                </Link>
+
               <button
                 onClick={() => setShowSidebar(!showSidebar)}
                 type="button"
@@ -53,13 +58,9 @@ export default function Navbar() {
                   />
                 </svg>
               </button>
+              </div>
             ) : (
-              <button
-                className="flex text-xl text-main_primary md:hidden items-center cursor-pointer fixed right-5 top-3 z-50"
-                onClick={() => setShowSidebar(!showSidebar)}
-              >
-                x
-              </button>
+              ""
             )}
 
             <div
@@ -72,6 +73,12 @@ export default function Navbar() {
                 <p className="basic_search_title w-full mb-2 md:mb-4 text-main_primary font-semibold italic text-[16px] lg:text-[18px]">
                   Languages
                 </p>
+                <button
+                    className="flex text-xl text-main_primary md:hidden items-center cursor-pointer absolute right-5 top-2 z-50"
+                    onClick={() => setShowSidebar(!showSidebar)}
+                >
+                    x
+                </button>
                 <div
                   className={` basic_search_content mb-4 w-full flex items-start justify-start flex-wrap space-y-3`}
                 >
@@ -81,14 +88,14 @@ export default function Navbar() {
                         href={`/search/${lang.query}`}
                         onClick={() => setShowSidebar(false)}
                         key={lang.query}
-                        className={`first:mt-3 cursor-pointer`}
+                        className={`first:mt-3 cursor-pointer grow`}
                       >
                         <div
                           className={`${
                             lang.query === router.query.lang
                               ? "bg-main_secondary"
                               : ""
-                          } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                          } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300`}
                         >
                           {lang.lang_name}
                         </div>
@@ -111,14 +118,14 @@ export default function Navbar() {
                           href={`/search/${tag.query}`}
                           key={tag.query}
                           onClick={() => setShowSidebar(false)}
-                          className={`first:mt-3 cursor-pointer`}
+                          className={`first:mt-3 cursor-pointer grow`}
                         >
                           <div
                             className={`${
                               tag.query === router?.query?.lang
                                 ? "bg-main_secondary"
                                 : ""
-                            } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[20px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105`}
+                            } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300`}
                           >
                             {tag.tag_name}
                           </div>
@@ -128,24 +135,19 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div className="w-full flex flex-col items-start justify-start md:mb-5">
-                  <p className="basic_search_title w-full mb-2 md:mb-4 text-main_primary font-semibold italic text-[16px] lg:text-[18px]">
-                    Github
+                  <p className="basic_search_title w-full mb-2 md:mb-4 text-main_primary font-semibold italic text-[16px] lg:text-[18px] ">
+                    Active Repos
                   </p>
-                  <div className=" flex space-x-5 block md:hidden ">
-                    <Link
-                      target="_blank"
-                      href="https://github.com/anand346/findissues"
-                      className="inline-flex border-2 p-2 rounded-[20px] border-main_primary"
-                    >
-                      <Image
-                        src="/dark-github.svg"
-                        alt="dark theme logo"
-                        height={20}
-                        width={20}
-                        className="sm:w-[20px] cursor-pointer "
-                      />
-                    </Link>
-                  </div>
+                  <div
+                    className={` active_repos mb-4 w-full flex items-start justify-start flex-wrap space-y-3`}
+                  >
+                        <Link href={"https://github.com/anand346/findissues#live-demo-"} target="_blank"  className={"first:mt-3 cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"} onClick={() => setShowSidebar(false)} >
+                            Add Repo
+                        </Link>        
+                        <Link href={"/active-repos"} className={"cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"} onClick={() => setShowSidebar(false)} >
+                            Active Repos
+                        </Link> 
+                    </div>
                 </div>
               </div>
             </div>
@@ -153,13 +155,7 @@ export default function Navbar() {
 
           <div className="navbar_right flex space-x-5 hidden md:block ">
             <Link target="_blank" href="https://github.com/anand346/findissues">
-              <Image
-                src="/dark-github.svg"
-                alt="dark theme logo"
-                height={100}
-                width={100}
-                className="sm:w-[1.5rem] w-[1.5rem] cursor-pointer"
-              />
+              <i className="fa fa-github text-3xl text-main_primary md:hover:text-main_yellow duration-300" ></i>
             </Link>
           </div>
         </div>
