@@ -4,4 +4,5 @@ export const repos_list = [
     'https://github.com/UsmanAhmadSaeed/Animations',
     'https://github.com/rupali-codes/linkshub',
     'https://github.com/rohitdasu/projectmate'
+    'https://github.com/anand346/muzical',
 ]
