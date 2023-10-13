@@ -57,7 +57,7 @@ export default function RepoCard({repo,activeIndex,index,setActiveIndex}){
            <div onClick={(e) => handleOnClickEvent(e,index,repo.issue_url)} className="repo_card cursor-pointer rounded-[5px] mb-3 border-2 border-main_primary w-[100%]  sm:w-[95%] rounded-sm flex flex-col justify-start items-start p-3 transition-all transform md:hover:border-dashed md:hover:border-main_yellow duration-300">
                 <div className="card_header flex items-center justify-between w-full mb-2">
                     <p className="repo_title lg:text-[18px] text-[16px] font-semibold text-main_secondary_low w-11/12 md:w-7/12 truncate" > {repo.full_name.split("/")[0]+" / "+repo.full_name.split("/")[1]} </p>
-                    {/* <p className="open_issues cursor-pointer lang_name w-[110px] truncate px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"> {repo.open_issues} Open Issues </p> */}
+                    {/* <p className="open_issues   cursor-pointer lang_name w-[110px] truncate px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"> {repo.open_issues} Open Issues </p> */}
                 </div>
                 <div className="card_updated mb-2">
                     <p className="issue_sec lg:text-[16px] text-[14px] italic text-main_yellow">
