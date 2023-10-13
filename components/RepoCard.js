@@ -64,7 +64,7 @@ export default function RepoCard({repo,activeIndex,index,setActiveIndex}){
                         <i className="fa fa-clock-o" aria-hidden="true"></i> Last updated {getTimeFromNow(repo.updated_at)}
                     </p>
                 </div>
-                <div className="card_definitives flex items-center justify-start mb-2 lg:text-[16px] text-[12px]">
+                <div className="card_definitives flex items-center justify-start flex-wrap lg:justify-between mb-2 lg:text-[16px] text-[12px]">
                     <div className="repo_stars mr-2">
                         <p className="text-main_secondary_low">
                             <i
