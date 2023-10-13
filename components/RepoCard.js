@@ -60,11 +60,11 @@ export default function RepoCard({repo,activeIndex,index,setActiveIndex}){
                     {/* <p className="open_issues cursor-pointer lang_name w-[110px] truncate px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105"> {repo.open_issues} Open Issues </p> */}
                 </div>
                 <div className="card_updated mb-2">
-                    <p className="issue_sec lg:text-[16px] text-[14px] italic text-main_yellow">
+                    <p className="issue_sec lg:text-[14px] text-[12px] italic text-main_yellow">
                         <i className="fa fa-clock-o" aria-hidden="true"></i> Last updated {getTimeFromNow(repo.updated_at)}
                     </p>
                 </div>
-                <div className="card_definitives flex items-center justify-start mb-2 lg:text-[16px] text-[14px]">
+                <div className="card_definitives flex items-center justify-start mb-2 lg:text-[14px] text-[12px]">
                     <div className="repo_stars mr-2">
                         <p className="text-main_secondary_low">
                             <i
