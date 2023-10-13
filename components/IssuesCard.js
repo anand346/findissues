@@ -54,11 +54,11 @@ export default function IssuesCard({ issue }) {
         </div>
         <Link
           href={`https://github.com/${issue.repoTitle}`}
-          className="truncate"
+          className="truncate w-full"
           target="_blank"
         >
           <p
-            className="hover:text-main_secondary_low lg:text-[16px] sm:text-[14px] text-[14px] w-full truncate text-[#a6a6c1] mb-3"
+            className="hover:text-main_secondary_low truncate w-full lg:text-[16px] sm:text-[14px] text-[14px] w-full truncate text-[#a6a6c1] mb-3"
             id="repoName"
           >
             <i
