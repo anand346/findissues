@@ -4,6 +4,7 @@ export const repos_list = [
     'https://github.com/vatsalsinghkv/easy-fix',
     'https://github.com/rupali-codes/linkshub',
     'https://github.com/rohitdasu/projectmate',
+    'https://github.com/freeCodeCamp/freeCodeCamp',
     'https://github.com/Chimoney/chimoney-community-projects',
     'https://github.com/MilanCommunity/Milan',
     'https://github.com/Dun-sin/Whisper',
