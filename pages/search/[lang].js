@@ -9,6 +9,7 @@ import Image from "next/image";
 
 import { useRouter } from "next/router";
 import { BsArrowRight } from "react-icons/bs";
+import error_404 from "../../public/404.svg";
 import Link from "next/link";
 
 import { langs } from "@/helper/Languages";
