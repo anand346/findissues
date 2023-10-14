@@ -83,5 +83,4 @@ export const langs = [
     lang_name: "Perl",
     query: "perl",
   },
-  
 ];
