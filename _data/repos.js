@@ -3,5 +3,6 @@ export const repos_list = [
     'https://github.com/up-for-grabs/up-for-grabs.net',
     'https://github.com/UsmanAhmadSaeed/Animations',
     'https://github.com/rupali-codes/linkshub',
-    'https://github.com/rohitdasu/projectmate'
+    'https://github.com/rohitdasu/projectmate',
+    'https://github.com/ayush-raj13/mini-projects'
 ]
