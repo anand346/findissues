@@ -43,7 +43,6 @@ We welcome contributions from the community to make FindIssues even better. If y
 
 We welcome contributions from the community to make FindIssues even better. If you're interested in adding an active repo then go through [these instructions](list-active-repo.md) and refer to [this](https://github.com/anand346/findissues/issues/62) issue.
 
-
 ## Acknowledgments 👀
 
 - Thanks to the GitHub API for providing real-time data.
