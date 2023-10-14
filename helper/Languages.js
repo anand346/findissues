@@ -71,4 +71,16 @@ export const langs = [
     lang_name: "Swift",
     query: "swift",
   },
+  {
+    lang_name: "Shell",
+    query: "shell",
+  },
+  {
+    lang_name: "Matlab",
+    query: "MATLAB",
+  },
+  {
+    lang_name: "Perl",
+    query: "perl",
+  },
 ];
