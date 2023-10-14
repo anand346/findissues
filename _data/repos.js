@@ -9,5 +9,9 @@ export const repos_list = [
     'https://github.com/MilanCommunity/Milan',
     'https://github.com/Dun-sin/Whisper',
     'https://github.com/EddieHubCommunity/BioDrop',
-    'https://github.com/illacloud/illa-builder'
+    'https://github.com/illacloud/illa-builder',
+    'https://github.com/HimanshuNarware/Devlabs',
+    'https://github.com/edoardottt/favirecon',
+    'https://github.com/anuraghazra/github-readme-stats',
+    'https://github.com/aidenybai/million'
 ]
