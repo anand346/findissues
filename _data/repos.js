@@ -15,4 +15,5 @@ export const repos_list = [
     'https://github.com/edoardottt/favirecon',
     'https://github.com/anuraghazra/github-readme-stats',
     'https://github.com/aidenybai/million',
+    "https://github.com/appwrite/appwrite",
 ]
