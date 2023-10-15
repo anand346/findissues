@@ -6,14 +6,15 @@
 
 ## Table of Content
 
-- [Get Started](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=Table%20of%20Content-,Get%20Started,-To%20get%20started)
-- [Features 🎯](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=Get%20Started-,Features%20%F0%9F%8E%AF,-Live%20Demo%20%F0%9F%98%80)
-- [Live Demo 😀](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=with%20Adobe%20XD.-,Live%20Demo%20%F0%9F%98%80,-Visit%20our%20live)
-- [Tech Stack ⚙️](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=issues%20more%20easier.-,Tech%20Stack%20%E2%9A%99%EF%B8%8F,-Contributing%20%F0%9F%9A%80)
-- [Contributing 🚀](https://github.com/w-augustin/findissues/edit/main/README.md#:~:text=Tech%20Stack%20%E2%9A%99%EF%B8%8F-,Contributing%20%F0%9F%9A%80,-We%20welcome%20contributions)
-- [Acknowledgments 👀](https://github.com/w-augustin/findissues/edit/main/README.md#acknowledgments-)
-- [License 🪪](https://github.com/w-augustin/findissues/edit/main/README.md#license-)
-- [Contact 📧](https://github.com/w-augustin/findissues/edit/main/README.md#contact-)
+- [Get Started](https://github.com/anand346/findissues#get-started)
+- [Features 🎯](https://github.com/anand346/findissues#features-)
+- [Live Demo 😀](https://github.com/anand346/findissues#live-demo-)
+- [Tech Stack ⚙️](https://github.com/anand346/findissues#tech-stack-%EF%B8%8F)
+- [Contributing 🚀](https://github.com/anand346/findissues#contributing-)
+- [Add Active Repo? 📂](https://github.com/anand346/findissues#add-active-repo-)
+- [Acknowledgments 👀](https://github.com/anand346/findissues#acknowledgments-)
+- [License 🪪](https://github.com/anand346/findissues#license-)
+- [Contact 📧](https://github.com/anand346/findissues#contact-)
 
 ## Get Started
 
