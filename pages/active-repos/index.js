@@ -4,6 +4,7 @@ import RepoCard from "@/components/RepoCard"
 import { repos } from "@/helper/repo";
 import { useState } from "react";
 import { repos_list } from '@/_data/repos';
+import moment from "moment/moment";
 
 export default function ActiveRepo({repoDetails}){
 
@@ -23,9 +24,16 @@ export default function ActiveRepo({repoDetails}){
                     👇
                 </p>
                 {
-                    repoDetails?.map((repo,index) => (
-                        <RepoCard key={index} setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo}  index={index} />
-                    ))
+                    repoDetails?.map((repo,index) => {
+                        let timeDifferenceInDays = Math.abs(
+                                moment
+                                .utc(repo.updated_at, "YYYY-MM-DD HH:mm:ss")
+                                .diff(moment.now(), "milliseconds", true),
+                            ) / 86400000; // 1000 * 60 * 60 * 24
+                        if (timeDifferenceInDays <= 3) {
+                            <RepoCard key={index} setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo}  index={index} />
+                        }
+                    })
                 }
                 
             </div>
