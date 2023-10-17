@@ -17,5 +17,5 @@ export const repos_list = [
     'https://github.com/aidenybai/million',
     'https://github.com/appwrite/appwrite',
     'https://github.com/FrancescoXX/4c-site',
-    'https://github.com/livecycle/preevy',
+    'https://github.com/formbricks/formbricks',
 ]
