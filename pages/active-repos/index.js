@@ -4,11 +4,24 @@ import RepoCard from "@/components/RepoCard"
 import { repos } from "@/helper/repo";
 import { useState } from "react";
 import { repos_list } from '@/_data/repos';
+import moment from "moment/moment";
 
 export default function ActiveRepo({repoDetails}){
 
     const [activeIndex, setActiveIndex] = useState(-1);
 
+
+    const getDayDiff = (updated_at) => {
+        let diffDay = Math.abs(
+            moment
+            .utc(updated_at, "YYYY-MM-DD HH:mm:ss")
+            .diff(moment.now(), "milliseconds", true),
+        )/86400000;
+        
+        return diffDay;
+    }
+
+    
     return (
         <>
             <SeoTags
@@ -22,10 +35,17 @@ export default function ActiveRepo({repoDetails}){
                     <span className="inline-block italic">Active Repos List</span>{" "}
                     👇
                 </p>
-                {
+                {/* {
                     repoDetails?.map((repo,index) => (
                         <RepoCard key={index} setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo}  index={index} />
                     ))
+                } */}
+                {
+                    repoDetails?.map((repo,index) => {
+                        if (getDayDiff(repo.updated_at) <= 3) {
+                            return <RepoCard key={index} setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo}  index={index} />
+                        }
+                    })
                 }
                 
             </div>
