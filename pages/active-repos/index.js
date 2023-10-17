@@ -4,6 +4,7 @@ import RepoCard from "@/components/RepoCard"
 import { repos } from "@/helper/repo";
 import { useState } from "react";
 import { repos_list } from '@/_data/repos';
+import moment from "moment/moment";
 
 export default function ActiveRepo({repoDetails}){
 
