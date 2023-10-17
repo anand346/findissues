@@ -13,6 +13,10 @@ export default function Navbar() {
 
   const navbarRef = useClickOutside(() => setShowSidebar(false))
   
+  function isCurrentPath(path) {
+    return router.pathname === path;
+  }
+
   return (
     <>
       <div  className={`w-full ${showSidebar ? "sidebar-open" : ""}`} ref={navbarRef}>
@@ -144,7 +148,11 @@ export default function Navbar() {
                         <Link href={"https://github.com/anand346/findissues#add-active-repo-"} target="_blank"  className={"first:mt-3 cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"} onClick={() => setShowSidebar(false)} >
                             Add Repo?
                         </Link>        
-                        <Link href={"/active-repos"} className={"cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"} onClick={() => setShowSidebar(false)} >
+                        <Link href={"/active-repos"} className={`${
+                            isCurrentPath("/active-repos")
+                                ? "bg-main_secondary"
+                                : ""
+                            } cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-main_primary border-[2px] rounded-[5px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow`} onClick={() => setShowSidebar(false)} >
                             Active Repos
                         </Link> 
                     </div>

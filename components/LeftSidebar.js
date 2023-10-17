@@ -95,7 +95,7 @@ export default function LeftSidebar() {
               <Link
                 href={"/active-repos"}
                 className={`${
-                  router.pathname === isCurrentPath("/active-repos")
+                  isCurrentPath("/active-repos")
                     ? "bg-main_secondary"
                     : ""
                 } 
