@@ -19,4 +19,5 @@ export const repos_list = [
     'https://github.com/FrancescoXX/4c-site',
     'https://github.com/formbricks/formbricks',
     'https://github.com/calcom/cal.com',
+    'https://github.com/hedgedoc/hedgedoc'
 ]
