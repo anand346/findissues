@@ -23,5 +23,5 @@ export const repos_list = [
     'https://github.com/camunda/camunda-modeler',
     'https://github.com/mui/mui-toolpad',
     'https://github.com/shyamtawli/devFind',
-    ''
+    'https://github.com/TechNodes2-0/ElectiveHub',
 ]
