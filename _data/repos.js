@@ -20,5 +20,5 @@ export const repos_list = [
     'https://github.com/formbricks/formbricks',
     'https://github.com/calcom/cal.com',
     'https://github.com/novuhq/novu',
-    'https://github.com/Dhairyaa2004/hacktoberfest-indore-2023',
+    'https://github.com/laviii123/Btecky',
 ]
