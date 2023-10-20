@@ -6,7 +6,7 @@ This document outlines the process of adding an active repo on FindIssues.
 We are interested in active open source projects that meet this criteria:
 
 - Repo must be updated in last 3 days
-- Repo must have >= 20 stars
+- Repo must have >= 50 stars
 - Repo should be accepting contributions
 
 If your repo does not satisfy all of this criteria, it may be declined at the review process. We'll provide suggestions to help address these things so that it may be listed in the future.
