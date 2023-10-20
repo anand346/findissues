@@ -1,7 +1,6 @@
 export const repos_list = [
     'https://github.com/anand346/findissues',
     'https://github.com/up-for-grabs/up-for-grabs.net',
-    'https://github.com/vatsalsinghkv/easy-fix',
     'https://github.com/ToolJet/ToolJet',
     'https://github.com/rupali-codes/linkshub',
     'https://github.com/rohitdasu/projectmate',
@@ -11,7 +10,6 @@ export const repos_list = [
     'https://github.com/Dun-sin/Whisper',
     'https://github.com/EddieHubCommunity/BioDrop',
     'https://github.com/illacloud/illa-builder',
-    'https://github.com/HimanshuNarware/Devlabs',
     'https://github.com/edoardottt/favirecon',
     'https://github.com/anuraghazra/github-readme-stats',
     'https://github.com/aidenybai/million',
@@ -24,6 +22,5 @@ export const repos_list = [
     'https://github.com/mindsdb/mindsdb',
     'https://github.com/mui/mui-toolpad',
     'https://github.com/shyamtawli/devFind',
-    'https://github.com/developer-student-clubs/npmBox',
     'https://github.com/OtacilioN/awesome-hacktoberfest',
 ]
