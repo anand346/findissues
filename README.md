@@ -2,7 +2,7 @@
 
 # Welcome to FindIssues ✨👋
 
-**FindIssues** is a dynamic web application that lets you find the most recently created and unassigned issues Github issues across millions of GitHub repositories. This project helps open-source contributors in making their contributions more easier way.
+**FindIssues** is a dynamic web application that lets you find the most recently created and unassigned Github issues across millions of GitHub repositories. This project helps open-source contributors in making their contributions more easier way.
 
 ## Table of Content
 
