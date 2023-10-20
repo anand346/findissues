@@ -21,6 +21,8 @@ export const repos_list = [
     'https://github.com/calcom/cal.com',
     'https://github.com/novuhq/novu',
     'https://github.com/camunda/camunda-modeler',
+    'https://github.com/mui/mui-toolpad',
+    'https://github.com/shyamtawli/devFind',
     'https://github.com/developer-student-clubs/npmBox',
     'https://github.com/OtacilioN/awesome-hacktoberfest',
 ]
