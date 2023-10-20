@@ -23,4 +23,5 @@ export const repos_list = [
     'https://github.com/mui/mui-toolpad',
     'https://github.com/shyamtawli/devFind',
     'https://github.com/OtacilioN/awesome-hacktoberfest',
+    'https://github.com/facebook/react',
 ]
