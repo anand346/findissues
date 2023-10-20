@@ -21,4 +21,5 @@ export const repos_list = [
     'https://github.com/calcom/cal.com',
     'https://github.com/novuhq/novu',
     'https://github.com/camunda/camunda-modeler',
+    'https://github.com/OtacilioN/awesome-hacktoberfest'
 ]
