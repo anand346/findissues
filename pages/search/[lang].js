@@ -30,6 +30,10 @@ export default function Search({ allIssues, lang }) {
   const closeDropdown =()=>{
     setIsOpen(false);
   };
+
+  useEffect(()=>{
+    setIssues(allIssues);
+  }, [allIssues]);
   
   useEffect(()=>{
     function handleClickOutside(event){
