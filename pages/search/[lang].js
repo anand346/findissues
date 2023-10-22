@@ -15,16 +15,34 @@ import Link from "next/link";
 import { langs } from "@/helper/Languages";
 import SeoTags from "@/components/SeoTags";
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Search({ allIssues, lang }) {
   const [isOpen, setIsOpen] = useState(false);
   const [sortOption, setSortOption] = useState('Best Match');
   const [issues, setIssues] = useState(allIssues);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const closeDropdown =()=>{
+    setIsOpen(false);
+  };
+  
+  useEffect(()=>{
+    function handleClickOutside(event){
+      if(dropdownRef.current && !dropdownRef.current.contains(event.target)){
+        closeDropdown();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return ()=>{
+      document.removeEventListener("mousedown",handleClickOutside);
+    };
+  }, []);
 
   const sortIssues = (option) => {
     const sortingFunctions = {
@@ -38,6 +56,7 @@ export default function Search({ allIssues, lang }) {
     const sorted = [...allIssues].sort(sortingFunctions[option]);
     setIssues(sorted); // Update the state variable with the sorted array
     setSortOption(option);
+    closeDropdown();
   };
 
 
@@ -75,7 +94,7 @@ export default function Search({ allIssues, lang }) {
                 </span>{" "}
                 👇
               </p>
-              <div className="relative inline-block text-left">
+              <div className="relative inline-block text-left" ref={dropdownRef}>
                 <button
                   onClick={toggleDropdown}
                   type="button"
