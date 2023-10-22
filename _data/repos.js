@@ -24,5 +24,6 @@ export const repos_list = [
     'https://github.com/shyamtawli/devFind',
     'https://github.com/OtacilioN/awesome-hacktoberfest',
     'https://github.com/facebook/react',
-    'https://github.com/ortelius/ortelius'
+    'https://github.com/ortelius/ortelius',
+    'https://github.com/BeforeIDieCode/BeforeIDieAchievements'
 ]
