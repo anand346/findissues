@@ -25,5 +25,8 @@ export const repos_list = [
     'https://github.com/OtacilioN/awesome-hacktoberfest',
     'https://github.com/facebook/react',
     'https://github.com/ortelius/ortelius',
-    'https://github.com/BeforeIDieCode/BeforeIDieAchievements'
+    'https://github.com/BeforeIDieCode/BeforeIDieAchievements',
+    'https://github.com/falcosecurity/falcosidekick',
+    'https://github.com/nocodb/nocodb',
+    'https://github.com/arc53/DocsGPT'
 ]
