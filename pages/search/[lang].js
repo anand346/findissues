@@ -93,7 +93,7 @@ export default function Search({ allIssues, lang }) {
               seoUrl={`https://www.findissues.me/search/${lang}`}
             />
             <div className="w-[100%] sm:w-[95%] flex justify-between items-center">
-              <p className="w-[200px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
+              <p className="w-[200px] lg:w-[230px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
                 <span className="inline-block italic">
                   All Unassigned Issues
                 </span>{" "}
