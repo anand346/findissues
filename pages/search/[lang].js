@@ -33,6 +33,7 @@ export default function Search({ allIssues, lang }) {
 
   useEffect(()=>{
     setIssues(allIssues);
+    setSortOption('Best Match');
   }, [allIssues]);
   
   useEffect(()=>{
