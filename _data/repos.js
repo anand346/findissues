@@ -26,4 +26,6 @@ export const repos_list = [
     'https://github.com/facebook/react',
     'https://github.com/ortelius/ortelius',
     'https://github.com/BeforeIDieCode/BeforeIDieAchievements'
+    'https://github.com/TheAlgorithms/Python'
+    'https://github.com/TheAlgorithms/Java'
 ]
