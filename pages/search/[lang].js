@@ -9,14 +9,63 @@ import Image from "next/image";
 
 import { useRouter } from "next/router";
 import { BsArrowRight } from "react-icons/bs";
+import { FaSort } from "react-icons/fa"
 import error_404 from "../../public/404.svg";
 import Link from "next/link";
 
 import { langs } from "@/helper/Languages";
 import SeoTags from "@/components/SeoTags";
 import moment from "moment";
+import { useEffect, useRef, useState } from "react";
 
 export default function Search({ allIssues, lang }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [sortOption, setSortOption] = useState('Best Match');
+  const [issues, setIssues] = useState(allIssues);
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeDropdown =()=>{
+    setIsOpen(false);
+  };
+
+  useEffect(()=>{
+    setIssues(allIssues);
+    setSortOption('Best Match');
+  }, [allIssues]);
+  
+  useEffect(()=>{
+    function handleClickOutside(event){
+      if(dropdownRef.current && !dropdownRef.current.contains(event.target)){
+        closeDropdown();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return ()=>{
+      document.removeEventListener("mousedown",handleClickOutside);
+    };
+  }, []);
+
+  const sortIssues = (option) => {
+    const sortingFunctions = {
+      'Best Match': (a, b) => 0,
+      'Most Stars': (a, b) => b.repo_stars - a.repo_stars,
+      'Least Stars': (a, b) => a.repo_stars - b.repo_stars,
+      'Most Forks': (a, b) => b.repo_forks - a.repo_forks,
+      'Least Forks': (a, b) => a.repo_forks - b.repo_forks,
+    };
+
+    const sorted = [...allIssues].sort(sortingFunctions[option]);
+    setIssues(sorted); // Update the state variable with the sorted array
+    setSortOption(option);
+    closeDropdown();
+  };
+
+
   const router = useRouter();
 
   if (router.isFallback) {
@@ -37,20 +86,60 @@ export default function Search({ allIssues, lang }) {
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >
-        {allIssues.length ? (
+        {issues.length ? (
           <>
             <SeoTags
               seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
               seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
               seoUrl={`https://www.findissues.me/search/${lang}`}
             />
-            <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
-              <span className="inline-block italic">All Unassigned Issues</span>{" "}
-              👇
-            </p>
-            {allIssues?.map((issue) => {
-              return <IssuesCard key={issue.issueId} issue={issue} />;
-            })}
+            <div className="w-[100%] sm:w-[95%] flex justify-between items-center">
+              <p className="w-[200px] lg:w-[230px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
+                <span className="inline-block italic">
+                   Unassigned Issues
+                </span>{" "}
+                👇
+              </p>
+              <div className="relative inline-block text-left" ref={dropdownRef}>
+                <button
+                  onClick={toggleDropdown}
+                  type="button"
+                  className="flex items-center py-1 px-2 mb-4 border-2 border-main_primary rounded-[5px] text-[12px] lg:text-[14px] hover:bg-main_secondary "
+                  id="options-menu"
+                  aria-haspopup="listbox"
+                  aria-expanded="true"
+                >
+                 <FaSort className="inline-flex mr-[5px]" /> {sortOption}
+                </button>
+
+                {isOpen && (
+                  <div
+                    className="origin-top-right absolute right-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 bg-main_secondary"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="options-menu"
+                  >
+                    <div className="py-1" role="none">
+                    {['Best Match', 'Most Stars', 'Least Stars', 'Most Forks', 'Least Forks'].map((option) => (
+                        <a
+                          key={option}
+                          onClick={() => sortIssues(option)}
+                          href="#"
+                          className="block px-4 py-2 text-sm text-white hover:bg-gray-700"
+                          role="menuitem"
+                          tabIndex="-1"
+                        >
+                          {option}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            {issues?.map((issue) => {
+  return <IssuesCard key={issue.issueId} issue={issue} />;
+})}
           </>
         ) : (
           <>
@@ -156,6 +245,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   let url = "";
   tags.forEach((tag) => {
+    if(params.lang == "go"){
+      return ;
+    }
     if (tag.query.includes(params.lang)) {
       url = `https://api.github.com/search/issues?q=label:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
       return;
