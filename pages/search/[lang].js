@@ -9,6 +9,7 @@ import Image from "next/image";
 
 import { useRouter } from "next/router";
 import { BsArrowRight } from "react-icons/bs";
+import { FaSort } from "react-icons/fa"
 import error_404 from "../../public/404.svg";
 import Link from "next/link";
 
@@ -95,7 +96,7 @@ export default function Search({ allIssues, lang }) {
             <div className="w-[100%] sm:w-[95%] flex justify-between items-center">
               <p className="w-[200px] lg:w-[230px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
                 <span className="inline-block italic">
-                  All Unassigned Issues
+                   Unassigned Issues
                 </span>{" "}
                 👇
               </p>
@@ -103,12 +104,12 @@ export default function Search({ allIssues, lang }) {
                 <button
                   onClick={toggleDropdown}
                   type="button"
-                  className="py-1 px-2 mb-4 border-2 border-main_primary rounded-[5px] text-[12px] lg:text-[14px] hover:bg-main_secondary "
+                  className="flex items-center py-1 px-2 mb-4 border-2 border-main_primary rounded-[5px] text-[12px] lg:text-[14px] hover:bg-main_secondary "
                   id="options-menu"
                   aria-haspopup="listbox"
                   aria-expanded="true"
                 >
-                  Sort by: {sortOption}
+                 <FaSort className="inline-flex mr-[5px]" /> {sortOption}
                 </button>
 
                 {isOpen && (
