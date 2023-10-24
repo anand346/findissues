@@ -245,6 +245,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   let url = "";
   tags.forEach((tag) => {
+    if(params.lang == "go"){
+      return ;
+    }
     if (tag.query.includes(params.lang)) {
       url = `https://api.github.com/search/issues?q=label:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
       return;
