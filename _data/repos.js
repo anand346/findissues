@@ -30,5 +30,8 @@ export const repos_list = [
     'https://github.com/TheAlgorithms/Java',
     'https://github.com/falcosecurity/falcosidekick',
     'https://github.com/nocodb/nocodb',
-    'https://github.com/arc53/DocsGPT'
+    'https://github.com/arc53/DocsGPT',
+    'https://github.com/zetabug/rock-paper-scissors-game',
+    'https://github.com/kcp-dev/edge-mc',
+    'https://github.com/Mudlet/Mudle'
 ]
