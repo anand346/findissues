@@ -13,9 +13,6 @@ export const repos_list = [
     'https://github.com/edoardottt/favirecon',
     'https://github.com/anuraghazra/github-readme-stats',
     'https://github.com/aidenybai/million',
-<<<<<<< HEAD
-    "https://github.com/appwrite/appwrite",
-=======
     'https://github.com/appwrite/appwrite',
     'https://github.com/FrancescoXX/4c-site',
     'https://github.com/formbricks/formbricks',
@@ -33,6 +30,6 @@ export const repos_list = [
     'https://github.com/TheAlgorithms/Java',
     'https://github.com/falcosecurity/falcosidekick',
     'https://github.com/nocodb/nocodb',
-    'https://github.com/arc53/DocsGPT'
->>>>>>> c40f09f43329e4f3ada77d56b8b131c2cd35c224
+    'https://github.com/arc53/DocsGPT',
+    "https://github.com/aidenybai/million",
 ]
