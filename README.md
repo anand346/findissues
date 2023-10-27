@@ -2,7 +2,7 @@
 
 # Welcome to FindIssues ✨👋
 
-**FindIssues** is a dynamic web application that lets you find the most recently created and unassigned issues across GitHub repositories. This project is powered by Next.js and the GitHub REST API, with a user-friendly interface designed using Adobe XD.
+**FindIssues** is a dynamic web application that lets you find the most recently created and unassigned Github issues across millions of GitHub repositories. This project helps open-source contributors in making their contributions more easier way.
 
 ## Table of Content
 
@@ -12,7 +12,6 @@
 - [Tech Stack ⚙️](https://github.com/anand346/findissues#tech-stack-%EF%B8%8F)
 - [Contributing 🚀](https://github.com/anand346/findissues#contributing-)
 - [Add Active Repo? 📂](https://github.com/anand346/findissues#add-active-repo-)
-- [Acknowledgments 👀](https://github.com/anand346/findissues#acknowledgments-)
 - [License 🪪](https://github.com/anand346/findissues#license-)
 - [Contact 📧](https://github.com/anand346/findissues#contact-)
 
@@ -26,7 +25,7 @@ In the web broswer you will select your ideal programming langauage and through 
 
 - **Advanced Search**: Utilize the advanced search techniques to filter and discover unassigned GitHub issues.
 - **Real-time Data**: Get access to the latest issue information directly from GitHub.
-- **User-Friendly Design**: Enjoy an intuitive and visually appealing interface designed with Adobe XD.
+- **User-Friendly Design**: Enjoy an intuitive and visually appealing interface.
 
 ## Live Demo 😀
 
@@ -43,11 +42,6 @@ We welcome contributions from the community to make FindIssues even better. If y
 ## Add Active Repo? 📂
 
 We welcome contributions from the community to make FindIssues even better. If you're interested in adding an active repo then go through [these instructions](list-active-repo.md) and refer to [this](https://github.com/anand346/findissues/issues/81) issue.
-
-## Acknowledgments 👀
-
-- Thanks to the GitHub API for providing real-time data.
-- Adobe XD for assisting in the design of the user interface.
 
 ## License 🪪
 

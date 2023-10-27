@@ -8,6 +8,10 @@ import { useRouter } from "next/router";
 export default function LeftSidebar() {
   const router = useRouter();
 
+  function isCurrentPath(path) {
+    return router.pathname === path;
+  }
+
   return (
     <>
       <div
@@ -44,9 +48,11 @@ export default function LeftSidebar() {
           </div>
           <div className="advance_search w-full flex flex-col items-start justify-start mb-4">
             <p className="advance_search_title flex w-full justify-start items-center  text-main_yellow font-semibold italic text-[18px]">
-                Tags
+              Tags
             </p>
-            <div className={` advance_search_content w-full flex items-start justify-start flex-wrap space-y-3`} >
+            <div
+              className={` advance_search_content w-full flex items-start justify-start flex-wrap space-y-3`}
+            >
               {tags.map((tag) => {
                 return (
                   <Link
@@ -70,15 +76,33 @@ export default function LeftSidebar() {
           </div>
           <div className={"w-full flex items-start justify-start flex-wrap "}>
             <p className="flex w-full justify-start items-center  text-main_yellow font-semibold italic text-[18px] mr-3">
-                Active Repo
+              Active Repo
             </p>
-            <div className={" w-full flex items-start justify-start flex-wrap space-y-3"}>
-                <Link href={"https://github.com/anand346/findissues#add-active-repo-"} target="_blank"  className={"cursor-pointer mt-3 flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"}>
-                    Add Repo?
-                </Link>        
-                <Link href={"/active-repos"} className={"cursor-pointer flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"}>
-                    Active Repos
-                </Link> 
+            <div
+              className={
+                " w-full flex items-start justify-start flex-wrap space-y-3"
+              }
+            >
+              <Link
+                href={"https://github.com/anand346/findissues#add-active-repo-"}
+                target="_blank"
+                className={
+                  "cursor-pointer mt-3 flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow"
+                }
+              >
+                Add Repo?
+              </Link>
+              <Link
+                href={"/active-repos"}
+                className={`${
+                  isCurrentPath("/active-repos")
+                    ? "bg-main_secondary"
+                    : ""
+                } 
+                  cursor-pointer flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-main_primary border-[2px] italic font-semibold text-main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-main_yellow md:hover:border-main_yellow duration-300 grow`}
+              >
+                Active Repos
+              </Link>
             </div>
           </div>
         </div>

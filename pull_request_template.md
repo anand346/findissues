@@ -18,11 +18,10 @@ Share additional insights or considerations for reviewers. This could encompass 
 
 ## Checklist ✅
 
-- [ ] All tests pass successfully.
-- [ ] Code adheres to the project's coding standards.
-- [ ] Documentation is updated to reflect the changes.
-- [ ] No sensitive information is inadvertently exposed.
-- [ ] Commit history is clear and concise.
+- [ ] Starred this repo ⭐.
+- [ ] Code adheres to the project's coding standards 💻.
+- [ ] No sensitive information is inadvertently exposed 👀.
+- [ ] Commit history is clear and concise 📃.
 
 ## Reviewer Tasks 🕵️
 

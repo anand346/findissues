@@ -6,14 +6,14 @@ This document outlines the process of adding an active repo on FindIssues.
 We are interested in active open source projects that meet this criteria:
 
 - Repo must be updated in last 3 days
-- Repo must have >= 20 stars
+- Repo must have >= 50 stars
 - Repo should be accepting contributions
 
 If your repo does not satisfy all of this criteria, it may be declined at the review process. We'll provide suggestions to help address these things so that it may be listed in the future.
 
 ## Using Github Web Editor
 
-The simplest way to add your project is to use the GitHub web editor. If you are signed into GitHub, simply navigate to [this link](https://github.com/anand346/findissues/blob/dev/_data/repos.js) to view the list of active repos.
+The simplest way to add your project is to use the GitHub web editor. If you are signed into GitHub, simply navigate to [this link](https://github.com/anand346/findissues/blob/main/_data/repos.js) to view the list of active repos.
 
 In the header, click the `pencil icon` or `Edit this file` button to start the process, which will first ask you to fork the repo. 
 
