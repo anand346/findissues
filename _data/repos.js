@@ -38,4 +38,7 @@ export const repos_list = [
     'https://github.com/ionic-team/ionic-framework',
     'https://github.com/tailwindlabs/tailwindcss',
     'https://github.com/keploy/keploy',
+    'https://github.com/facebook/docusaurus',
+    'https://github.com/mondaycom/monday-ui-react-core',
+    'https://github.com/mermaid-js/mermaid-cli',
 ]
