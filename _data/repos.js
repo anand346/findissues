@@ -41,4 +41,7 @@ export const repos_list = [
     'https://github.com/facebook/docusaurus',
     'https://github.com/mondaycom/monday-ui-react-core',
     'https://github.com/mermaid-js/mermaid-cli',
+    'https://github.com/processing/p5.js-web-editor',
+    'https://github.com/PipedreamHQ/pipedream',
+    'https://github.com/phcode-dev/phoenix',
 ]
