@@ -204,7 +204,7 @@ async function loadIssues(url, query_lang) {
   const issueItems = issues_json.items;
 
   var allIssues = [];
-
+ 
   var repo_res = await loadRepo(issueItems);
   var mask = "";
   if (url.includes("label")) {
