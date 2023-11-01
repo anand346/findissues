@@ -32,4 +32,8 @@ export const repos_list = [
     'https://github.com/nocodb/nocodb',
     'https://github.com/arc53/DocsGPT',
     "https://github.com/aidenybai/million",
+    'https://github.com/apostrophecms/apostrophe',
+    'https://github.com/mui/material-ui',
+    'https://github.com/ionic-team/ionic-framework',
+    'https://github.com/tailwindlabs/tailwindcss',
 ]
