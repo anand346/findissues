@@ -104,7 +104,7 @@ export default function Search({ allIssues, lang }) {
                 <button
                   onClick={toggleDropdown}
                   type="button"
-                  className="flex items-center py-1 px-2 mb-4 border-2 border-main_primary rounded-[5px] text-[12px] lg:text-[14px] hover:bg-main_secondary "
+                  className="flex items-center py-1 px-2 mb-4 border-2 border-main_primary rounded-[5px] text-[12px] text-white lg:text-[14px] hover:bg-main_secondary "
                   id="options-menu"
                   aria-haspopup="listbox"
                   aria-expanded="true"
@@ -138,8 +138,8 @@ export default function Search({ allIssues, lang }) {
               </div>
             </div>
             {issues?.map((issue) => {
-  return <IssuesCard key={issue.issueId} issue={issue} />;
-})}
+              return <IssuesCard key={issue.issueId} issue={issue} />;
+            })}
           </>
         ) : (
           <>
@@ -204,7 +204,7 @@ async function loadIssues(url, query_lang) {
   const issueItems = issues_json.items;
 
   var allIssues = [];
-
+ 
   var repo_res = await loadRepo(issueItems);
   var mask = "";
   if (url.includes("label")) {
