@@ -44,4 +44,7 @@ export const repos_list = [
     'https://github.com/processing/p5.js-web-editor',
     'https://github.com/PipedreamHQ/pipedream',
     'https://github.com/phcode-dev/phoenix',
+    'https://github.com/jwasham/coding-interview-university',
+    'https://github.com/kamranahmedse/developer-roadmap',
+    'https://github.com/codecrafters-io/build-your-own-x',
 ]
