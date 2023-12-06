@@ -147,12 +147,14 @@ export default function Search({ allIssues, lang }) {
             {issues?.map((issue) => {
               return <IssuesCard key={issue.issueId} issue={issue} />;
             })}
+            <div className="w-full flex justify-end items-center">
             <button
               onClick={scrollToTop}
               className="fixed bottom-5 w-10 h-10 rounded-full bg-main_yellow flex justify-center items-center text-main_primary cursor-pointer"
             >
               <BsChevronUp className="text-2xl" />
             </button>
+          </div>
           </>
         ) : (
           <>
