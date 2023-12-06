@@ -8,7 +8,7 @@ import styles from "@/styles/LandingMain.module.css";
 import Image from "next/image";
 
 import { useRouter } from "next/router";
-import { BsArrowRight } from "react-icons/bs";
+import { BsArrowRight, BsChevronUp} from "react-icons/bs";
 import { FaSort } from "react-icons/fa"
 import error_404 from "../../public/404.svg";
 import Link from "next/link";
@@ -147,7 +147,12 @@ export default function Search({ allIssues, lang }) {
             {issues?.map((issue) => {
               return <IssuesCard key={issue.issueId} issue={issue} />;
             })}
-            <button onClick={scrollToTop}>Scroll to First Issue</button>
+            <button
+              onClick={scrollToTop}
+              className="fixed bottom-5 w-10 h-10 rounded-full bg-main_yellow flex justify-center items-center text-main_primary cursor-pointer"
+            >
+              <BsChevronUp className="text-2xl" />
+            </button>
           </>
         ) : (
           <>
