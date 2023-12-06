@@ -32,6 +32,13 @@ export default function Search({ allIssues, lang }) {
     setIsOpen(false);
   };
 
+  const scrollToTop = () => {
+    const issuesNav = document.getElementById('issues-nav');
+    if (issuesNav) {
+      issuesNav.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   useEffect(()=>{
     setIssues(allIssues);
     setSortOption('Best Match');
@@ -93,7 +100,7 @@ export default function Search({ allIssues, lang }) {
               seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
               seoUrl={`https://www.findissues.me/search/${lang}`}
             />
-            <div className="w-[100%] sm:w-[95%] flex justify-between items-center">
+            <div className="w-[100%] sm:w-[95%] flex justify-between items-center" id="issues-nav">
               <p className="w-[200px] lg:w-[230px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
                 <span className="inline-block italic">
                    Unassigned Issues
@@ -140,6 +147,7 @@ export default function Search({ allIssues, lang }) {
             {issues?.map((issue) => {
               return <IssuesCard key={issue.issueId} issue={issue} />;
             })}
+            <button onClick={scrollToTop}>Scroll to First Issue</button>
           </>
         ) : (
           <>
@@ -170,6 +178,7 @@ export default function Search({ allIssues, lang }) {
     </>
   );
 }
+
 
 async function loadRepo(issueItems) {
   var repoObj = {};
