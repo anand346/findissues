@@ -8,7 +8,7 @@ import styles from "@/styles/LandingMain.module.css";
 import Image from "next/image";
 
 import { useRouter } from "next/router";
-import { BsArrowRight } from "react-icons/bs";
+import { BsArrowRight, BsChevronUp} from "react-icons/bs";
 import { FaSort } from "react-icons/fa"
 import error_404 from "../../public/404.svg";
 import Link from "next/link";
@@ -22,7 +22,9 @@ export default function Search({ allIssues, lang }) {
   const [isOpen, setIsOpen] = useState(false);
   const [sortOption, setSortOption] = useState('Best Match');
   const [issues, setIssues] = useState(allIssues);
+  const [showScrollTopButton, setShowScrollTopButton] = useState(false);
   const dropdownRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -30,6 +32,13 @@ export default function Search({ allIssues, lang }) {
 
   const closeDropdown =()=>{
     setIsOpen(false);
+  };
+
+  const scrollToTop = () => {
+    const issuesNav = document.getElementById('issues-nav');
+    if (issuesNav) {
+      issuesNav.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   useEffect(()=>{
@@ -47,6 +56,26 @@ export default function Search({ allIssues, lang }) {
     document.addEventListener("mousedown", handleClickOutside);
     return ()=>{
       document.removeEventListener("mousedown",handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (wrapperRef.current) {
+        const scrollY = wrapperRef.current.scrollTop;
+        const scrollThreshold = 200;
+        setShowScrollTopButton(scrollY > scrollThreshold);
+      }
+    };
+
+    if (wrapperRef.current) {
+      wrapperRef.current.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (wrapperRef.current) {
+        wrapperRef.current.removeEventListener('scroll', handleScroll);
+      }
     };
   }, []);
 
@@ -85,6 +114,7 @@ export default function Search({ allIssues, lang }) {
     <>
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
+        ref={wrapperRef}
       >
         {issues.length ? (
           <>
@@ -93,7 +123,7 @@ export default function Search({ allIssues, lang }) {
               seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
               seoUrl={`https://www.findissues.me/search/${lang}`}
             />
-            <div className="w-[100%] sm:w-[95%] flex justify-between items-center">
+            <div className="w-[100%] sm:w-[95%] flex justify-between items-center" id="issues-nav">
               <p className="w-[200px] lg:w-[230px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
                 <span className="inline-block italic">
                    Unassigned Issues
@@ -140,6 +170,15 @@ export default function Search({ allIssues, lang }) {
             {issues?.map((issue) => {
               return <IssuesCard key={issue.issueId} issue={issue} />;
             })}
+            {showScrollTopButton && (
+              <div className="w-full flex justify-end items-center">
+              <button
+                onClick={scrollToTop}
+                className="fixed bottom-5 w-10 backdrop-blur  h-10 rounded-full border-2 border-main_yellow flex justify-center items-center text-main_primary cursor-pointer"
+                >
+              <BsChevronUp  style={{ strokeWidth: '5px' }} />
+              </button>
+            </div>)}
           </>
         ) : (
           <>
@@ -170,6 +209,7 @@ export default function Search({ allIssues, lang }) {
     </>
   );
 }
+
 
 async function loadRepo(issueItems) {
   var repoObj = {};
