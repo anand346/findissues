@@ -22,7 +22,9 @@ export default function Search({ allIssues, lang }) {
   const [isOpen, setIsOpen] = useState(false);
   const [sortOption, setSortOption] = useState('Best Match');
   const [issues, setIssues] = useState(allIssues);
+  const [showScrollTopButton, setShowScrollTopButton] = useState(false);
   const dropdownRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -54,6 +56,26 @@ export default function Search({ allIssues, lang }) {
     document.addEventListener("mousedown", handleClickOutside);
     return ()=>{
       document.removeEventListener("mousedown",handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (wrapperRef.current) {
+        const scrollY = wrapperRef.current.scrollTop;
+        const scrollThreshold = 200;
+        setShowScrollTopButton(scrollY > scrollThreshold);
+      }
+    };
+
+    if (wrapperRef.current) {
+      wrapperRef.current.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (wrapperRef.current) {
+        wrapperRef.current.removeEventListener('scroll', handleScroll);
+      }
     };
   }, []);
 
@@ -92,6 +114,7 @@ export default function Search({ allIssues, lang }) {
     <>
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
+        ref={wrapperRef}
       >
         {issues.length ? (
           <>
@@ -147,14 +170,15 @@ export default function Search({ allIssues, lang }) {
             {issues?.map((issue) => {
               return <IssuesCard key={issue.issueId} issue={issue} />;
             })}
-            <div className="w-full flex justify-end items-center">
-            <button
-              onClick={scrollToTop}
-              className="fixed bottom-5 w-10 h-10 rounded-full border-2 border-main_yellow flex justify-center items-center text-main_primary cursor-pointer"
-              >
-            <BsChevronUp  style={{ strokeWidth: '5px' }} />
-            </button>
-          </div>
+            {showScrollTopButton && (
+              <div className="w-full flex justify-end items-center">
+              <button
+                onClick={scrollToTop}
+                className="fixed bottom-5 w-10 h-10 rounded-full border-2 border-main_yellow flex justify-center items-center text-main_primary cursor-pointer"
+                >
+              <BsChevronUp  style={{ strokeWidth: '5px' }} />
+              </button>
+            </div>)}
           </>
         ) : (
           <>
