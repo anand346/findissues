@@ -174,7 +174,7 @@ export default function Search({ allIssues, lang }) {
               <div className="w-full flex justify-end items-center">
               <button
                 onClick={scrollToTop}
-                className="fixed bottom-5 w-10 h-10 rounded-full border-2 border-main_yellow flex justify-center items-center text-main_primary cursor-pointer"
+                className="fixed bottom-5 w-10 backdrop-blur  h-10 rounded-full border-2 border-main_yellow flex justify-center items-center text-main_primary cursor-pointer"
                 >
               <BsChevronUp  style={{ strokeWidth: '5px' }} />
               </button>
