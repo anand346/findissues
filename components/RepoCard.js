@@ -32,7 +32,7 @@ export default function RepoCard({repo,activeIndex,index,setActiveIndex}){
                     let issue_label = "";
                     issue.labels?.map(label => {
 
-                        if(label.name.includes("hacktoberfest") && issue_label.length == 0){
+                        if(label.name.includes("bug") && issue_label.length == 0){
                             issue_label = label.name+","+label.color;
                         }
                     })
