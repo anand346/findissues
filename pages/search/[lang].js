@@ -221,12 +221,13 @@ async function loadRepo(issueItems) {
       },
     });
     const repojson = await repores.json();
-
+    
     repoObj[issue.id] = {
       full_name: repojson.full_name,
       stargazers_count: repojson.stargazers_count,
       forks_count: repojson.forks_count,
     };
+    
   }
 
   return repoObj;
@@ -268,7 +269,9 @@ async function loadIssues(url, query_lang) {
       [mask]: query_lang,
     };
 
-    allIssues.push(issueObj);
+    if(issueObj.repo_forks>0 && issueObj.repo_stars>0){
+      allIssues.push(issueObj);
+    }
   });
 
   // setIssues(allIssues);
