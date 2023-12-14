@@ -7,7 +7,8 @@ const SeoTags = ({ seoTitle, seoDescription, seoUrl }) => {
         <title>{seoTitle}</title>
         <meta name="title" content="FindIssues" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="keywords" content="FindIssues, Github, Hacktoberfest, Open Source, GithubIssues, libraries, frameworks, applications, websites" />
+        <meta name="keywords" content="FindIssues, Github, Hacktoberfest, Open Source, GithubIssues, libraries, frameworks, applications, websites, Python, C, PHP, 
+        Go, Javascript, typescript, HTML, CSS, Java, C++, C#, Rust, Scala, Ruby, Dart, Kotlin, Lua, Swift, Shell, Matlab, Perl, good-first-issues, repo" />
         <meta name="author" content="Anand Raj" />
         <meta name="robots" content="index, follow" />
         <meta name="revisit-after" content="7 days" />
