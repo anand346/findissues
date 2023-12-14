@@ -47,4 +47,7 @@ export const repos_list = [
     'https://github.com/jwasham/coding-interview-university',
     'https://github.com/kamranahmedse/developer-roadmap',
     'https://github.com/codecrafters-io/build-your-own-x',
+    'https://github.com/pytorch/pytorch',
+    'https://github.com/vercel/next.js',
+    'https://github.com/open-metadata/OpenMetadata',
 ]
