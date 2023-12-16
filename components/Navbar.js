@@ -26,7 +26,7 @@ export default function Navbar() {
               <Image
                 unoptimized={true}
                 src="/images/logo.png"
-                alt="Muzical Logo"
+                alt="Findissues Logo"
                 height={100}
                 width={100}
                 className="w-[7rem] sm:w-[8rem] "
