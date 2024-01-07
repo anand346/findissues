@@ -28,7 +28,7 @@ export default function IssuesCard({ issue }) {
     if (typeof window === "undefined") {
       return;
     } else {
-      if (e.target.id === "repoName" || e.target.id === "gitIcon") {
+      if (e.target.id === "repoName" || e.target.id === "gitIcon" || e.target.id === "issueLink") {
         return;
       }
 
@@ -44,7 +44,7 @@ export default function IssuesCard({ issue }) {
       >
         <div className="title_sec w-[100%] flex justify-between items-center">
           <Link href={issue.issueUrl} className="truncate " target="_blank">
-            <p className="hover:text-main_primary truncate w-full  text-main_secondary_low lg:text-[16px] sm:text-[14px] text-[14px] font-semibold">
+            <p id="issueLink" className="hover:text-main_primary truncate w-full  text-main_secondary_low lg:text-[16px] sm:text-[14px] text-[14px] font-semibold">
               <span className="text-main_primary m-0">
                 #{issue.issueNumber}
               </span>{" "}
