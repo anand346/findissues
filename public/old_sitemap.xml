@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.findissues.me/</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/php</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/go</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/javascript</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/typescript</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/html</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/css</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/python</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/java</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/cpp</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/csharp</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/rust</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/c</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/scala</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/ruby</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/dart</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/kotlin</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/lua</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/swift</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/shell</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/MATLAB</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/perl</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/hacktoberfest</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/search/good-first-issue</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.findissues.me/active-repos</loc>
+  <lastmod>2023-10-14T12:25:05+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
