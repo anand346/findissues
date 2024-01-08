@@ -15,6 +15,7 @@ const SeoTags = ({ seoTitle, seoDescription, seoUrl }) => {
         <meta name="description" content={seoDescription} />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href={seoUrl} />
+        <meta name="theme-color" content="#232334" />
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDescription} />
         <meta property="og:url" content={seoUrl} />
