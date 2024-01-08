@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "site-map": "next build && next-sitemap",
     "lint": "next lint",
     "format": "prettier --write ."
   },
