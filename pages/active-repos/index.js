@@ -5,8 +5,10 @@ import { repos } from "@/helper/repo";
 import { useState } from "react";
 import { repos_list } from '@/_data/repos';
 import moment from "moment/moment";
+import { loadRepoDetails } from "@/pages/api/getRepo";
+// import 
 
-export default function ActiveRepo({repoDetails}){
+export default function ActiveRepo({ repoDetails }) {
 
     const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -14,14 +16,14 @@ export default function ActiveRepo({repoDetails}){
     const getDayDiff = (updated_at) => {
         let diffDay = Math.abs(
             moment
-            .utc(updated_at, "YYYY-MM-DD HH:mm:ss")
-            .diff(moment.now(), "milliseconds", true),
-        )/86400000;
-        
+                .utc(updated_at, "YYYY-MM-DD HH:mm:ss")
+                .diff(moment.now(), "milliseconds", true),
+        ) / 86400000;
+
         return diffDay;
     }
 
-    
+
     return (
         <>
             <SeoTags
@@ -41,13 +43,13 @@ export default function ActiveRepo({repoDetails}){
                     ))
                 } */}
                 {
-                    repoDetails?.map((repo,index) => {
+                    repoDetails?.map((repo, index) => {
                         if (getDayDiff(repo.updated_at) <= 3) {
-                            return <RepoCard key={index} setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo}  index={index} />
+                            return <RepoCard key={index} setActiveIndex={setActiveIndex} activeIndex={activeIndex} repo={repo} index={index} />
                         }
                     })
                 }
-                
+
             </div>
 
         </>
@@ -55,33 +57,11 @@ export default function ActiveRepo({repoDetails}){
 }
 
 
-export async function getStaticProps(){
+export async function getStaticProps() {
 
     let repo_result = [];
 
-    repo_result = repos_list.map(async repo_url => {
-        const repo_name = repo_url.split("/")[3]+"/"+repo_url.split("/")[4];
-        const repo_endpoint = 'https://api.github.com/repos/'+repo_name;
-
-        const response = await fetch(repo_endpoint,{
-            headers: {
-              Authorization: "token " + process.env.NEXT_PUBLIC_FETCH_REPO,
-              Accept: "application/vnd.github.v3+json",
-            },
-        });
-        const result = await response.json();
-        const repo_details = {
-                full_name: result.full_name,
-                updated_at: result.updated_at,
-                stars: result.stargazers_count,
-                forks: result.forks_count,
-                language: result.language,
-                open_issues: result.open_issues_count,
-                issue_url: repo_endpoint+'/issues'
-        }
-
-        return repo_details;
-    })
+    repo_result = await loadRepoDetails(repos_list);
 
     return {
         props: {
