@@ -116,7 +116,7 @@ export default function Search({ allIssues, lang }) {
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
         ref={wrapperRef}
       >
-        {issues.length ? (
+        {issues?.length ? (
           <>
             <SeoTags
               seoTitle={`FindIssues | Find Most Recent and Unassigned ${lang} Issues!`}
