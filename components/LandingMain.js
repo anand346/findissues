@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/styles/LandingMain.module.css";
+import { ThemeContext } from "./ThemeContext";
 
 export default function LandingMain() {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <div
@@ -17,19 +19,19 @@ export default function LandingMain() {
           height={100}
           alt="findissues logo"
         />
-        <h1 className="ml-[90px] italic font-semibold text-[36px] text-main_primary">
+        <h1 className={`ml-[90px] italic font-semibold text-[36px] text-${theme}_primary`}>
           New to Open-Source ?
         </h1>
-        <p className="ml-[90px] text-main_yellow text-[22px] mb-[30px] mr-[90px] ">
+        <p className={`ml-[90px] text-${theme}_yellow text-[22px] mb-[30px] mr-[90px]`}>
           Find Most Recent Open-Source Issues Here
         </p>
-        <p className="text-[18px] ml-[90px] text-main_primary italic leading-loose mr-[90px] mb-[50px]">
+        <p className={`text-[18px] ml-[90px] text-${theme}_primary italic leading-loose mr-[90px] mb-[50px]`}>
           Find issues aims to provide you access to the{" "}
           <b>most recent created issues</b> on GitHub which is{" "}
           <b>not assigned</b> to anyone in accordance with your development
           language with it's advance search technique .
         </p>
-        <p className="mt-auto ml-[90px] mb-[20px] text-main_primary italic font-semibold text-[18px]">
+        <p className={`mt-auto ml-[90px] mb-[20px] text-${theme}_primary italic font-semibold text-[18px]`}>
           <i className="fa fa-copyright" aria-hidden="true"></i> FindIssues 2023
           | Developed With <i className="fa fa-heart" aria-hidden="true"></i> By{" "}
           <Link
