@@ -144,7 +144,7 @@ export default function Search({ allIssues, lang }) {
 
                 {isOpen && (
                   <div
-                    className="origin-top-right absolute right-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 bg-main_secondary"
+                    className="origin-top-right absolute right-[-2px] mt-[-0.75rem] w-48 py-1 px-2 rounded-md border-2 border-main_primary shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 bg-main_secondary_high"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
@@ -155,7 +155,7 @@ export default function Search({ allIssues, lang }) {
                           key={option}
                           onClick={() => sortIssues(option)}
                           href="#"
-                          className="block px-4 py-2 text-sm text-white hover:bg-gray-700"
+                          className="block px-4 py-2 rounded-md text-sm text-white hover:bg-main_secondary"
                           role="menuitem"
                           tabIndex="-1"
                         >
