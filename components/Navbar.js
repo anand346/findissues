@@ -159,7 +159,7 @@ export default function Navbar() {
                   <div
                     className={` active_repos mb-4 w-full flex items-start justify-start flex-wrap space-y-3`}
                   >
-                        <Link href={"https://github.com/anand346/findissues#add-active-repo-"} target="_blank"  className={"first:mt-3 cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-${theme}_main_primary border-[2px] rounded-[5px] italic font-semibold text-${theme}_main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-${theme}_main_yellow md:hover:border-${theme}_main_yellow duration-300 grow"} onClick={() => setShowSidebar(false)} >
+                        <Link href={"https://github.com/anand346/findissues#add-active-repo-"} target="_blank"  className={`first:mt-3 cursor-pointer mr-2 lang_name  px-3 py-1 text-center border-${theme}_main_primary border-[2px] rounded-[5px] italic font-semibold text-${theme}_main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-${theme}_main_yellow md:hover:border-${theme}_main_yellow duration-300 grow`} onClick={() => setShowSidebar(false)} >
                             Add Repo?
                         </Link>        
                         <Link href={"/active-repos"} className={`${
