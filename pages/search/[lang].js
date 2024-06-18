@@ -2,7 +2,7 @@ import IssuesCard from "@/components/IssuesCard";
 
 import { SkeletonCard } from "@/components/SkeletonCard";
 
-import { useTheme } from 'next-themes';
+import { useTheme } from "next-themes";
 
 import { priority_langs } from "@/helper/priority_langs";
 import { tags } from "@/helper/tags";
@@ -10,8 +10,8 @@ import styles from "@/styles/LandingMain.module.css";
 import Image from "next/image";
 
 import { useRouter } from "next/router";
-import { BsArrowRight, BsChevronUp} from "react-icons/bs";
-import { FaSort } from "react-icons/fa"
+import { BsArrowRight, BsChevronUp } from "react-icons/bs";
+import { FaSort } from "react-icons/fa";
 import error_404 from "../../public/404.svg";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ export default function Search({ allIssues, lang }) {
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme || "dark";
   const [isOpen, setIsOpen] = useState(false);
-  const [sortOption, setSortOption] = useState('Best Match');
+  const [sortOption, setSortOption] = useState("Best Match");
   const [issues, setIssues] = useState(allIssues);
   const [showScrollTopButton, setShowScrollTopButton] = useState(false);
   const dropdownRef = useRef(null);
@@ -34,32 +34,32 @@ export default function Search({ allIssues, lang }) {
     setIsOpen(!isOpen);
   };
 
-  const closeDropdown =()=>{
+  const closeDropdown = () => {
     setIsOpen(false);
   };
 
   const scrollToTop = () => {
-    const issuesNav = document.getElementById('issues-nav');
+    const issuesNav = document.getElementById("issues-nav");
     if (issuesNav) {
-      issuesNav.scrollIntoView({ behavior: 'smooth' });
+      issuesNav.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setIssues(allIssues);
-    setSortOption('Best Match');
+    setSortOption("Best Match");
   }, [allIssues]);
-  
-  useEffect(()=>{
-    function handleClickOutside(event){
-      if(dropdownRef.current && !dropdownRef.current.contains(event.target)){
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         closeDropdown();
       }
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    return ()=>{
-      document.removeEventListener("mousedown",handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -73,23 +73,23 @@ export default function Search({ allIssues, lang }) {
     };
 
     if (wrapperRef.current) {
-      wrapperRef.current.addEventListener('scroll', handleScroll);
+      wrapperRef.current.addEventListener("scroll", handleScroll);
     }
 
     return () => {
       if (wrapperRef.current) {
-        wrapperRef.current.removeEventListener('scroll', handleScroll);
+        wrapperRef.current.removeEventListener("scroll", handleScroll);
       }
     };
   }, []);
 
   const sortIssues = (option) => {
     const sortingFunctions = {
-      'Best Match': (a, b) => 0,
-      'Most Stars': (a, b) => b.repo_stars - a.repo_stars,
-      'Least Stars': (a, b) => a.repo_stars - b.repo_stars,
-      'Most Forks': (a, b) => b.repo_forks - a.repo_forks,
-      'Least Forks': (a, b) => a.repo_forks - b.repo_forks,
+      "Best Match": (a, b) => 0,
+      "Most Stars": (a, b) => b.repo_stars - a.repo_stars,
+      "Least Stars": (a, b) => a.repo_stars - b.repo_stars,
+      "Most Forks": (a, b) => b.repo_forks - a.repo_forks,
+      "Least Forks": (a, b) => a.repo_forks - b.repo_forks,
     };
 
     const sorted = [...allIssues].sort(sortingFunctions[option]);
@@ -98,7 +98,6 @@ export default function Search({ allIssues, lang }) {
     closeDropdown();
   };
 
-
   const router = useRouter();
 
   if (router.isFallback) {
@@ -106,7 +105,9 @@ export default function Search({ allIssues, lang }) {
       <div
         className={`${styles.landing_main} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`}
       >
-        <p className={`w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-${theme}_main_primary`}>
+        <p
+          className={`w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-${theme}_main_primary`}
+        >
           <span className="inline-block italic">All Unassigned Issues</span> 👇
         </p>
         <SkeletonCard />
@@ -127,14 +128,20 @@ export default function Search({ allIssues, lang }) {
               seoDescription={`FindIssues lets you find most recently created issues on GitHub that are not assigned to anyone according to ${lang} programming language`}
               seoUrl={`https://www.findissues.me/search/${lang}`}
             />
-            <div className="w-[100%] sm:w-[95%] flex justify-between items-center" id="issues-nav">
-              <p className={`w-[200px] lg:w-[230px] mb-4 font-semibold text-[16px] lg:text-[18px] text-${theme}_main_primary`}>
-                <span className="inline-block italic">
-                   Unassigned Issues
-                </span>{" "}
+            <div
+              className="w-[100%] sm:w-[95%] flex justify-between items-center"
+              id="issues-nav"
+            >
+              <p
+                className={`w-[200px] lg:w-[230px] mb-4 font-semibold text-[16px] lg:text-[18px] text-${theme}_main_primary`}
+              >
+                <span className="inline-block italic">Unassigned Issues</span>{" "}
                 👇
               </p>
-              <div className="relative inline-block text-left" ref={dropdownRef}>
+              <div
+                className="relative inline-block text-left"
+                ref={dropdownRef}
+              >
                 <button
                   onClick={toggleDropdown}
                   type="button"
@@ -143,18 +150,24 @@ export default function Search({ allIssues, lang }) {
                   aria-haspopup="listbox"
                   aria-expanded="true"
                 >
-                 <FaSort className="inline-flex mr-[5px]" /> {sortOption}
+                  <FaSort className="inline-flex mr-[5px]" /> {sortOption}
                 </button>
 
                 {isOpen && (
                   <div
-                    className="origin-top-right absolute right-[-2px] mt-[-0.75rem] w-48 py-1 px-2 rounded-md border-2 border-main_primary shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 bg-${theme}_main_secondary"
+                    className={`origin-top-right absolute right-[-2px] mt-[-0.75rem] w-48 py-1 px-2 rounded-md border-2 border-main_primary shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 bg-${theme}_main_secondary`}
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
                   >
                     <div className="py-1" role="none">
-                    {['Best Match', 'Most Stars', 'Least Stars', 'Most Forks', 'Least Forks'].map((option) => (
+                      {[
+                        "Best Match",
+                        "Most Stars",
+                        "Least Stars",
+                        "Most Forks",
+                        "Least Forks",
+                      ].map((option) => (
                         <a
                           key={option}
                           onClick={() => sortIssues(option)}
@@ -176,13 +189,14 @@ export default function Search({ allIssues, lang }) {
             })}
             {showScrollTopButton && (
               <div className="w-full flex justify-end items-center">
-              <button
-                onClick={scrollToTop}
-                className={`fixed bottom-5 w-10 backdrop-blur  h-10 rounded-full border-2 border-${theme}_main_yellow flex justify-center items-center text-${theme}_main_primary cursor-pointer`}
+                <button
+                  onClick={scrollToTop}
+                  className={`fixed bottom-5 w-10 backdrop-blur  h-10 rounded-full border-2 border-${theme}_main_yellow flex justify-center items-center text-${theme}_main_primary cursor-pointer`}
                 >
-              <BsChevronUp  style={{ strokeWidth: '5px' }} />
-              </button>
-            </div>)}
+                  <BsChevronUp style={{ strokeWidth: "5px" }} />
+                </button>
+              </div>
+            )}
           </>
         ) : (
           <>
@@ -192,7 +206,9 @@ export default function Search({ allIssues, lang }) {
               seoUrl={`https://www.findissues.me`}
             />
             <div className="w-fit mx-auto">
-              <p className={`w-full mb-4 font-semibold text-[16px] lg:text-4xl text-${theme}_main_primary text-center`}>
+              <p
+                className={`w-full mb-4 font-semibold text-[16px] lg:text-4xl text-${theme}_main_primary text-center`}
+              >
                 Page Not Found
               </p>
               <Image
@@ -214,7 +230,6 @@ export default function Search({ allIssues, lang }) {
   );
 }
 
-
 async function loadRepo(issueItems) {
   var repoObj = {};
   for (const issue of issueItems) {
@@ -225,13 +240,12 @@ async function loadRepo(issueItems) {
       },
     });
     const repojson = await repores.json();
-    
+
     repoObj[issue.id] = {
       full_name: repojson.full_name,
       stargazers_count: repojson.stargazers_count,
       forks_count: repojson.forks_count,
     };
-    
   }
 
   return repoObj;
@@ -249,7 +263,7 @@ async function loadIssues(url, query_lang) {
   const issueItems = issues_json.items;
 
   var allIssues = [];
- 
+
   var repo_res = await loadRepo(issueItems);
   var mask = "";
   if (url.includes("label")) {
@@ -273,7 +287,7 @@ async function loadIssues(url, query_lang) {
       [mask]: query_lang,
     };
 
-    if(issueObj.repo_forks>0 && issueObj.repo_stars>0){
+    if (issueObj.repo_forks > 0 && issueObj.repo_stars > 0) {
       allIssues.push(issueObj);
     }
   });
@@ -292,8 +306,8 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   let url = "";
   tags.forEach((tag) => {
-    if(params.lang == "go"){
-      return ;
+    if (params.lang == "go") {
+      return;
     }
     if (tag.query.includes(params.lang)) {
       url = `https://api.github.com/search/issues?q=label:${params.lang}+is:issue+is:open+no:assignee+created:>=2023-05-20&sort:created`;
