@@ -1,5 +1,6 @@
 import SeoTags from "@/components/SeoTags"
 import styles from "@/styles/ActiveRepo.module.css"
+import { useTheme } from 'next-themes';
 import RepoCard from "@/components/RepoCard"
 import { repos } from "@/helper/repo";
 import { useState } from "react";
@@ -7,6 +8,8 @@ import { repos_list } from '@/_data/repos';
 import moment from "moment/moment";
 
 export default function ActiveRepo({repoDetails}){
+    const { resolvedTheme } = useTheme();
+    const theme = resolvedTheme || "dark";
 
     const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -31,7 +34,7 @@ export default function ActiveRepo({repoDetails}){
             />
 
             <div className={`${styles.active_repo} p-3 md:p-8 issues_result overflow-auto w-[100%] md:w-[54%] landing_main h-full flex flex-col items-start justify-start`} >
-                <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary">
+                <p className={`w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-${theme}_main_primary`}>
                     <span className="inline-block italic">Active Repos List</span>{" "}
                     👇
                 </p>
