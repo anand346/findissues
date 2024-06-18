@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useTheme } from 'next-themes';
 // import { Inter } from 'next/font/google'
 import Link from "next/link";
 import styles from "@/styles/LandingMain.module.css";
@@ -7,6 +8,9 @@ import SeoTags from "@/components/SeoTags";
 // const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const { resolvedTheme } = useTheme() || "dark";
+  const theme = resolvedTheme || "dark";
+
   return (
     <>
       <SeoTags
@@ -27,23 +31,23 @@ export default function Home() {
             height={100}
             alt="findissues logo"
           />
-          <h1 className="pl-3 md:p-0 md:ml-[90px] italic font-semibold text-[24px] md:text-[36px] text-main_primary">
+          <h1 className={`pl-3 md:p-0 md:ml-[90px] italic font-semibold text-[24px] md:text-[36px] text-${theme}_main_primary`}>
             New to Open-Source ?
           </h1>
-          <p className="pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-main_yellow text-[18px] md:text-[22px] mb-[30px] text-justify ">
+          <p className={`pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-${theme}_main_yellow text-[18px] md:text-[22px] mb-[30px] text-justify `}>
             Find Most Recent and Unassigned Issues Here!
           </p>
-          <p className="text-[14px] md:text-[18px] pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-main_primary leading-loose mb-[50px] text-justify">
+          <p className={`text-[14px] md:text-[18px] pl-3 pr-3 md:p-0 md:ml-[90px] md:mr-[90px] text-${theme}_main_primary leading-loose mb-[50px] text-justify`}>
             Find issues lets you find <span className="font-bold">most recently created issues</span> on
             GitHub that are <span className="font-bold">not assigned</span> to anyone according to your
             development language with its advance search technique.
           </p>
         </div>
 
-        <p className="mt-auto p-3 md:p-0 md:ml-[90px] mb-[20px] text-main_primary italic font-semibold text-[12px] md:text-[18px]">
+        <p className={`mt-auto p-3 md:p-0 md:ml-[90px] mb-[20px] text-${theme}_main_primary italic font-semibold text-[12px] md:text-[18px]`}>
           <i className="fa fa-copyright" aria-hidden="true"></i> FindIssues{" "}
           {new Date().getFullYear()}<br/> Developed With{" "}
-          <i className="fa fa-heart text-main_yellow" aria-hidden="true"></i> By{" "}
+          <i className={`fa fa-heart text-${theme}_main_yellow`} aria-hidden="true"></i> By{" "}
           <Link
             href="https://github.com/anand346"
             target="_blank"
