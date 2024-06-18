@@ -1,11 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useTheme } from 'next-themes';
-// import { Inter } from 'next/font/google'
 import Link from "next/link";
 import styles from "@/styles/LandingMain.module.css";
 import SeoTags from "@/components/SeoTags";
-// const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const { resolvedTheme } = useTheme() || "dark";
