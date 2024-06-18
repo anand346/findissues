@@ -50,4 +50,6 @@ export const repos_list = [
     'https://github.com/pytorch/pytorch',
     'https://github.com/vercel/next.js',
     'https://github.com/open-metadata/OpenMetadata',
+    'https://github.com/opendatadiscovery/odd-platform',
+    'https://github.com/chaoss/augur',
 ]
