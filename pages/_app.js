@@ -3,12 +3,14 @@ import Script from "next/script";
 import GeneralLayout from "@/components/GeneralLayout";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
+
 export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>FindIssues</title>
+        <title>FindIssues - Explore Open Source Projects on GitHub</title>
       </Head>
+
       <ThemeProvider defaultTheme="dark">
         <GeneralLayout>
           <Component {...pageProps} />
@@ -31,7 +33,7 @@ export default function App({ Component, pageProps }) {
             });
         `}
       </Script>
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js" />
+       <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js" />
     </>
   );
 }
