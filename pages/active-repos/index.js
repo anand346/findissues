@@ -1,5 +1,6 @@
 import SeoTags from "@/components/SeoTags"
 import styles from "@/styles/ActiveRepo.module.css"
+import { useTheme } from 'next-themes';
 import RepoCard from "@/components/RepoCard"
 import { repos } from "@/helper/repo";
 import { useState, useEffect, useRef } from "react";
@@ -7,8 +8,9 @@ import { repos_list } from '@/_data/repos';
 import moment from "moment/moment";
 import { BsChevronUp } from "react-icons/bs";
 
-
-export default function ActiveRepo({ repoDetails }) {
+export default function ActiveRepo({repoDetails}){
+    const { resolvedTheme } = useTheme();
+    const theme = resolvedTheme || "dark";
 
     const [activeIndex, setActiveIndex] = useState(-1);
     const [showScrollTopButton, setShowScrollTopButton] = useState(false);
@@ -69,7 +71,7 @@ export default function ActiveRepo({ repoDetails }) {
                 ref={wrapperRef}
 
             >
-                <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-main_primary" id="activeReposContainer">
+                <p className="w-[250px] mb-4 font-semibold text-[16px] lg:text-[18px] text-${theme}_main_primary" id="activeReposContainer">
                     <span className="inline-block italic">Active Repos List</span>{" "}
                     👇
                 </p>
