@@ -155,7 +155,7 @@ export default function Search({ allIssues, lang }) {
 
                 {isOpen && (
                   <div
-                    className={`origin-top-right absolute right-[-2px] mt-[-0.75rem] w-48 py-1 px-2 rounded-md border-2 border-main_primary shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 bg-${theme}_main_secondary`}
+                    className={`origin-top-right absolute right-[-2px] mt-[-0.75rem] w-48 py-1 px-2 rounded-md border-2 border-main_primary shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10 bg-${theme}_main_secondary `}
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
