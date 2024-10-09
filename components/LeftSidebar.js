@@ -86,6 +86,18 @@ export default function LeftSidebar() {
                 " w-full flex items-start justify-start flex-wrap space-y-3"
               }
             >
+             
+              <Link
+                href={"/active-repos"}
+                className={`${
+                  isCurrentPath("/active-repos")
+                    ? `bg-${theme}_main_secondary`
+                    : ""
+                } 
+                  cursor-pointer mt-3 flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-${theme}_main_primary border-[2px] italic font-semibold text-${theme}_main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-${theme}_main_yellow md:hover:border-${theme}_main_yellow duration-300 grow`}
+              >
+                Active Repos
+              </Link>
               <Link
                 href={"https://github.com/anand346/findissues#add-active-repo-"}
                 target="_blank"
@@ -94,17 +106,6 @@ export default function LeftSidebar() {
                 }
               >
                 Add Repo?
-              </Link>
-              <Link
-                href={"/active-repos"}
-                className={`${
-                  isCurrentPath("/active-repos")
-                    ? `bg-${theme}_main_secondary`
-                    : ""
-                } 
-                  cursor-pointer flex items-center justify-center rounded-[5px] w-[110px] h-10 mr-2 px-3 py-1 text-center border-${theme}_main_primary border-[2px] italic font-semibold text-${theme}_main_primary text-[12px] lg:text-[14px] transition-all transform md:hover:scale-105 md:hover:border-dashed md:hover:text-${theme}_main_yellow md:hover:border-${theme}_main_yellow duration-300 grow`}
-              >
-                Active Repos
               </Link>
             </div>
           </div>

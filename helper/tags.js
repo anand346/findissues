@@ -1,11 +1,11 @@
 export const tags = [
   {
-    tag_name: "#good-first-issue",
-    query: "good-first-issue",
+    tag_name: "#Hacktoberfest",
+    query: "hacktoberfest",
   },
   {
-    tag_name: "#Bugs",
-    query: "bug",
+    tag_name: "#good-first-issue",
+    query: "good-first-issue",
   }
   // {
   // +label:up-for-grabs+label:good-first-bug+label:easy+label:beginner+label:starter+label:first-timers-only

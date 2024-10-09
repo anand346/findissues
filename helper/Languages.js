@@ -83,4 +83,12 @@ export const langs = [
     lang_name: "Perl",
     query: "perl",
   },
+  {
+    lang_name: "R",
+    query: "R", 
+  },
+  {
+    lang_name: "SQL",
+    query: "sql", 
+  },
 ];
