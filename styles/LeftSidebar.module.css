@@ -1,3 +1,7 @@
+.left_sidebar{
+  overflow-y: scroll;
+  scrollbar-color: #999 transparent;
+}
 .left_sidebar::-webkit-scrollbar {
   width: 0px;
 }
