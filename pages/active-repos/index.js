@@ -2,7 +2,6 @@ import SeoTags from "@/components/SeoTags";
 import styles from "@/styles/ActiveRepo.module.css";
 import { useTheme } from "next-themes";
 import RepoCard from "@/components/RepoCard";
-import { repos } from "@/helper/repo";
 import { useState, useEffect, useRef } from "react";
 import { repos_list } from "@/_data/repos";
 import moment from "moment/moment";

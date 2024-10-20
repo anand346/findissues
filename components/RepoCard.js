@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getTimeFromNow } from "@/utils/getTimeFromNow";
 import { useState } from "react";
 import { useTheme } from 'next-themes';
-import { IssueSkeleton } from "./IssueSkeleton";
 
 export default function RepoCard({repo,activeIndex,index,setActiveIndex}){
 

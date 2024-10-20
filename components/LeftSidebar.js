@@ -1,4 +1,3 @@
-import React from "react";
 import { useTheme } from 'next-themes';
 import styles from "@/styles/LeftSidebar.module.css";
 import { langs } from "@/helper/Languages";
