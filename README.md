@@ -17,7 +17,7 @@
 
 ## Get Started
 
-To begin go to the web application: [FindIssues](https://www.findissues.me/)
+To begin go to the web application: [FindIssues](https://findissues.vercel.app)
 
 In the web broswer you will select your ideal programming langauage and through that it will showcase the 30 most recently created GitHub issues in that language, which are currently unassigned to any individual.
 
