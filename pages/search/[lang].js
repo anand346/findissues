@@ -1,23 +1,17 @@
 import IssuesCard from "@/components/IssuesCard";
-
 import { SkeletonCard } from "@/components/SkeletonCard";
-
 import { useTheme } from "next-themes";
-
 import { priority_langs } from "@/helper/priority_langs";
 import { tags } from "@/helper/tags";
 import styles from "@/styles/LandingMain.module.css";
 import Image from "next/image";
-
 import { useRouter } from "next/router";
 import { BsArrowRight, BsChevronUp } from "react-icons/bs";
 import { FaSort } from "react-icons/fa";
 import error_404 from "../../public/404.svg";
 import Link from "next/link";
-
 import { langs } from "@/helper/Languages";
 import SeoTags from "@/components/SeoTags";
-import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 
 export default function Search({ allIssues, lang }) {

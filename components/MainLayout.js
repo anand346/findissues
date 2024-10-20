@@ -1,7 +1,6 @@
 import React from "react";
 import { useTheme } from 'next-themes';
 import LeftSidebar from "./LeftSidebar";
-import LandingMain from "./LandingMain";
 import RightSidebar from "./RightSidebar";
 import styles from "@/styles/MainLayout.module.css";
 
