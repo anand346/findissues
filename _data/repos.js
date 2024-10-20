@@ -52,4 +52,5 @@ export const repos_list = [
     'https://github.com/open-metadata/OpenMetadata',
     'https://github.com/opendatadiscovery/odd-platform',
     'https://github.com/chaoss/augur',
+    'https://github.com/ddev/ddev',
 ]
