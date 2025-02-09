@@ -56,4 +56,6 @@ export const repos_list = [
     'https://github.com/heyxyz/hey',
     'https://github.com/ddev/ddev',
     'https://github.com/mattermost/mattermost',
+    'https://github.com/react18-tools/turborepo-template',
+    'https://github.com/hoppscotch/hoppscotch'
 ]
