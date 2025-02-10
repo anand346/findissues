@@ -1,5 +1,5 @@
 import IssuesCard from "@/components/IssuesCard";
-
+const cookie = require("cookie");
 import { SkeletonCard } from "@/components/SkeletonCard";
 
 import { useTheme } from "next-themes";
@@ -230,12 +230,12 @@ export default function Search({ allIssues, lang }) {
   );
 }
 
-async function loadRepo(issueItems) {
+async function loadRepo(issueItems, access_token) {
   var repoObj = {};
   for (const issue of issueItems) {
     const repores = await fetch(issue.repository_url, {
       headers: {
-        Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_SECOND,
+        Authorization: "token " + access_token,
         Accept: "application/vnd.github.v3+json",
       },
     });
@@ -251,10 +251,10 @@ async function loadRepo(issueItems) {
   return repoObj;
 }
 
-async function loadIssues(url, query_lang) {
+async function loadIssues(url, query_lang, access_token) {
   const issues_res = await fetch(url, {
     headers: {
-      Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_FIRST,
+      Authorization: "token " + access_token,
       Accept: "application/vnd.github.v3+json",
     },
   });
@@ -264,7 +264,7 @@ async function loadIssues(url, query_lang) {
 
   var allIssues = [];
 
-  var repo_res = await loadRepo(issueItems);
+  var repo_res = await loadRepo(issueItems, access_token);
   var mask = "";
   if (url.includes("label")) {
     mask = "tag";
@@ -295,15 +295,22 @@ async function loadIssues(url, query_lang) {
   // setIssues(allIssues);
   return allIssues;
 }
-export async function getStaticPaths() {
-  const paths = priority_langs.map((lang) => ({
-    params: { lang: lang.query },
-  }));
 
-  return { paths, fallback: true };
-}
+export async function getServerSideProps({req, params }) {
 
-export async function getStaticProps({ params }) {
+  const cookies = cookie.parse(req.headers.cookie || '');
+  const accessToken = cookies.access_token;
+
+  // If no access token exists, redirect to login
+  if (!accessToken) {
+    return {
+      redirect: {
+        destination: '/',  // Redirect to login page
+        permanent: false,
+      },
+    };
+  }
+
   let url = "";
   tags.forEach((tag) => {
     if (params.lang == "go") {
@@ -327,14 +334,13 @@ export async function getStaticProps({ params }) {
   let lang_issues = "";
 
   if (url.length > 0) {
-    lang_issues = await loadIssues(url, params.lang);
+    lang_issues = await loadIssues(url, params.lang, accessToken);
   }
 
   return {
     props: {
       allIssues: lang_issues,
       lang: params.lang,
-    },
-    revalidate: 600,
+    }
   };
 }
