@@ -58,5 +58,7 @@ export const repos_list = [
     'https://github.com/bluewave-labs/verifywise',
     'https://github.com/mattermost/mattermost',
     'https://github.com/react18-tools/turborepo-template',
-    'https://github.com/hoppscotch/hoppscotch'
+    'https://github.com/hoppscotch/hoppscotch',
+    'https://github.com/elastic/kibana',
+    'https://github.com/darkreader/darkreader',
 ]
