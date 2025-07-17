@@ -60,5 +60,5 @@ export const repos_list = [
     'https://github.com/react18-tools/turborepo-template',
     'https://github.com/hoppscotch/hoppscotch',
     'https://github.com/elastic/kibana',
-    'https://github.com/darkreader/darkreader'
+    'https://github.com/darkreader/darkreader',
 ]
