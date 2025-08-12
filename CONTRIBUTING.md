@@ -63,7 +63,9 @@ To start contributing, follow these steps:
 
 4. **Set Up GitHub API Token:**
 
-   - Visit GitHub Developer Settings to generate **three** personal access tokens.
+   - Visit GitHub Developer Settings to generate **three fine-grained** personal access tokens.
+   - Make Sure to Add some useful permissions to access smoothly and Seamless interaction with the api.
+   - Permissions: [Actions, Commit statues, Contents, Issues, Merge queues, Metadata, Pages, Pull request, and any other Permissions of your choice.]
    - Create a `.env.local` file in the project root and add your token as follows:
 
    ```sh

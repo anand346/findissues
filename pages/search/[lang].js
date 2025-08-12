@@ -15,6 +15,10 @@ import { FaSort } from "react-icons/fa";
 import error_404 from "../../public/404.svg";
 import Link from "next/link";
 
+// Importing Test file start here
+import { loadIssues } from "./testing-file";
+// Importing Test file ends here
+
 import { langs } from "@/helper/Languages";
 import SeoTags from "@/components/SeoTags";
 import moment from "moment";
@@ -230,80 +234,31 @@ export default function Search({ allIssues, lang }) {
   );
 }
 
-async function loadRepo(issueItems) {
-  var repoObj = {};
-  for (const issue of issueItems) {
-    const repores = await fetch(issue.repository_url, {
-      headers: {
-        Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_SECOND,
-        Accept: "application/vnd.github.v3+json",
-      },
-    });
-    const repojson = await repores.json();
 
-    repoObj[issue.id] = {
-      full_name: repojson.full_name,
-      stargazers_count: repojson.stargazers_count,
-      forks_count: repojson.forks_count,
-    };
-  }
-
-  return repoObj;
-}
-
-async function loadIssues(url, query_lang) {
-  const issues_res = await fetch(url, {
-    headers: {
-      Authorization: "token " + process.env.NEXT_PUBLIC_TOKEN_FIRST,
-      Accept: "application/vnd.github.v3+json",
-    },
-  });
-
-  const issues_json = await issues_res.json();
-  const issueItems = issues_json.items;
-
-  var allIssues = [];
-
-  var repo_res = await loadRepo(issueItems);
-  var mask = "";
-  if (url.includes("label")) {
-    mask = "tag";
-  } else {
-    mask = "language";
-  }
-  issueItems.forEach((issue) => {
-    var lang = query_lang;
-
-    var issueObj = {
-      issueId: issue.id,
-      issueNumber: issue.number,
-      issueUrl: issue.html_url,
-      issueTitle: issue.title,
-      repoTitle: repo_res[issue.id].full_name,
-      createdAt: issue.created_at,
-      repo_forks: repo_res[issue.id].forks_count,
-      repo_stars: repo_res[issue.id].stargazers_count,
-
-      [mask]: query_lang,
-    };
-
-    if (issueObj.repo_forks > 0 && issueObj.repo_stars > 0) {
-      allIssues.push(issueObj);
-    }
-  });
-
-  // setIssues(allIssues);
-  return allIssues;
-}
 export async function getStaticPaths() {
+  try {
+
   const paths = priority_langs.map((lang) => ({
     params: { lang: lang.query },
   }));
 
   return { paths, fallback: true };
+  
+  } catch {
+    // Redirect to failed-lang page if there is an error and getStaticProps fail to handle the error.
+      return {
+        redirect: {
+          destination: "/failed-lang",
+          permanent: false,
+      }
+    }
+  }
 }
 
 export async function getStaticProps({ params }) {
+
+  try {
+
   let url = "";
   tags.forEach((tag) => {
     if (params.lang == "go") {
@@ -324,7 +279,7 @@ export async function getStaticProps({ params }) {
     });
   }
 
-  let lang_issues = "";
+  let lang_issues = [];
 
   if (url.length > 0) {
     lang_issues = await loadIssues(url, params.lang);
@@ -337,4 +292,14 @@ export async function getStaticProps({ params }) {
     },
     revalidate: 600,
   };
+
+  } catch {
+    // Redirect to failed-lang page if there is an error and getStaticProps fail to handle the error.
+      return {
+        redirect: {
+          destination: "/failed-lang",
+          permanent: false,
+      }
+    }
+  }
 }
