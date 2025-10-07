@@ -62,4 +62,7 @@ export const repos_list = [
     'https://github.com/hoppscotch/hoppscotch',
     'https://github.com/elastic/kibana',
     'https://github.com/darkreader/darkreader',
+    'https://github.com/excalidraw/excalidraw',      
+    'https://github.com/grafana/grafana',            
+    'https://github.com/sherlock-project/sherlock',  
 ]
