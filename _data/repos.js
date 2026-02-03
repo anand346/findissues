@@ -62,4 +62,5 @@ export const repos_list = [
     'https://github.com/hoppscotch/hoppscotch',
     'https://github.com/elastic/kibana',
     'https://github.com/darkreader/darkreader',
+    "https://github.com/jvondermarck/dinosaur-exploder",
 ]
